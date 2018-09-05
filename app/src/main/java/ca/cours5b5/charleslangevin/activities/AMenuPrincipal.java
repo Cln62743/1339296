@@ -1,18 +1,19 @@
 package ca.cours5b5.charleslangevin.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
-import java.lang.reflect.AccessibleObject;
+import android.view.View;
+import android.widget.Button;
 
 import ca.cours5b5.charleslangevin.R;
 
-public class AParametres extends Activite {
+public class AMenuPrincipal extends Activite {
     static String classDebug;
 
     static {
 
-        classDebug = AParametres.class.getSimpleName();
+        classDebug = AMenuPrincipal.class.getSimpleName();
         Log.i("Atelier04", classDebug + "::static");
     }
 
@@ -20,7 +21,20 @@ public class AParametres extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("Atelier04", classDebug + "::onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parametres);
+
+        setContentView(R.layout.activity_menuprincipal);
+
+        Button btnSettings = this.findViewById(R.id.btnSettings);
+        btnSettings.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                // Reaction
+
+                Intent myIntent = new Intent(getApplicationContext(), AParametres.class);
+                startActivity(myIntent);
+            }
+        });
     }
 
     @Override
@@ -30,6 +44,7 @@ public class AParametres extends Activite {
 
         // Juste avant d'afficher
     }
+
 
     @Override
     protected void onPause(){
@@ -54,4 +69,5 @@ public class AParametres extends Activite {
 
         // Juste avant de détruire
     }
+
 }

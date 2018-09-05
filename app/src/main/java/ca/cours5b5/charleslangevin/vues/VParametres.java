@@ -1,16 +1,22 @@
 package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 
-public class VParametres extends ConstraintLayout {
+public class VParametres extends Vue {
+    static String classDebug;
 
+    static {
+
+        classDebug = VParametres.class.getSimpleName();
+        Log.i("Atelier04", classDebug + "::static");
+    }
 
     public VParametres(Context context) {
         super(context);
@@ -26,6 +32,7 @@ public class VParametres extends ConstraintLayout {
 
     @Override
     protected void onFinishInflate() {
+        Log.i("Atelier04", classDebug + "::onFinishInflate");
         super.onFinishInflate();
 
         Spinner sHeight = this.findViewById(R.id.spinHeight);

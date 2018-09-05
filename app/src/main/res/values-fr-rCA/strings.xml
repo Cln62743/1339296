@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="greeting">"«Bonjour!»"</string>
-    <string name="portrait">"«Portrait!»"</string>
-    <string name="landscape">"«Paysage!»"</string>
+    <string name="app_name">CharlesLangevin</string>
+    <string name="IDENTIFIANT">VALEUR</string>
 
     <string name="pHeight">"Hauteur"</string>
     <string name="pWidth">"Largeur"</string>
     <string name="pWin">"Condition de victoire"</string>
+
+    <string name="pSettings">"Parametres"</string>
 </resources>
