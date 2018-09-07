@@ -1,15 +1,18 @@
 package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import ca.cours5b5.charleslangevin.R;
-import ca.cours5b5.charleslangevin.global.GConstantes;
+import java.util.List;
 
-public class VParametres extends Vue {
+import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.modeles.MParametres;
+
+public class VParametres extends ConstraintLayout implements Vue {
     static String classDebug;
 
     static {
@@ -34,42 +37,26 @@ public class VParametres extends Vue {
     protected void onFinishInflate() {
         Log.i("Atelier04", classDebug + "::onFinishInflate");
         super.onFinishInflate();
+        MParametres modeleParam = new MParametres();
 
         Spinner sHeight = this.findViewById(R.id.spinHeight);
         Spinner sWidth = this.findViewById(R.id.spinWidth);
         Spinner sWin = this.findViewById(R.id.spinWin);
 
         // Height
-        ArrayAdapter<Integer> adapHeight = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        sHeight.setAdapter(adapHeight);
-
-        for(int i = GConstantes.minHeight; i<= GConstantes.maxHeight; i++) {
-            adapHeight.add(i);
-            if(i == GConstantes.defaultHeight){
-                sHeight.setSelection(i-GConstantes.minHeight);
-            }
-        }
+        List<Integer> adapHeight = modeleParam.getChoixHauteur();
+        sHeight.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapHeight));
+        sHeight.setSelection(modeleParam.getHauteur() - adapHeight.get(0));
 
         // Width
-        ArrayAdapter<Integer> adapWidth = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        sWidth.setAdapter(adapWidth);
-
-        for(int i = GConstantes.minWidth; i<= GConstantes.maxWidth; i++) {
-            adapWidth.add(i);
-            if(i == GConstantes.defaultWidth){
-                sWidth.setSelection(i-GConstantes.minWidth);
-            }
-        }
+        List<Integer> adapWidth = modeleParam.getChoixLargeur();
+        sWidth.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWidth));
+        sWidth.setSelection(modeleParam.getLargeur() - adapWidth.get(0));
 
         // Win
-        ArrayAdapter<Integer> adapWin = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        sWin.setAdapter(adapWin);
+        List<Integer> adapWin = modeleParam.getChoixPourGagner();
+        sWin.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWin));
+        sWin.setSelection(modeleParam.getPourGagner() - adapWin.get(0));
 
-        for(int i = GConstantes.minToWin; i<= GConstantes.maxToWin; i++) {
-            adapWin.add(i);
-            if(i == GConstantes.defaultToWin){
-                sWin.setSelection(i-GConstantes.minToWin);
-            }
-        }
     }
 }

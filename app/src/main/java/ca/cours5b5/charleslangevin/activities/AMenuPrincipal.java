@@ -21,7 +21,6 @@ public class AMenuPrincipal extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("Atelier04", classDebug + "::onCreate");
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_menuprincipal);
 
         Button btnSettings = this.findViewById(R.id.btnSettings);
