@@ -2,6 +2,7 @@ package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
+import android.telecom.Call;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -37,26 +38,25 @@ public class VParametres extends ConstraintLayout implements Vue {
     protected void onFinishInflate() {
         Log.i("Atelier04", classDebug + "::onFinishInflate");
         super.onFinishInflate();
-        MParametres modeleParam = new MParametres();
 
         Spinner sHeight = this.findViewById(R.id.spinHeight);
         Spinner sWidth = this.findViewById(R.id.spinWidth);
         Spinner sWin = this.findViewById(R.id.spinWin);
 
         // Height
-        List<Integer> adapHeight = modeleParam.getChoixHauteur();
+        List<Integer> adapHeight = MParametres.instance.getChoixHauteur();
         sHeight.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapHeight));
-        sHeight.setSelection(modeleParam.getHauteur() - adapHeight.get(0));
+        sHeight.setSelection(MParametres.instance.getHauteur() - adapHeight.get(0));
 
         // Width
-        List<Integer> adapWidth = modeleParam.getChoixLargeur();
+        List<Integer> adapWidth = MParametres.instance.getChoixLargeur();
         sWidth.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWidth));
-        sWidth.setSelection(modeleParam.getLargeur() - adapWidth.get(0));
+        sWidth.setSelection(MParametres.instance.getLargeur() - adapWidth.get(0));
 
         // Win
-        List<Integer> adapWin = modeleParam.getChoixPourGagner();
+        List<Integer> adapWin = MParametres.instance.getChoixPourGagner();
         sWin.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWin));
-        sWin.setSelection(modeleParam.getPourGagner() - adapWin.get(0));
+        sWin.setSelection(MParametres.instance.getPourGagner() - adapWin.get(0));
 
     }
 }

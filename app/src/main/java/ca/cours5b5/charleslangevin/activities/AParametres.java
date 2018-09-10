@@ -3,9 +3,11 @@ package ca.cours5b5.charleslangevin.activities;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.lang.reflect.AccessibleObject;
+import java.util.Map;
 
 import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.modeles.MParametres;
+import ca.cours5b5.charleslangevin.serialisation.Jsonification;
 
 public class AParametres extends Activite {
     static String classDebug;
@@ -20,7 +22,18 @@ public class AParametres extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("Atelier04", classDebug + "::onCreate");
         super.onCreate(savedInstanceState);
+
+        restaurerParametres(savedInstanceState);
         setContentView(R.layout.activity_parametres);
+    }
+
+    private void restaurerParametres(Bundle savedInstanceState){
+        if(savedInstanceState != null){
+            String json = savedInstanceState.getString(MParametres.class.getSimpleName());
+            Map<String, Object> objetJson = Jsonification.enObjetJson(json);
+
+            MParametres.instance.aPartirObjetJson(objetJson);
+        }
     }
 
     @Override
@@ -44,7 +57,15 @@ public class AParametres extends Activite {
         Log.i("Atelier04", classDebug + "::onSaveInstanceState");
         super.onSaveInstanceState(outState);
 
+        sauvegarderParametres(outState);
+    }
+
+    private void sauvegarderParametres(Bundle outState){
         // Code pour sauvegarder les données
+        Map<String, Object> objetJson = MParametres.instance.enObjetJson();
+        String json = Jsonification.enChaine(objetJson);
+
+        outState.putString(MParametres.class.getSimpleName(), json);
     }
 
     @Override

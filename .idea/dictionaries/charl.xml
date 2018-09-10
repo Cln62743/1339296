@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="charl">
     <words>
+      <w>activite</w>
       <w>adap</w>
       <w>attribut</w>
       <w>avant</w>
@@ -9,6 +10,7 @@
       <w>choix</w>
       <w>classe</w>
       <w>constantes</w>
+      <w>constructible</w>
       <w>deserialisation</w>
       <w>données</w>
       <w>détruire</w>
@@ -16,6 +18,7 @@
       <w>finir</w>
       <w>gagner</w>
       <w>generer</w>
+      <w>implanter</w>
       <w>instrospection</w>
       <w>jsonification</w>
       <w>juste</w>
@@ -25,8 +28,12 @@
       <w>modele</w>
       <w>objet</w>
       <w>parametres</w>
+      <w>partir</w>
+      <w>restaurer</w>
       <w>sauvegardable</w>
+      <w>sauvegarde</w>
       <w>sauvegarder</w>
+      <w>separateur</w>
       <w>serialisable</w>
     </words>
   </dictionary>
