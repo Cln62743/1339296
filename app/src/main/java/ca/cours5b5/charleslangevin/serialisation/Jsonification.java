@@ -13,8 +13,4 @@ public class Jsonification {
     public static Map<String, Object> enObjetJson(String json){ return gson.fromJson(json, Map.class); }
 
     public static String enChaine(Map<String, Object> objetJson){ return gson.toJson(objetJson); }
-
-    public static <T> T aPartirJson(Class<T> classAImplanter, String json){
-        return gson.fromJson(json, classAImplanter);
-    }
 }

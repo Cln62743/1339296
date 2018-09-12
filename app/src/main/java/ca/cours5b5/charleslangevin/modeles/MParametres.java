@@ -1,6 +1,7 @@
 package ca.cours5b5.charleslangevin.modeles;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import ca.cours5b5.charleslangevin.global.GConstantes;
@@ -12,15 +13,15 @@ public class MParametres extends Modele {
     public static MParametres instance = new MParametres();
 
     @AttributSerialisable
-    public Integer hauteur;
+    public Integer hauteur = null;
     private final String _hauteur = "hauteur";
 
     @AttributSerialisable
-    public Integer largeur;
+    public Integer largeur = null;
     private final String _largeur = "largeur";
 
     @AttributSerialisable
-    public Integer pourGagner;
+    public Integer pourGagner = null;
     private final String _pourGagner = "pourGagner";
 
     private List<Integer> choixHauteur;
@@ -100,14 +101,23 @@ public class MParametres extends Modele {
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson){
-        setHauteur((Integer) objetJson.get(_hauteur));
-        setLargeur((Integer) objetJson.get(_largeur));
-        setPourGagner((Integer) objetJson.get((_pourGagner)));
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()) {
+            String cle = entry.getKey();
+            Object valeur = entry.getValue();
+
+            if (cle == _hauteur) {
+                setHauteur((Integer) valeur);
+            } else if (cle == _largeur){
+                setLargeur((Integer) valeur);
+            }else if (cle == _pourGagner){
+                setPourGagner((Integer) valeur);
+            }
+        }
     }
 
     @Override
     public Map<String, Object> enObjetJson(){
-        Map<String, Object> objetJson = null;
+        Map<String, Object> objetJson = new HashMap<>();
 
         objetJson.put(_hauteur, hauteur.toString());
         objetJson.put(_largeur, largeur.toString());

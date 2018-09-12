@@ -32,6 +32,9 @@ public class AParametres extends Activite {
             String json = savedInstanceState.getString(MParametres.class.getSimpleName());
             Map<String, Object> objetJson = Jsonification.enObjetJson(json);
 
+            Log.i("Atelier05", classDebug + "::restaurerParametres, clé: " + MParametres.class.getSimpleName());
+            Log.i("Atelier05", classDebug + "::restaurerParametres, json:\n" + json);
+
             MParametres.instance.aPartirObjetJson(objetJson);
         }
     }
@@ -49,6 +52,7 @@ public class AParametres extends Activite {
         Log.i("Atelier04", classDebug + "::onPause");
         super.onPause();
 
+
         // L'activité est en pause
     }
 
@@ -64,6 +68,9 @@ public class AParametres extends Activite {
         // Code pour sauvegarder les données
         Map<String, Object> objetJson = MParametres.instance.enObjetJson();
         String json = Jsonification.enChaine(objetJson);
+
+        Log.i("Atelier05", classDebug + "::sauvegarderParametres, clé: " + MParametres.class.getSimpleName());
+        Log.i("Atelier05", classDebug + "::sauvegarderParametres, json:\n" + json);
 
         outState.putString(MParametres.class.getSimpleName(), json);
     }
