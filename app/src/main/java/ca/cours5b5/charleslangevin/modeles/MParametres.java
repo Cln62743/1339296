@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,15 +15,15 @@ public class MParametres extends Modele {
     public static MParametres instance = new MParametres();
 
     @AttributSerialisable
-    public Integer hauteur = null;
+    public Integer hauteur;
     private final String _hauteur = "hauteur";
 
     @AttributSerialisable
-    public Integer largeur = null;
+    public Integer largeur;
     private final String _largeur = "largeur";
 
     @AttributSerialisable
-    public Integer pourGagner = null;
+    public Integer pourGagner;
     private final String _pourGagner = "pourGagner";
 
     private List<Integer> choixHauteur;
@@ -31,9 +33,9 @@ public class MParametres extends Modele {
     public MParametres(){
         genererListesDeChoix();
 
-        setHauteur(GConstantes.defaultHeight);
-        setLargeur(GConstantes.defaultWidth);
-        setPourGagner(GConstantes.defaultToWin);
+        hauteur = GConstantes.defaultHeight;
+        largeur = GConstantes.defaultWidth;
+        pourGagner = GConstantes.defaultToWin;
     }
 
     public List<Integer> getChoixHauteur() {
@@ -48,29 +50,9 @@ public class MParametres extends Modele {
         return choixPourGagner;
     }
 
-    public Integer getHauteur() {
-        return hauteur;
-    }
-
-    public Integer getLargeur() {
-        return largeur;
-    }
-
-    public Integer getPourGagner() {
-        return pourGagner;
-    }
-
-    public void setHauteur(Integer hauteur) {
-        this.hauteur = hauteur;
-    }
-
-    public void setLargeur(Integer largeur) {
-        this.largeur = largeur;
-    }
-
-    public void setPourGagner(Integer pourGagner) {
-        this.pourGagner = pourGagner;
-    }
+    public int getHauteur(){ return hauteur; }
+    public int getLargeur(){ return largeur; }
+    public int getPourGagner(){ return pourGagner; }
 
     private void genererListesDeChoix(){
         genererListeChoixHauteur();
@@ -106,11 +88,11 @@ public class MParametres extends Modele {
             Object valeur = entry.getValue();
 
             if (cle == _hauteur) {
-                setHauteur((Integer) valeur);
+                instance.hauteur = (Integer) valeur;
             } else if (cle == _largeur){
-                setLargeur((Integer) valeur);
+                instance.largeur = (Integer) valeur;
             }else if (cle == _pourGagner){
-                setPourGagner((Integer) valeur);
+                instance.pourGagner = (Integer) valeur;
             }
         }
     }
@@ -119,9 +101,9 @@ public class MParametres extends Modele {
     public Map<String, Object> enObjetJson(){
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(_hauteur, hauteur.toString());
-        objetJson.put(_largeur, largeur.toString());
-        objetJson.put(_pourGagner, pourGagner.toString());
+        objetJson.put(_hauteur, instance.hauteur);
+        objetJson.put(_largeur, instance.largeur);
+        objetJson.put(_pourGagner, instance.pourGagner);
         return objetJson;
     }
 }

@@ -46,17 +46,17 @@ public class VParametres extends ConstraintLayout implements Vue {
         // Height
         List<Integer> adapHeight = MParametres.instance.getChoixHauteur();
         sHeight.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapHeight));
-        sHeight.setSelection(MParametres.instance.getHauteur() - adapHeight.get(0));
+        sHeight.setSelection(adapHeight.indexOf(MParametres.instance.getHauteur()));
 
         // Width
         List<Integer> adapWidth = MParametres.instance.getChoixLargeur();
         sWidth.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWidth));
-        sWidth.setSelection(MParametres.instance.getLargeur() - adapWidth.get(0));
+        sWidth.setSelection(adapWidth.indexOf(MParametres.instance.getLargeur()));
 
         // Win
         List<Integer> adapWin = MParametres.instance.getChoixPourGagner();
         sWin.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWin));
-        sWin.setSelection(MParametres.instance.getPourGagner() - adapWin.get(0));
+        sWin.setSelection(adapWin.indexOf(MParametres.instance.getPourGagner()));
 
     }
 }
