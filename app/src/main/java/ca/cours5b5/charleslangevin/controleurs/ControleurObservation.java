@@ -9,6 +9,7 @@ public class ControleurObservation {
 
     private static Map<Modele, ListenerObservateur> observations;
 
+    // L'attribut est private: la vue doit obtenir le modèle par l'observation
     static {
 
     }
@@ -18,16 +19,20 @@ public class ControleurObservation {
          * Enregistrer le listener dans le Map observations
          * Lancer l'observation une premiere fois quand on recoit le listener
          *
-         * Note: pour l'instant il y a un seul modele, le nomModele est ignore (FIXME atelier07!)
+         * Note: pour l'instant, utiliser le nom pour decider quel modele utiliser
+         *      - MParametres.instance ou ControleurObservation.partie
          *
          * BONUS: pourquoi le modele est identifie par son nom? (et pas son object comme dans le Map?)
          */
+
     }
 
     public static void lancerObservation(Modele modele){
         /**
-         * Retrouver le listerObservateur pour ce
+         * Retrouver le listenerObservateur pour ce
          * modele et l'appeler
          */
+        ListenerObservateur listener = observations.get(modele);
+        listener.reagirNouveauModele(modele);
     }
 }

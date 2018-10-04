@@ -3,6 +3,7 @@
     <words>
       <w>activite</w>
       <w>adap</w>
+      <w>afficher</w>
       <w>ajouter</w>
       <w>appelant</w>
       <w>appeler</w>
@@ -10,10 +11,12 @@
       <w>attente</w>
       <w>attribut</w>
       <w>avant</w>
+      <w>avec</w>
       <w>avoir</w>
       <w>bonne</w>
       <w>cette</w>
       <w>chaine</w>
+      <w>changement</w>
       <w>chaque</w>
       <w>chemin</w>
       <w>choisir</w>
@@ -30,12 +33,15 @@
       <w>demander</w>
       <w>demandeur</w>
       <w>deserialisation</w>
+      <w>doit</w>
       <w>donc</w>
       <w>données</w>
+      <w>défaut</w>
       <w>détruire</w>
       <w>elles</w>
       <w>enregistrant</w>
       <w>enregistrer</w>
+      <w>entete</w>
       <w>erreur</w>
       <w>etre</w>
       <w>executant</w>
@@ -53,6 +59,7 @@
       <w>initialiser</w>
       <w>inserer</w>
       <w>instrospection</w>
+      <w>inutilisee</w>
       <w>iterer</w>
       <w>jsonification</w>
       <w>juste</w>
@@ -65,15 +72,20 @@
       <w>modele</w>
       <w>modèle</w>
       <w>moins</w>
+      <w>numero</w>
       <w>objet</w>
       <w>observateur</w>
+      <w>obtenir</w>
       <w>oublier</w>
       <w>ouvrir</w>
       <w>parametres</w>
+      <w>partie</w>
       <w>partir</w>
       <w>pourquoi</w>
       <w>quand</w>
+      <w>quel</w>
       <w>quoi</w>
+      <w>reagir</w>
       <w>recoit</w>
       <w>restaurer</w>
       <w>retourner</w>
@@ -90,6 +102,8 @@
       <w>temporaire</w>
       <w>toutes</w>
       <w>truc</w>
+      <w>utilisee</w>
+      <w>utiliser</w>
       <w>valeur</w>
       <w>vide</w>
       <w>vérifier</w>

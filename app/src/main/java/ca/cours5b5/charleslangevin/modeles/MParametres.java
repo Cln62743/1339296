@@ -15,16 +15,8 @@ public class MParametres extends Modele {
     public static MParametres instance = new MParametres();
 
     @AttributSerialisable
-    public Integer hauteur;
-    private final String _hauteur = "hauteur";
-
-    @AttributSerialisable
-    public Integer largeur;
-    private final String _largeur = "largeur";
-
-    @AttributSerialisable
-    public Integer pourGagner;
-    private final String _pourGagner = "pourGagner";
+    public MParametresPartie parametresPartie;
+    private String __parametrePartie = "parametresPartie";
 
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
@@ -50,9 +42,7 @@ public class MParametres extends Modele {
         return choixPourGagner;
     }
 
-    public int getHauteur(){ return hauteur; }
-    public int getLargeur(){ return largeur; }
-    public int getPourGagner(){ return pourGagner; }
+    public MParametresPartie getParametresPartie() { return parametresPartie; }
 
     private void genererListesDeChoix(){
         genererListeChoixHauteur();
