@@ -7,6 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.controleurs.Action;
+import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
+import ca.cours5b5.charleslangevin.global.GCommande;
+
+import static ca.cours5b5.charleslangevin.global.GCommande.OUVRIR_MENU_PARAMETRES;
 
 public class AMenuPrincipal extends Activite {
     static String classDebug;
@@ -29,6 +34,11 @@ public class AMenuPrincipal extends Activite {
             @Override
             public void onClick(View v){
                 // Reaction
+                Action actionPourGagner = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
+
+                // Une fois qu'on connais le choix de l'usager - FIXME
+                actionPourGagner.setArguments();
+                actionPourGagner.executerDesQuePossible();
 
                 Intent myIntent = new Intent(getApplicationContext(), AParametres.class);
                 startActivity(myIntent);
@@ -68,5 +78,7 @@ public class AMenuPrincipal extends Activite {
 
         // Juste avant de détruire
     }
+
+
 
 }

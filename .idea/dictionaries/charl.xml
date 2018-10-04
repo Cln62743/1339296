@@ -3,21 +3,35 @@
     <words>
       <w>activite</w>
       <w>adap</w>
+      <w>appeler</w>
       <w>attribut</w>
       <w>avant</w>
       <w>chaine</w>
       <w>chemin</w>
+      <w>choisir</w>
       <w>choix</w>
       <w>classe</w>
+      <w>cloner</w>
+      <w>commande</w>
+      <w>comme</w>
+      <w>connais</w>
       <w>constantes</w>
       <w>constructible</w>
+      <w>controleur</w>
       <w>deserialisation</w>
       <w>données</w>
       <w>détruire</w>
+      <w>enregistrer</w>
       <w>erreur</w>
+      <w>executer</w>
       <w>finir</w>
+      <w>fois</w>
+      <w>fournisseur</w>
       <w>gagner</w>
       <w>generer</w>
+      <w>gerer</w>
+      <w>gestionnaire</w>
+      <w>identifie</w>
       <w>implanter</w>
       <w>instrospection</w>
       <w>jsonification</w>
@@ -25,17 +39,30 @@
       <w>largeur</w>
       <w>liste</w>
       <w>listes</w>
+      <w>mettre</w>
       <w>modele</w>
+      <w>modèle</w>
+      <w>moins</w>
       <w>objet</w>
+      <w>observateur</w>
+      <w>oublier</w>
+      <w>ouvrir</w>
       <w>parametres</w>
       <w>partir</w>
+      <w>pourquoi</w>
+      <w>quand</w>
+      <w>recoit</w>
       <w>restaurer</w>
+      <w>retrouver</w>
       <w>sauvegardable</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
       <w>separateur</w>
       <w>serialisable</w>
+      <w>soit</w>
+      <w>temporaire</w>
       <w>valeur</w>
+      <w>écrire</w>
     </words>
   </dictionary>
 </component>

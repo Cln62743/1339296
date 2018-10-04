@@ -13,7 +13,6 @@ public class VMenuPrincipal extends ConstraintLayout implements Vue {
         classDebug = VMenuPrincipal.class.getSimpleName();
         Log.i("Atelier04", classDebug + "::static");
     }
-
     public VMenuPrincipal(Context context) {
         super(context);
     }

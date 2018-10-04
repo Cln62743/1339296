@@ -5,12 +5,17 @@ import android.support.constraint.ConstraintLayout;
 import android.telecom.Call;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import java.util.List;
 
 import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.controleurs.Action;
+import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
+import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 
 public class VParametres extends ConstraintLayout implements Vue {
@@ -48,15 +53,62 @@ public class VParametres extends ConstraintLayout implements Vue {
         sHeight.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapHeight));
         sHeight.setSelection(adapHeight.indexOf(MParametres.instance.getHauteur()));
 
+        sHeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object value = parent.getItemAtPosition(position);
+
+                Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
+
+                // Une fois qu'on connais le choix de l'usager
+                actionHauteur.setArguments(value);
+                actionHauteur.executerDesQuePossible();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
         // Width
         List<Integer> adapWidth = MParametres.instance.getChoixLargeur();
         sWidth.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWidth));
         sWidth.setSelection(adapWidth.indexOf(MParametres.instance.getLargeur()));
+
+        sWidth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object value = parent.getItemAtPosition(position);
+
+                Action actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
+
+                // Une fois qu'on connais le choix de l'usager
+                actionLargeur.setArguments(value);
+                actionLargeur.executerDesQuePossible();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         // Win
         List<Integer> adapWin = MParametres.instance.getChoixPourGagner();
         sWin.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWin));
         sWin.setSelection(adapWin.indexOf(MParametres.instance.getPourGagner()));
 
+        sWin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Object value = parent.getItemAtPosition(position);
+
+                Action actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
+
+                // Une fois qu'on connais le choix de l'usager
+                actionPourGagner.setArguments(value);
+                actionPourGagner.executerDesQuePossible();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
     }
 }
