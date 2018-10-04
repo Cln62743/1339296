@@ -6,6 +6,7 @@ import java.util.Map;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.global.GCommande;
+import ca.cours5b5.charleslangevin.modeles.Modele;
 
 public class ControleurAction {
 
@@ -18,16 +19,21 @@ public class ControleurAction {
          *      - pour chaque GCommande
          *          - inserer une action vide
          *
-         * (L'avante est qu'ensuite on a plus a tester si
+         * (L'avantage est qu'ensuite on a plus a tester si
          * une GCommande est dans le Map... elles y sont toutes!)
         */
+
+        for (Map.Entry<GCommande, Action> commande : actions.entrySet()) {
+            Action action = new Action();
+            actions.put(commande.getKey(), action);
+        }
     }
 
     public static Action demanderAction(GCommande commande){
-        Action action = new Action();
         /**
          * Retourner l'action au demandeur
         */
+        Action action = actions.get(commande);
         return action;
     }
 
@@ -36,16 +42,22 @@ public class ControleurAction {
          * Enregistrer le fournisseur
          * Appeler la methode qui execute chaque
          * action de la file d'attente (bonus: pourquoi?)
+         *
+         * En enregistrant un fournisseur on rent l'action executable
+         * donc en executant la methode l'action executable va etre executer.
         */
-
+        enregistrerFournisseur(fournisseur, commande, listenerFournisseur);
+        executerActionsExecutables();
     }
 
     static void executerDesQuePossible(Action action){
         /**
          * Mettre l'action en file d'attente
          * Appeler la methode qui execute chaque
-         * action de la fille d'attente
+         * action de la file d'attente
          */
+        ajouterActionEnFileDAttente(action);
+        executerActionsExecutables();
     }
 
     private static void executerActionsExecutables(){
@@ -61,14 +73,28 @@ public class ControleurAction {
          *          Apres avoir executer l'action:
          *              - Lancer l'observation du fournisseur de cette action(si possible)
          */
+        for (Action action : fileAttenteExec) {
+            if(siActionExecutable(action)){
+
+                fileAttenteExec.remove(action);
+                executerMaintenant(action);
+
+                lancerObservationSiApplicable(action);
+            }
+        }
+
     }
 
-    static boolean siActionExecutiable(Action action){
+    static boolean siActionExecutable(Action action){
         /**
          * Une action est executable si:
          *      - le listenerFournisseur n'est pas null
          */
-        return false;
+        boolean result = false;
+        if(action.listenerFournisseur != null){
+            result = true;
+        }
+        return result;
     }
 
     private static synchronized void executerMaintenant(Action action){
@@ -77,6 +103,7 @@ public class ControleurAction {
          *
          * BONUS: a quoi sert le synchronized
          */
+        action.listenerFournisseur.executer();
     }
 
     private static void lancerObservationSiApplicable(Action action){
@@ -84,12 +111,21 @@ public class ControleurAction {
          * Appeler le controleur pour lancer l'observation
          * du fournisseur (seulement si le fournisseur est un modele)
          */
+        // TODO vérifier si la condition est bonne
+        if(action.listenerFournisseur.getClass() == Modele.class){
+            lancerObservationSiApplicable(action);
+        }
     }
 
     private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
         /**
          * Enregistrer le fournisseur et le listenerFournisseur dans l'action
          */
+        Action actionTemp = actions.get(commande);
+        actionTemp.fournisseur = fournisseur;
+        actionTemp.listenerFournisseur = listenerFournisseur;
+
+        actions.put(commande, actionTemp);
     }
 
     private static void ajouterActionEnFileDAttente(Action action){
@@ -97,5 +133,7 @@ public class ControleurAction {
          * Creer un clone de l'action et
          * ajouter le clone a la file d'attente
          */
+        Action tempAction = action.cloner();
+        fileAttenteExec.add(tempAction);
     }
 }

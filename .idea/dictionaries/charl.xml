@@ -3,10 +3,18 @@
     <words>
       <w>activite</w>
       <w>adap</w>
+      <w>ajouter</w>
+      <w>appelant</w>
       <w>appeler</w>
+      <w>apres</w>
+      <w>attente</w>
       <w>attribut</w>
       <w>avant</w>
+      <w>avoir</w>
+      <w>bonne</w>
+      <w>cette</w>
       <w>chaine</w>
+      <w>chaque</w>
       <w>chemin</w>
       <w>choisir</w>
       <w>choix</w>
@@ -18,12 +26,21 @@
       <w>constantes</w>
       <w>constructible</w>
       <w>controleur</w>
+      <w>creer</w>
+      <w>demander</w>
+      <w>demandeur</w>
       <w>deserialisation</w>
+      <w>donc</w>
       <w>données</w>
       <w>détruire</w>
+      <w>elles</w>
+      <w>enregistrant</w>
       <w>enregistrer</w>
       <w>erreur</w>
+      <w>etre</w>
+      <w>executant</w>
       <w>executer</w>
+      <w>executiable</w>
       <w>finir</w>
       <w>fois</w>
       <w>fournisseur</w>
@@ -33,12 +50,17 @@
       <w>gestionnaire</w>
       <w>identifie</w>
       <w>implanter</w>
+      <w>initialiser</w>
+      <w>inserer</w>
       <w>instrospection</w>
+      <w>iterer</w>
       <w>jsonification</w>
       <w>juste</w>
       <w>largeur</w>
       <w>liste</w>
       <w>listes</w>
+      <w>maintenant</w>
+      <w>methode</w>
       <w>mettre</w>
       <w>modele</w>
       <w>modèle</w>
@@ -51,17 +73,26 @@
       <w>partir</w>
       <w>pourquoi</w>
       <w>quand</w>
+      <w>quoi</w>
       <w>recoit</w>
       <w>restaurer</w>
+      <w>retourner</w>
       <w>retrouver</w>
       <w>sauvegardable</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
       <w>separateur</w>
       <w>serialisable</w>
+      <w>sert</w>
+      <w>seulement</w>
       <w>soit</w>
+      <w>sont</w>
       <w>temporaire</w>
+      <w>toutes</w>
+      <w>truc</w>
       <w>valeur</w>
+      <w>vide</w>
+      <w>vérifier</w>
       <w>écrire</w>
     </words>
   </dictionary>
