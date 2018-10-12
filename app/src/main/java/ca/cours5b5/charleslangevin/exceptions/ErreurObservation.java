@@ -5,7 +5,7 @@ import android.util.Log;
 public class ErreurObservation extends RuntimeException{
 
     public ErreurObservation(String message){
-        Log.i("Atelier04",  "" + message);
+        Log.i("Erreur observation",  "Erreur observation:" + message);
     }
 
     public ErreurObservation(Exception e){

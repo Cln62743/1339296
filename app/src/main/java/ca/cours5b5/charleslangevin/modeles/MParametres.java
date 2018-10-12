@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import ca.cours5b5.charleslangevin.exceptions.ErreurDeSerialisation;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
 
@@ -24,10 +26,6 @@ public class MParametres extends Modele {
 
     public MParametres(){
         genererListesDeChoix();
-
-        hauteur = GConstantes.defaultHeight;
-        largeur = GConstantes.defaultWidth;
-        pourGagner = GConstantes.defaultToWin;
     }
 
     public List<Integer> getChoixHauteur() {
@@ -72,28 +70,28 @@ public class MParametres extends Modele {
     }
 
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson){
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
         for(Map.Entry<String, Object> entry : objetJson.entrySet()) {
             String cle = entry.getKey();
             Object valeur = entry.getValue();
 
-            if (cle == _hauteur) {
-                instance.hauteur = (Integer) valeur;
-            } else if (cle == _largeur){
-                instance.largeur = (Integer) valeur;
-            }else if (cle == _pourGagner){
-                instance.pourGagner = (Integer) valeur;
+            if (cle == parametresPartie.__hauteur) {
+                parametresPartie.setHauteur((Integer) valeur);
+            } else if (cle == parametresPartie.__largeur){
+                parametresPartie.setLargeur((Integer) valeur);
+            }else if (cle == parametresPartie.__pourGagner){
+                parametresPartie.setPourGagner((Integer) valeur);
             }
         }
     }
 
     @Override
-    public Map<String, Object> enObjetJson(){
+    public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(_hauteur, instance.hauteur);
-        objetJson.put(_largeur, instance.largeur);
-        objetJson.put(_pourGagner, instance.pourGagner);
+        objetJson.put(parametresPartie.__hauteur, parametresPartie.getHauteur());
+        objetJson.put(parametresPartie.__largeur, parametresPartie.getLargeur());
+        objetJson.put(parametresPartie.__pourGagner, parametresPartie.getPourGagner());
         return objetJson;
     }
 }

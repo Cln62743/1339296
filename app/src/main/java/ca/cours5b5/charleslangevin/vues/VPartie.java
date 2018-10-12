@@ -20,7 +20,9 @@ public class VPartie implements Vue {
     public VPartie(Context context, AttributeSet attrs, int defStyleAttr){}
 
     @Override
-    protected void onFinishInflate(){}
+    protected void onFinishInflate(){
+        super.onFinishInflate();
+    }
 
     private void observerPartie(){
         /**
@@ -29,6 +31,8 @@ public class VPartie implements Vue {
          * Une fois le modele obtenu, creer la grille d'affichage
          *
          */
+
+        grille.creerGrille(0,0);
     }
 
     private MPartie getPartie(Modele modele){ return null; }

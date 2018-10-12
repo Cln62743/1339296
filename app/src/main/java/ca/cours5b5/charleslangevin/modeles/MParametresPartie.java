@@ -27,7 +27,8 @@ public class MParametresPartie extends Modele {
          * TRUC: utiliser cloner() ci-dessous
          *
          */
-        return null;
+        MParametresPartie mParametresPartie = mParametres.getParametresPartie().cloner();
+        return mParametresPartie;
     }
 
     public MParametresPartie cloner(){
@@ -37,7 +38,8 @@ public class MParametresPartie extends Modele {
          * que l'objet courant
          *
          */
-        return null;
+        MParametresPartie mParametresPartie = this;
+        return mParametresPartie;
     }
 
     public MParametresPartie(){}
