@@ -29,7 +29,7 @@ public class VGrille extends GridLayout {
 
     @Override
     protected void onFinishInflate(){
-        Log.i("Atelier04","VGrille::onFinishInflate");
+        Log.i("Atelier06","VGrille::onFinishInflate");
         super.onFinishInflate();
     }
 
@@ -38,9 +38,8 @@ public class VGrille extends GridLayout {
     private void initialiserColonnes(int largeur){}
 
     private void ajouterEnEntetes(int largeur){}
+    private void ajouterCases(int hauteur, int largeur){}
 
     private LayoutParams getMiseEnPageEntete(int colonne){ return null; }
-    private void ajouterCases(int hauteur, int largeur){}
     private LayoutParams getMiseEnPageCase(int rangee, int colonne){ return null;}
-
 }

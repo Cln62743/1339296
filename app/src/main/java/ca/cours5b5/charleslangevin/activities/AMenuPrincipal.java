@@ -34,13 +34,30 @@ public class AMenuPrincipal extends Activite {
             @Override
             public void onClick(View v){
                 // Reaction
-                Action actionPourGagner = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
+                Action actionParams = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
 
                 // Une fois qu'on connais le choix de l'usager - FIXME
-                actionPourGagner.setArguments();
-                actionPourGagner.executerDesQuePossible();
+                actionParams.setArguments();
+                actionParams.executerDesQuePossible();
 
                 Intent myIntent = new Intent(getApplicationContext(), AParametres.class);
+                startActivity(myIntent);
+            }
+        });
+
+        Button btnPlay = this.findViewById(R.id.btnPlay);
+        btnPlay.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v){
+                // Reaction
+                Action actionPartie = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARTIE);
+
+                // Une fois qu'on connais le choix de l'usager - FIXME
+                actionPartie.setArguments();
+                actionPartie.executerDesQuePossible();
+
+                Intent myIntent = new Intent(getApplicationContext(), APartie.class);
                 startActivity(myIntent);
             }
         });
