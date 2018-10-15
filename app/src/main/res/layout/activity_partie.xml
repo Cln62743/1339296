@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<ca.cours5b5.charleslangevin.vues.VPartie
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context=".activities.APartie"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activities.APartie">
 
     <TextView
         android:id="@+id/txtPlayer2"
@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Player2"
+        android:text="@string/pPlayer2"
         app:layout_constraintBottom_toTopOf="@+id/idGrid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txtPlayer1"
@@ -29,13 +29,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Player1"
+        android:text="@string/pPlayer1"
         app:layout_constraintBottom_toTopOf="@+id/idGrid"
         app:layout_constraintEnd_toStartOf="@+id/txtPlayer2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.GridLayout
+    <ca.cours5b5.charleslangevin.vues.VGrille
         android:id="@+id/idGrid"
         android:layout_width="352dp"
         android:layout_height="400dp"
@@ -48,5 +48,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </android.support.v7.widget.GridLayout>
-</android.support.constraint.ConstraintLayout>
+    </ca.cours5b5.charleslangevin.vues.VGrille>
+</ca.cours5b5.charleslangevin.vues.VPartie>

@@ -28,9 +28,17 @@ public class VGrille extends GridLayout {
     private List<Colonne> colonnesDeCases;
     private List<VEntete> entetes;
 
+    static String classDebug;
+
+    static {
+
+        classDebug = VGrille.class.getSimpleName();
+        Log.i("Atelier06", classDebug + "::static");
+    }
+
     @Override
     protected void onFinishInflate(){
-        Log.i("Atelier06","VGrille::onFinishInflate");
+        Log.i("Atelier06",classDebug + "::onFinishInflate");
         super.onFinishInflate();
     }
 
@@ -38,8 +46,6 @@ public class VGrille extends GridLayout {
         initialiserColonnes(largeur);
         ajouterEnEntetes(largeur);
         ajouterCases(hauteur, largeur);
-
-
     }
 
     private void initialiserColonnes(int largeur){
@@ -65,9 +71,11 @@ public class VGrille extends GridLayout {
             layout.leftMargin = 5;
 
             vEntete.setLayoutParams(layout);
+            this.addView(vEntete, layout);
             entetes.add(new VEntete(getContext(), i));
         }
     }
+
     private void ajouterCases(int hauteur, int largeur){
         for(int i = 0; i < largeur; i++) {
             Colonne colonne = new Colonne();
@@ -86,12 +94,18 @@ public class VGrille extends GridLayout {
                 layout.leftMargin = 5;
 
                 vCase.setLayoutParams(layout);
+                this.addView(vCase, layout);
                 colonne.add(vCase);
             }
             colonnesDeCases.set(i, colonne);
         }
     }
 
-    private LayoutParams getMiseEnPageEntete(int colonne){ return null; }
-    private LayoutParams getMiseEnPageCase(int rangee, int colonne){ return null;}
+    private LayoutParams getMiseEnPageEntete(int colonne){
+        return (LayoutParams) entetes.get(colonne).getLayoutParams();
+    }
+
+    private LayoutParams getMiseEnPageCase(int rangee, int colonne){
+        return (LayoutParams) colonnesDeCases.get(rangee).get(colonne).getLayoutParams();
+    }
 }

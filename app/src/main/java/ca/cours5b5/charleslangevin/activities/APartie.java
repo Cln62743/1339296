@@ -10,7 +10,7 @@ public class APartie extends Activite {
 
     static {
 
-        classDebug = AMenuPrincipal.class.getSimpleName();
+        classDebug = APartie.class.getSimpleName();
         Log.i("Atelier06", classDebug + "::static");
     }
 
@@ -18,7 +18,7 @@ public class APartie extends Activite {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("Atelier06", classDebug + "::onCreate");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menuprincipal);
+        setContentView(R.layout.activity_partie);
     }
 
 

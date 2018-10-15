@@ -7,4 +7,6 @@
     <string name="pWidth">Width</string>
     <string name="pWin">Win condition</string>
 
+    <string name="pPlayer1">Player 1</string>
+    <string name="pPlayer2">Player 2</string>
 </resources>

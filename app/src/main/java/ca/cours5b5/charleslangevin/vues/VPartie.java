@@ -23,7 +23,7 @@ public class VPartie extends ConstraintLayout implements Vue {
 
     static {
 
-        classDebug = VParametres.class.getSimpleName();
+        classDebug = VPartie.class.getSimpleName();
         Log.i("Atelier06", classDebug + "::static");
     }
 
@@ -53,6 +53,7 @@ public class VPartie extends ConstraintLayout implements Vue {
         txtP2.setText("Nom du joueur 2");
 
         grille = this.findViewById(R.id.idGrid);
+        observerPartie();
     }
 
     private void observerPartie(){
@@ -62,6 +63,7 @@ public class VPartie extends ConstraintLayout implements Vue {
          * Une fois le modele obtenu, creer la grille d'affichage
          *
          */
+        Log.i("Atelier06", classDebug + "::observerPartie");
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override
@@ -75,12 +77,10 @@ public class VPartie extends ConstraintLayout implements Vue {
                 });
     }
 
-    private MPartie getPartie(Modele modele){
-
-        return (MPartie)modele;
-    }
+    private MPartie getPartie(Modele modele){ return (MPartie)modele; }
 
     private void initialiserGrille(MPartie partie){
+        Log.i("Atelier06", classDebug + "::initialiserGrille");
         MParametresPartie parametres = partie.getParametres();
         grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
     }
