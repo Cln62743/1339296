@@ -34,11 +34,11 @@ public class AMenuPrincipal extends Activite {
             @Override
             public void onClick(View v){
                 // Reaction
-                Action actionParams = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
+                /*Action actionParams = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
 
                 // Une fois qu'on connais le choix de l'usager - FIXME
                 actionParams.setArguments();
-                actionParams.executerDesQuePossible();
+                actionParams.executerDesQuePossible();*/
 
                 Intent myIntent = new Intent(getApplicationContext(), AParametres.class);
                 startActivity(myIntent);
@@ -50,12 +50,13 @@ public class AMenuPrincipal extends Activite {
 
             @Override
             public void onClick(View v){
+
                 // Reaction
-                Action actionPartie = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARTIE);
+                /*Action actionPartie = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARTIE);
 
                 // Une fois qu'on connais le choix de l'usager - FIXME
                 actionPartie.setArguments();
-                actionPartie.executerDesQuePossible();
+                actionPartie.executerDesQuePossible();*/
 
                 Intent myIntent = new Intent(getApplicationContext(), APartie.class);
                 startActivity(myIntent);

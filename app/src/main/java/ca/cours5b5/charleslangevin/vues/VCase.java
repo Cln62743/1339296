@@ -24,5 +24,7 @@ public class VCase extends AppCompatButton {
          * Change la couleur de fond si desire
          *
          */
+        super(context);
+
     }
 }

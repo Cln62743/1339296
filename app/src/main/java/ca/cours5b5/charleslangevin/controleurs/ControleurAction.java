@@ -112,9 +112,9 @@ public class ControleurAction {
          * du fournisseur (seulement si le fournisseur est un modele)
          */
         // TODO vérifier si la condition est bonne
-        if(action.listenerFournisseur.getClass() == Modele.class){
+        /*if(action.listenerFournisseur.getClass() == Modele.class){
             lancerObservationSiApplicable(action);
-        }
+        }*/
     }
 
     private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){

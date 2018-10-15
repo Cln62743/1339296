@@ -18,7 +18,7 @@ public class MParametres extends Modele {
 
     @AttributSerialisable
     public MParametresPartie parametresPartie;
-    private String __parametrePartie = "parametresPartie";
+    private String __parametresPartie = "parametresPartie";
 
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
@@ -26,6 +26,7 @@ public class MParametres extends Modele {
 
     public MParametres(){
         genererListesDeChoix();
+        parametresPartie = new MParametresPartie();
     }
 
     public List<Integer> getChoixHauteur() {
@@ -75,12 +76,8 @@ public class MParametres extends Modele {
             String cle = entry.getKey();
             Object valeur = entry.getValue();
 
-            if (cle == parametresPartie.__hauteur) {
-                parametresPartie.setHauteur((Integer) valeur);
-            } else if (cle == parametresPartie.__largeur){
-                parametresPartie.setLargeur((Integer) valeur);
-            }else if (cle == parametresPartie.__pourGagner){
-                parametresPartie.setPourGagner((Integer) valeur);
+            if(cle == __parametresPartie) {
+                parametresPartie.aPartirObjetJson((Map<String, Object>) valeur);
             }
         }
     }
@@ -89,9 +86,8 @@ public class MParametres extends Modele {
     public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(parametresPartie.__hauteur, parametresPartie.getHauteur());
-        objetJson.put(parametresPartie.__largeur, parametresPartie.getLargeur());
-        objetJson.put(parametresPartie.__pourGagner, parametresPartie.getPourGagner());
+        objetJson.put(this.__parametresPartie, this.parametresPartie);
+
         return objetJson;
     }
 }

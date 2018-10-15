@@ -7,10 +7,16 @@ import com.google.gson.JsonElement;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import ca.cours5b5.charleslangevin.exceptions.ErreurDeSerialisation;
+
 public class Jsonification {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static Map<String, Object> enObjetJson(String json){ return gson.fromJson(json, Map.class); }
+    public static Map<String, Object> enObjetJson(String json) throws ErreurDeSerialisation{
+        return gson.fromJson(json, Map.class);
+    }
 
-    public static String enChaine(Map<String, Object> objetJson){ return gson.toJson(objetJson); }
+    public static String enChaine(Map<String, Object> objetJson) throws ErreurDeSerialisation{
+        return gson.toJson(objetJson);
+    }
 }

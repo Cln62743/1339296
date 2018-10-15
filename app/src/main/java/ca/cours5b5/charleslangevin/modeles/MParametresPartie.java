@@ -1,8 +1,10 @@
 package ca.cours5b5.charleslangevin.modeles;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.charleslangevin.exceptions.ErreurDeSerialisation;
+import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
 
 public class MParametresPartie extends Modele {
@@ -42,24 +44,44 @@ public class MParametresPartie extends Modele {
         return mParametresPartie;
     }
 
-    public MParametresPartie(){}
+    public MParametresPartie(){
+        hauteur = GConstantes.defaultHeight;
+        largeur = GConstantes.defaultWidth;
+        pourGagner = GConstantes.defaultToWin;
+    }
 
     // GET & SET
     public Integer getHauteur() { return hauteur; }
     public Integer getLargeur() { return largeur; }
     public Integer getPourGagner() { return pourGagner; }
 
-    public void setHauteur(int hauteur){}
-    public void setLargeur(int largeur){}
-    public void setPourGagner(int pourGagner){}
+    public void setHauteur(int hauteur){ this.hauteur = hauteur; }
+    public void setLargeur(int largeur){ this.largeur = largeur; }
+    public void setPourGagner(int pourGagner){ this.pourGagner = pourGagner; }
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()) {
+            String cle = entry.getKey();
+            Object valeur = entry.getValue();
 
+            if (cle == this.__hauteur) {
+                this.setHauteur((Integer) valeur);
+            } else if (cle == this.__largeur){
+                this.setLargeur((Integer) valeur);
+            }else if (cle == this.__pourGagner){
+                this.setPourGagner((Integer) valeur);
+            }
+        }
     }
 
     @Override
     public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
-        return null;
+        Map<String, Object> objetJson = new HashMap<>();
+
+        objetJson.put(this.__hauteur, this.hauteur);
+        objetJson.put(this.__largeur, this.largeur);
+        objetJson.put(this.__pourGagner, this.pourGagner);
+        return objetJson;
     }
 }

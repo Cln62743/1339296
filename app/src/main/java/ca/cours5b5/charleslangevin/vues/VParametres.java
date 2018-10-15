@@ -17,6 +17,7 @@ import ca.cours5b5.charleslangevin.controleurs.Action;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
+import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 
 public class VParametres extends ConstraintLayout implements Vue {
     static String classDebug;
@@ -48,21 +49,23 @@ public class VParametres extends ConstraintLayout implements Vue {
         Spinner sWidth = this.findViewById(R.id.spinWidth);
         Spinner sWin = this.findViewById(R.id.spinWin);
 
+        final MParametresPartie mParams = MParametres.instance.getParametresPartie();
+
         // Height
         List<Integer> adapHeight = MParametres.instance.getChoixHauteur();
         sHeight.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapHeight));
-        sHeight.setSelection(adapHeight.indexOf(MParametres.instance.getHauteur()));
+        sHeight.setSelection(adapHeight.indexOf(mParams.getHauteur()));
 
         sHeight.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
-
-                Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
+                mParams.setHauteur((int)value);
+                /*Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
 
                 // Une fois qu'on connais le choix de l'usager
                 actionHauteur.setArguments(value);
-                actionHauteur.executerDesQuePossible();
+                actionHauteur.executerDesQuePossible();*/
             }
 
             @Override
@@ -72,18 +75,18 @@ public class VParametres extends ConstraintLayout implements Vue {
         // Width
         List<Integer> adapWidth = MParametres.instance.getChoixLargeur();
         sWidth.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWidth));
-        sWidth.setSelection(adapWidth.indexOf(MParametres.instance.getLargeur()));
+        sWidth.setSelection(adapWidth.indexOf(mParams.getLargeur()));
 
         sWidth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
-
-                Action actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
+                mParams.setLargeur((int)value);
+                /*Action actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
 
                 // Une fois qu'on connais le choix de l'usager
                 actionLargeur.setArguments(value);
-                actionLargeur.executerDesQuePossible();
+                actionLargeur.executerDesQuePossible();*/
             }
 
             @Override
@@ -93,18 +96,18 @@ public class VParametres extends ConstraintLayout implements Vue {
         // Win
         List<Integer> adapWin = MParametres.instance.getChoixPourGagner();
         sWin.setAdapter(new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item, adapWin));
-        sWin.setSelection(adapWin.indexOf(MParametres.instance.getPourGagner()));
+        sWin.setSelection(adapWin.indexOf(mParams.getPourGagner()));
 
         sWin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Object value = parent.getItemAtPosition(position);
-
-                Action actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
+                mParams.setPourGagner((int)value);
+                /*Action actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
 
                 // Une fois qu'on connais le choix de l'usager
                 actionPourGagner.setArguments(value);
-                actionPourGagner.executerDesQuePossible();
+                actionPourGagner.executerDesQuePossible();*/
             }
 
             @Override

@@ -23,5 +23,7 @@ public class VEntete extends AppCompatButton{
         /**
          * Afficher le numero de colonne!
          */
+        super(context);
+        this.colonne = colonne;
     }
 }

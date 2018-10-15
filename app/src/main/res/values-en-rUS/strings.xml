@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="pSettings">Settings</string>
+    <string name="pPlay">Play</string>
+
     <string name="pHeight">Height</string>
     <string name="pWidth">Width</string>
     <string name="pWin">Win condition</string>
-    <string name="pSettings">Settings</string>
+
 </resources>

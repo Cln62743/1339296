@@ -23,6 +23,8 @@
       <w>choix</w>
       <w>classe</w>
       <w>cloner</w>
+      <w>colonne</w>
+      <w>colonnes</w>
       <w>commande</w>
       <w>comme</w>
       <w>connais</w>
@@ -34,6 +36,7 @@
       <w>demander</w>
       <w>demandeur</w>
       <w>deserialisation</w>
+      <w>dessous</w>
       <w>doit</w>
       <w>donc</w>
       <w>données</w>
@@ -43,6 +46,7 @@
       <w>enregistrant</w>
       <w>enregistrer</w>
       <w>entete</w>
+      <w>entetes</w>
       <w>erreur</w>
       <w>etre</w>
       <w>exactement</w>
@@ -63,6 +67,7 @@
       <w>instrospection</w>
       <w>inutilisee</w>
       <w>iterer</w>
+      <w>joueur</w>
       <w>jsonification</w>
       <w>juste</w>
       <w>largeur</w>
@@ -74,6 +79,7 @@
       <w>modele</w>
       <w>modèle</w>
       <w>moins</w>
+      <w>nouveau</w>
       <w>numero</w>
       <w>objet</w>
       <w>observateur</w>
@@ -88,6 +94,7 @@
       <w>quand</w>
       <w>quel</w>
       <w>quoi</w>
+      <w>rangee</w>
       <w>reagir</w>
       <w>recoit</w>
       <w>restaurer</w>
