@@ -31,7 +31,6 @@ public class VGrille extends GridLayout {
     static String classDebug;
 
     static {
-
         classDebug = VGrille.class.getSimpleName();
         Log.i("Atelier06", classDebug + "::static");
     }
@@ -51,7 +50,7 @@ public class VGrille extends GridLayout {
         Log.i("Atelier06","Largeur:: " + largeur);
 
         initialiserColonnes(largeur);
-        ajouterEnEntetes(largeur);
+        ajouterEnTetes(largeur);
         ajouterCases(hauteur, largeur);
     }
 
@@ -62,7 +61,7 @@ public class VGrille extends GridLayout {
         }
     }
 
-    private void ajouterEnEntetes(int largeur){
+    private void ajouterEnTetes(int largeur){
         for(int colonne = 0; colonne < largeur; colonne++) {
             VEntete vEntete = new VEntete(getContext(), colonne);
 
@@ -75,8 +74,9 @@ public class VGrille extends GridLayout {
     private void ajouterCases(int hauteur, int largeur){
         for(int colonne = 0; colonne < largeur; colonne++) {
             Colonne objColonne = new Colonne();
-            for(int ligne = 0; ligne < hauteur; ligne++) {
-                VCase vCase = new VCase(getContext(), ligne, colonne);
+            for(int ligne = hauteur; ligne > 0; ligne--) {
+
+                VCase vCase = new VCase(getContext(), ligne - (2 * (ligne - hauteur)) - hauteur, colonne);
 
                 this.addView(vCase, getMiseEnPageCase(ligne, colonne));
                 Log.i("Atelier06","Nouvelle case colonne:: " + colonne + "& ligne:: " + ligne);
@@ -104,7 +104,7 @@ public class VGrille extends GridLayout {
 
     private LayoutParams getMiseEnPageCase(int ligne, int colonne){
 
-        Spec specRangee = GridLayout.spec(ligne + 1, 1.0f);
+        Spec specRangee = GridLayout.spec(ligne, 1.0f);
         Spec specColonne = GridLayout.spec(colonne, 1.0f);
         LayoutParams layout = new LayoutParams(specRangee, specColonne);
 

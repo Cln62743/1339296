@@ -47,8 +47,6 @@ public class ControleurObservation {
             modele = MParametres.instance;
             observations.put(modele, listenerObservateur);
         }
-
-        Log.i("Atelier06", classDebug + "::static");
         lancerObservation(modele);
     }
 
