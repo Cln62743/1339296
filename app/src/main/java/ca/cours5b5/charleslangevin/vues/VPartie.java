@@ -68,6 +68,7 @@ public class VPartie extends Vue {
                     }
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
+                        //Log.i("Atelier07", classDebug + "::reagirChangementAuModele");
                         MPartie mPartie = getPartie(modele);
                         miseAJourGrille(mPartie);
                     }

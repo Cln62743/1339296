@@ -1,6 +1,9 @@
 package ca.cours5b5.charleslangevin.modeles;
 
 
+import android.util.Log;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,14 +11,18 @@ import ca.cours5b5.charleslangevin.global.GCouleur;
 
 public class MGrille extends Modele {
     private List<MColonne> colonnes;
+    static String classDebug;
+
+    static {
+        classDebug = MGrille.class.getSimpleName();
+    }
 
     public MGrille(int largeur){
-        // TODO
         initialiserColonnes(largeur);
     }
 
     private void initialiserColonnes(int largeur){
-        // TODO
+        colonnes = new ArrayList<>();
         for(int i = 0; i < largeur; i++) {
             colonnes.add(new MColonne());
         }
@@ -26,6 +33,7 @@ public class MGrille extends Modele {
     }
 
     public void placerJeton(int colonne, GCouleur couleur){
+        //Log.i("Atelier07", classDebug + "::jouerCoup$" + colonne + " Couleur -> " + couleur);
         MColonne curColonne = colonnes.get(colonne);
         curColonne.placerJeton(couleur);
     }

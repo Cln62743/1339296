@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerObservateur;
@@ -50,10 +52,18 @@ public class ControleurObservation {
      * Appeler le listener
      */
     public static void lancerObservation(Modele modele){
-
         ListenerObservateur listener = observations.get(modele);
+
         if(listener != null){
             listener.reagirNouveauModele(modele);
+        }
+    }
+
+    public static void reagirObservation(Modele modele){
+        ListenerObservateur listener = observations.get(modele);
+
+        if(listener != null){
+            listener.reagirChangementAuModele(modele);
         }
     }
 }

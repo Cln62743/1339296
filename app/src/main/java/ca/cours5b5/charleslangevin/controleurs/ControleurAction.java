@@ -10,6 +10,7 @@ import java.util.Map;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.global.GCommande;
+import ca.cours5b5.charleslangevin.modeles.MPartie;
 import ca.cours5b5.charleslangevin.modeles.Modele;
 
 public class ControleurAction {
@@ -129,9 +130,9 @@ public class ControleurAction {
      * du fournisseur (seulement si le fournisseur est un modele)
      */
     private static void lancerObservationSiApplicable(Action action){
-
-        if(action.fournisseur.getClass().equals(Modele.class)){
-            ControleurObservation.lancerObservation((Modele)action.fournisseur);
+        if( action.fournisseur instanceof Modele ){
+            //Log.i("Atelier07", classDebug + "::lancerObservationSiApplicable");
+            ControleurObservation.reagirObservation((Modele)action.fournisseur);
         }
     }
 

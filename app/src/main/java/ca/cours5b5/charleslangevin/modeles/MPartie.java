@@ -28,8 +28,9 @@ public class MPartie extends Modele implements Fournisseur{
     }
 
     public MPartie(MParametresPartie parametres){
-        Log.i("Atelier07", classDebug + "::Constructeur");
+        //Log.i("Atelier07", classDebug + "::Constructeur");
         this.parametres = parametres;
+        grille = new MGrille(parametres.getLargeur());
         initialiserCouleurCourante();
         fournirActionPlacerJeton();
     }
@@ -65,7 +66,9 @@ public class MPartie extends Modele implements Fournisseur{
      */
     protected void jouerCoup(int colonne){
 
-        Log.i("Atelier07", classDebug + "::jouerCoup$" + colonne);
+        //Log.i("Atelier07", classDebug + "::jouerCoup$" + colonne);
+        grille.placerJeton(colonne, couleurCourante);
+        prochaineCouleurCourante();
     }
 
     private void prochaineCouleurCourante(){
