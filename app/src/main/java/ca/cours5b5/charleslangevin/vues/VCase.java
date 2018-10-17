@@ -20,22 +20,24 @@ public class VCase extends AppCompatButton {
         super(context, attrs, defStyleAttr);
     }
 
+    /**
+     * Afficher la rangee et la colonne
+     *
+     * Change la couleur de fond si desire
+     *
+     */
     public VCase(Context context, int rangee, int colonne){
-        /**
-         * Afficher la rangee et la colonne
-         *
-         * Change la couleur de fond si desire
-         *
-         */
+
         super(context);
         setText(rangee + "," + colonne);
     }
 
+    /**
+     * Changer la couleur de fond selon
+     * le jeton à afficher
+     */
     public void afficherJeton(GCouleur jeton){
-        /**
-         * Changer la couleur de fond selon
-         * le jeton à afficher
-         */
+
         if(jeton.equals(GCouleur.JAUNE)){
             this.setBackgroundColor(getResources().getColor(R.color.jaune, null));
         }else if(jeton.equals(GCouleur.ROUGE)){

@@ -51,13 +51,13 @@ public class VPartie extends Vue {
         observerPartie();
     }
 
+    /**
+     * Appeler observer pour obtenir le modele
+     *
+     * Une fois le modele obtenu, creer la grille d'affichage
+     */
     private void observerPartie(){
-        /**
-         * Appeler observer pour obtenir le modele
-         *
-         * Une fois le modele obtenu, creer la grille d'affichage
-         *
-         */
+
         Log.i("Atelier06", classDebug + "::observerPartie");
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {

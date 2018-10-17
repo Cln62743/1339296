@@ -22,18 +22,16 @@ public class ControleurObservation {
         observations = new HashMap<>();
     }
 
+    /**
+     * Enregistrer le listener dans le Map observations
+     * Lancer l'observation une premiere fois quand on recoit le listener
+     *
+     * Note: pour l'instant, utiliser le nom pour decider quel modele utiliser
+     *      - MParametres.instance ou ControleurObservation.partie
+     *
+     * BONUS: pourquoi le modele est identifie par son nom? (et pas son object comme dans le Map?)
+     */
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) throws ErreurObservation{
-        /**
-         * Enregistrer le listener dans le Map observations
-         * Lancer l'observation une premiere fois quand on recoit le listener
-         *
-         * Note: pour l'instant, utiliser le nom pour decider quel modele utiliser
-         *      - MParametres.instance ou ControleurObservation.partie
-         *
-         * BONUS: pourquoi le modele est identifie par son nom? (et pas son object comme dans le Map?)
-         */
-
-
         Modele modele = null;
 
         if(nomModele.equals("MPartie")){
@@ -47,11 +45,12 @@ public class ControleurObservation {
         lancerObservation(modele);
     }
 
+    /**
+     * Verifier si le listener existe pour ce modele
+     * Appeler le listener
+     */
     public static void lancerObservation(Modele modele){
-        /**
-         * Verifier si le listener existe pour ce modele
-         * Appeler le listener
-         */
+
         ListenerObservateur listener = observations.get(modele);
         if(listener != null){
             listener.reagirNouveauModele(modele);

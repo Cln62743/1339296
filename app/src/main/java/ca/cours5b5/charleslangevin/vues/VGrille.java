@@ -75,19 +75,19 @@ public class VGrille extends GridLayout {
         lesCases = new VCase[hauteur][largeur];
     }
 
+    /**
+     * On demande l'action JOUER_COUP_ICI
+     *
+     * l'action est à exécuter quand l'usager
+     * clique sur une en-tête
+     */
     private void demanderActionEntete(){
-        /**
-         * TODO - To verify
-         * On demande l'action JOUER_COUP_ICI
-         *
-         * l'action est à exécuter quand l'usager
-         * clique sur une en-tête
-         */
+
         actionEntete = ControleurAction.demanderAction(GCommande.JOUER_COUP_ICI);
     }
 
     private void ajouterEnTetes(int largeur){
-        /**
+        /*
          * Pour chaque en-tête, on veut
          * installer le listener
          */

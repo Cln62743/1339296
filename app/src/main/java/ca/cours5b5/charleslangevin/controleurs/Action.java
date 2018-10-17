@@ -23,22 +23,24 @@ public class Action {
         }
     }
 
+    /**
+     *  Appeler le controleur.
+     *  C'est au controleur de gerer l'action
+     *  (Mettre en file d'attente, executer si possible, etc.)
+     */
     public void executerDesQuePossible(){
-        /**
-         *  Appeler le controleur.
-         *  C'est au controleur de gerer l'action
-         *  (Mettre en file d'attente, executer si possible, etc.)
-        */
+
         //Log.i("Atelier07", classDebug + "::executerDesQuePossible");
         ControleurAction controleurAction = new ControleurAction();
         controleurAction.executerDesQuePossible(this);
     }
 
+    /**
+     *  Ne pas oublier de cloner le tableau!
+     *  (a moins qu'il soit null)
+     */
     Action cloner(){
-        /**
-         *  Ne pas oublier de cloner le tableau!
-         *  (a moins qu'il soit null)
-         */
+
         Action action = new Action();
         action.fournisseur = this.fournisseur;
         action.listenerFournisseur = this.listenerFournisseur;

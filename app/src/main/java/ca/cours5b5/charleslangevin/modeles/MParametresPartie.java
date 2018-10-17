@@ -21,25 +21,27 @@ public class MParametresPartie extends Modele {
     public Integer pourGagner;
     protected final String __pourGagner = "pourGagner";
 
+    /**
+     * Retourne une instance de MParametresPartie avec
+     * les memes parametres partie que mParametres
+     *
+     * TRUC: utiliser cloner() ci-dessous
+     *
+     */
     public static MParametresPartie aPartirMParametres(MParametres mParametres){
-        /**
-         * Retourne une instance de MParametresPartie avec
-         * les memes parametres partie que mParametres
-         *
-         * TRUC: utiliser cloner() ci-dessous
-         *
-         */
+
         MParametresPartie mParametresPartie = mParametres.getParametresPartie().cloner();
         return mParametresPartie;
     }
 
+    /**
+     * Retourne une instance de MParametresPartie avec
+     * exactement les memes hauteur/largeur/pourGagner
+     * que l'objet courant
+     *
+     */
     public MParametresPartie cloner(){
-        /**
-         * Retourne une instance de MParametresPartie avec
-         * exactement les memes hauteur/largeur/pourGagner
-         * que l'objet courant
-         *
-         */
+
         MParametresPartie mParametresPartie = this;
         return mParametresPartie;
     }
@@ -65,11 +67,11 @@ public class MParametresPartie extends Modele {
             String cle = entry.getKey();
             Object valeur = entry.getValue();
 
-            if (cle == this.__hauteur) {
+            if (cle.equals(this.__hauteur)){
                 this.setHauteur((Integer) valeur);
-            } else if (cle == this.__largeur){
+            } else if (cle.equals(this.__largeur)){
                 this.setLargeur((Integer) valeur);
-            }else if (cle == this.__pourGagner){
+            }else if (cle.equals(this.__pourGagner)){
                 this.setPourGagner((Integer) valeur);
             }
         }

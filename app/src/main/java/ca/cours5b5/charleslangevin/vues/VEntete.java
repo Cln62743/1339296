@@ -21,10 +21,11 @@ public class VEntete extends AppCompatButton{
 
     private int colonne;
 
+    /**
+     * Afficher le numero de colonne!
+     */
     public VEntete(Context context, int colonne){
-        /**
-         * Afficher le numero de colonne!
-         */
+
         super(context);
         this.colonne = colonne;
         this.setText(colonne + "");

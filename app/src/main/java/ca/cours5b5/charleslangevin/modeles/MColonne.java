@@ -20,18 +20,20 @@ public class MColonne extends Modele {
         jetons.add(couleur);
     }
 
+    /**
+     * Inutilisee
+     */
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) {
-        /**
-         * Inutilisee
-         */
+
     }
 
+    /**
+     * Inutilisee
+     */
     @Override
     public Map<String, Object> enObjetJson() {
-        /**
-         * Inutilisee
-         */
+
         return null;
     }
 }

@@ -44,10 +44,11 @@ public class MPartie extends Modele implements Fournisseur{
         couleurCourante = GCouleur.JAUNE;
     }
 
+    /**
+     * Appeler fournirAction
+     */
     private void fournirActionPlacerJeton(){
-        /**
-         * Appeler fournirAction
-         */
+
         //Log.i("Atelier07", classDebug + "::fournirActionPlacerJeton");
         ControleurAction.fournirAction(this, GCommande.JOUER_COUP_ICI, new ListenerFournisseur() {
             @Override
@@ -58,11 +59,12 @@ public class MPartie extends Modele implements Fournisseur{
         });
     }
 
+    /**
+     * TODO
+     *
+     */
     protected void jouerCoup(int colonne){
-        /**
-         * TODO
-         *
-         */
+
         Log.i("Atelier07", classDebug + "::jouerCoup$" + colonne);
     }
 
@@ -74,20 +76,21 @@ public class MPartie extends Modele implements Fournisseur{
         }
     }
 
+    /**
+     * Inutilisee pour l'instant
+     *
+     */
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
-        /**
-         * Inutilisee pour l'instant
-         *
-         */
+
     }
 
+    /**
+     * Inutilisee pour l'instant
+     *
+     */
     @Override
     public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
-        /**
-         * Inutilisee pour l'instant
-         *
-         */
         return null;
     }
 
