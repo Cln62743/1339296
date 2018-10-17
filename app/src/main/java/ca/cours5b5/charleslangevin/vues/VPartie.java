@@ -9,6 +9,7 @@ import android.widget.TextView;
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.controleurs.ControleurObservation;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerObservateur;
+import ca.cours5b5.charleslangevin.modeles.MGrille;
 import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
 import ca.cours5b5.charleslangevin.modeles.Modele;
@@ -84,7 +85,8 @@ public class VPartie extends Vue {
     }
 
     private void miseAJourGrille(MPartie partie){
-        // TODO
+        MGrille mGrille = partie.getGrille();
+        grille.afficherJetons(mGrille);
     }
 
 

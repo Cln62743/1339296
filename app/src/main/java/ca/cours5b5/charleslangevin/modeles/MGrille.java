@@ -11,13 +11,15 @@ import ca.cours5b5.charleslangevin.global.GCouleur;
 
 public class MGrille extends Modele {
     private List<MColonne> colonnes;
+    private int maxJetons;
     static String classDebug;
 
     static {
         classDebug = MGrille.class.getSimpleName();
     }
 
-    public MGrille(int largeur){
+    public MGrille(int largeur, int hauteur){
+        maxJetons = hauteur;
         initialiserColonnes(largeur);
     }
 
@@ -35,7 +37,10 @@ public class MGrille extends Modele {
     public void placerJeton(int colonne, GCouleur couleur){
         //Log.i("Atelier07", classDebug + "::jouerCoup$" + colonne + " Couleur -> " + couleur);
         MColonne curColonne = colonnes.get(colonne);
-        curColonne.placerJeton(couleur);
+        int columnSize = curColonne.getJetons().size();
+        if(columnSize < maxJetons) {
+            curColonne.placerJeton(couleur);
+        }
     }
 
     @Override

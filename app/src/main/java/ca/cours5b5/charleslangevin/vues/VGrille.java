@@ -37,8 +37,6 @@ public class VGrille extends GridLayout {
     private List<Colonne> colonnesDeCases;
     private List<VEntete> entetes;
 
-    private VCase[][] lesCases;
-
     static String classDebug;
     private Action actionEntete;
 
@@ -58,7 +56,6 @@ public class VGrille extends GridLayout {
         colonnesDeCases = new ArrayList<>();
         nombreLignes = hauteur;
 
-        initialiserTableauDeCase(hauteur, largeur);
         initialiserColonnes(largeur);
         ajouterEnTetes(largeur);
         ajouterCases(hauteur, largeur);
@@ -69,10 +66,6 @@ public class VGrille extends GridLayout {
         for(int colonne = 0; colonne < largeur; colonne++) {
             colonnesDeCases.add(new Colonne());
         }
-    }
-
-    private void initialiserTableauDeCase(int hauteur, int largeur){
-        lesCases = new VCase[hauteur][largeur];
     }
 
     /**
@@ -114,6 +107,7 @@ public class VGrille extends GridLayout {
     }
 
     private void ajouterCases(int hauteur, int largeur){
+        nombreLignes = hauteur;
         for(int colonne = 0; colonne < largeur; colonne++) {
             Colonne objColonne = new Colonne();
             for(int ligne = hauteur; ligne > 0; ligne--) {
@@ -159,9 +153,16 @@ public class VGrille extends GridLayout {
         return layout;
     }
 
-    private void afficherJetons(MGrille grille){ /*TODO*/ }
+    void afficherJetons(MGrille grille){
+        for(int i = 0; i < grille.getColonnes().size(); i++){
+            for(int j = 0; j < grille.getColonnes().get(i).getJetons().size(); j++){
+                afficherJeton(i, j, grille.getColonnes().get(i).getJetons().get(j));
+            }
+        }
+    }
 
     private void afficherJeton(int colonne, int rangee, GCouleur jeton){
-        this.lesCases[colonne][rangee].afficherJeton(jeton);
+        VCase vCase = colonnesDeCases.get(colonne).get(rangee);
+        vCase.afficherJeton(jeton);
     }
 }
