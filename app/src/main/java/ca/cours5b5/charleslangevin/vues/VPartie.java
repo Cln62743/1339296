@@ -14,10 +14,6 @@ import ca.cours5b5.charleslangevin.modeles.MPartie;
 import ca.cours5b5.charleslangevin.modeles.Modele;
 
 public class VPartie extends Vue {
-    /**
-     * TODO modifier le .xml du layout pour que la classe VPartie soit utilisee
-     */
-
     static String classDebug;
 
     static {
@@ -72,6 +68,8 @@ public class VPartie extends Vue {
                     }
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
+                        MPartie mPartie = getPartie(modele);
+                        miseAJourGrille(mPartie);
                     }
                 });
     }
@@ -82,6 +80,10 @@ public class VPartie extends Vue {
         Log.i("Atelier06", classDebug + "::initialiserGrille");
         MParametresPartie parametres = partie.getParametres();
         grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
+    }
+
+    private void miseAJourGrille(MPartie partie){
+        // TODO
     }
 
 

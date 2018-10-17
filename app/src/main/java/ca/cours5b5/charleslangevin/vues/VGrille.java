@@ -9,6 +9,9 @@ import android.widget.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.cours5b5.charleslangevin.global.GCouleur;
+import ca.cours5b5.charleslangevin.modeles.MGrille;
+
 public class VGrille extends GridLayout {
     public VGrille(Context context) {
         super(context);
@@ -27,6 +30,8 @@ public class VGrille extends GridLayout {
 
     private List<Colonne> colonnesDeCases;
     private List<VEntete> entetes;
+
+    private VCase[][] lesCases;
 
     static String classDebug;
 
@@ -61,7 +66,24 @@ public class VGrille extends GridLayout {
         }
     }
 
+    private void initialiserTableauDeCase(int hauteur, int largeur){ /*TODO*/}
+
+    private void demanderActionEntete(){
+        /**
+         * TODO
+         * On demande l'action JOUER_COUP_ICI
+         *
+         * l'action est à exécuter quand l'usager
+         * clique sur une en-tête
+         */
+    }
+
     private void ajouterEnTetes(int largeur){
+        /**
+         * TODO
+         * Pour chaque en-tête, on vuet
+         * installer le listener
+         */
         for(int colonne = 0; colonne < largeur; colonne++) {
             VEntete vEntete = new VEntete(getContext(), colonne);
 
@@ -70,6 +92,8 @@ public class VGrille extends GridLayout {
             entetes.add(vEntete);
         }
     }
+
+    private void installerListenerEntete(VEntete entete, final int colonne){ /*TODO*/ }
 
     private void ajouterCases(int hauteur, int largeur){
         for(int colonne = 0; colonne < largeur; colonne++) {
@@ -117,4 +141,8 @@ public class VGrille extends GridLayout {
 
         return layout;
     }
+
+    private void afficherJetons(MGrille grille){ /*TODO*/ }
+
+    private void afficherJeton(int colonne, int rangee, GCouleur jeton){ /*TODO*/ }
 }

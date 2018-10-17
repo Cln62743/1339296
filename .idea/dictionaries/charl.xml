@@ -35,6 +35,7 @@
       <w>couleur</w>
       <w>courant</w>
       <w>creer</w>
+      <w>demande</w>
       <w>demander</w>
       <w>demandeur</w>
       <w>deserialisation</w>
@@ -56,6 +57,7 @@
       <w>executer</w>
       <w>executiable</w>
       <w>existe</w>
+      <w>exécuter</w>
       <w>finir</w>
       <w>fois</w>
       <w>fournisseur</w>
@@ -73,6 +75,7 @@
       <w>jaune</w>
       <w>jouer</w>
       <w>joueur</w>
+      <w>jour</w>
       <w>jsonification</w>
       <w>juste</w>
       <w>largeur</w>
@@ -119,12 +122,15 @@
       <w>soit</w>
       <w>sont</w>
       <w>temporaire</w>
+      <w>tetes</w>
       <w>toutes</w>
       <w>truc</w>
+      <w>tête</w>
       <w>utilisee</w>
       <w>utiliser</w>
       <w>valeur</w>
       <w>vide</w>
+      <w>vuet</w>
       <w>vérifier</w>
       <w>écrire</w>
     </words>
