@@ -24,7 +24,14 @@ public class MParametres extends Modele {
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
 
+    static String classDebug;
+
+    static {
+        classDebug = MParametres.class.getSimpleName();
+    }
+
     public MParametres(){
+        Log.i("Atelier07", classDebug + "::Constructeur");
         genererListesDeChoix();
         parametresPartie = new MParametresPartie();
     }

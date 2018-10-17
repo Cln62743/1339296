@@ -41,11 +41,11 @@ public class VPartie extends Vue {
         Log.i("Atelier06", classDebug + "::onFinishInflate");
         super.onFinishInflate();
 
-        TextView txtP1 = this.findViewById(R.id.txtPlayer1);
+        /*TextView txtP1 = this.findViewById(R.id.txtPlayer1);
         TextView txtP2 = this.findViewById(R.id.txtPlayer2);
 
-        //txtP1.setText("Nom du joueur 1");
-        //txtP2.setText("Nom du joueur 2");
+        txtP1.setText("Nom du joueur 1");
+        txtP2.setText("Nom du joueur 2");*/
 
         grille = this.findViewById(R.id.idGrid);
         observerPartie();

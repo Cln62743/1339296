@@ -1,5 +1,9 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +17,8 @@ public class ControleurAction {
     private static Map<GCommande, Action> actions;
     private static List<Action> fileAttenteExec;
 
+    static final String classDebug;
+
     static {
         /**
          * TRUC : initialiser le Map actions comme suit:
@@ -23,9 +29,14 @@ public class ControleurAction {
          * une GCommande est dans le Map... elles y sont toutes!)
         */
 
-        for (Map.Entry<GCommande, Action> commande : actions.entrySet()) {
+        classDebug = ControleurAction.class.getSimpleName();
+
+        actions = new HashMap<>();
+        fileAttenteExec = new ArrayList<>();
+
+        for (GCommande commande : GCommande.values()) {
             Action action = new Action();
-            actions.put(commande.getKey(), action);
+            actions.put(commande, action);
         }
     }
 
@@ -55,6 +66,7 @@ public class ControleurAction {
          * Appeler la methode qui execute chaque
          * action de la file d'attente
          */
+        //Log.i("Atelier07", classDebug + "::executerDesQuePossible");
         ajouterActionEnFileDAttente(action);
         executerActionsExecutables();
     }
@@ -72,9 +84,10 @@ public class ControleurAction {
          *          Apres avoir executer l'action:
          *              - Lancer l'observation du fournisseur de cette action(si possible)
          */
+
         for (Action action : fileAttenteExec) {
             if(siActionExecutable(action)){
-
+                //Log.i("Atelier07", classDebug + "::executerActionsExecutables");
                 fileAttenteExec.remove(action);
                 executerMaintenant(action);
 
@@ -102,7 +115,8 @@ public class ControleurAction {
          *
          * BONUS: a quoi sert le synchronized
          */
-        action.listenerFournisseur.executer();
+        //Log.i("Atelier07", classDebug + "::executerMaintenant");
+        action.listenerFournisseur.executer(action.args);
     }
 
     private static void lancerObservationSiApplicable(Action action){
@@ -110,9 +124,8 @@ public class ControleurAction {
          * Appeler le controleur pour lancer l'observation
          * du fournisseur (seulement si le fournisseur est un modele)
          */
-        // TODO vérifier si la condition est bonne
-        if(action.listenerFournisseur.getClass() == Modele.class){
-            lancerObservationSiApplicable(action);
+        if(action.fournisseur.getClass().equals(Modele.class)){
+            ControleurObservation.lancerObservation((Modele)action.fournisseur);
         }
     }
 
@@ -123,8 +136,6 @@ public class ControleurAction {
         Action action = actions.get(commande);
         action.fournisseur = fournisseur;
         action.listenerFournisseur = listenerFournisseur;
-
-        actions.put(commande, action);
     }
 
     private static void ajouterActionEnFileDAttente(Action action){

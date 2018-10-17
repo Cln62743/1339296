@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ActionMenuView;
 import android.widget.GridLayout;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.cours5b5.charleslangevin.controleurs.Action;
+import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.global.GCouleur;
@@ -38,6 +40,7 @@ public class VGrille extends GridLayout {
     private VCase[][] lesCases;
 
     static String classDebug;
+    private Action actionEntete;
 
     static {
         classDebug = VGrille.class.getSimpleName();
@@ -55,18 +58,15 @@ public class VGrille extends GridLayout {
         colonnesDeCases = new ArrayList<>();
         nombreLignes = hauteur;
 
-        Log.i("Atelier06","Hauteur:: " + hauteur);
-        Log.i("Atelier06","Largeur:: " + largeur);
-
         initialiserTableauDeCase(hauteur, largeur);
         initialiserColonnes(largeur);
         ajouterEnTetes(largeur);
         ajouterCases(hauteur, largeur);
+        demanderActionEntete();
     }
 
     private void initialiserColonnes(int largeur){
         for(int colonne = 0; colonne < largeur; colonne++) {
-            Log.i("Atelier06","Nouvelle colonne num:: " + colonne);
             colonnesDeCases.add(new Colonne());
         }
     }
@@ -77,16 +77,13 @@ public class VGrille extends GridLayout {
 
     private void demanderActionEntete(){
         /**
-         * TODO
-         * TO VERIFY
+         * TODO - To verify
          * On demande l'action JOUER_COUP_ICI
          *
          * l'action est à exécuter quand l'usager
          * clique sur une en-tête
          */
-        Action action = new Action();
-        action.setArguments(GCommande.JOUER_COUP_ICI);
-        action.executerDesQuePossible();
+        actionEntete = ControleurAction.demanderAction(GCommande.JOUER_COUP_ICI);
     }
 
     private void ajouterEnTetes(int largeur){
@@ -100,13 +97,20 @@ public class VGrille extends GridLayout {
             this.addView(entete, getMiseEnPageEntete(colonne));
             installerListenerEntete(entete, colonne);
 
-            Log.i("Atelier06","Nouvelle entete num:: " + colonne);
             entetes.add(entete);
         }
     }
 
     private void installerListenerEntete(VEntete entete, final int colonne){
-        /*TODO*/
+        entete.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+
+                demanderActionEntete();
+                actionEntete.setArguments(colonne);
+                //Log.i("Atelier07", classDebug + "::onClick$" + colonne);
+                actionEntete.executerDesQuePossible();
+            }
+        });
     }
 
     private void ajouterCases(int hauteur, int largeur){
@@ -117,7 +121,6 @@ public class VGrille extends GridLayout {
                 VCase vCase = new VCase(getContext(), ligne - (2 * (ligne - hauteur)) - hauteur, colonne);
 
                 this.addView(vCase, getMiseEnPageCase(ligne, colonne));
-                Log.i("Atelier06","Nouvelle case colonne:: " + colonne + "& ligne:: " + ligne);
                 objColonne.add(vCase);
             }
             colonnesDeCases.add(colonne, objColonne);

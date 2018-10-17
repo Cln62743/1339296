@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 
@@ -9,6 +11,11 @@ public class Action {
     ListenerFournisseur listenerFournisseur;
 
     Object[] args;
+    static final String classDebug;
+
+    static {
+        classDebug = Action.class.getSimpleName();
+    }
 
     public void setArguments(Object... args){
         if(args != null){
@@ -22,6 +29,7 @@ public class Action {
          *  C'est au controleur de gerer l'action
          *  (Mettre en file d'attente, executer si possible, etc.)
         */
+        //Log.i("Atelier07", classDebug + "::executerDesQuePossible");
         ControleurAction controleurAction = new ControleurAction();
         controleurAction.executerDesQuePossible(this);
     }
@@ -32,6 +40,8 @@ public class Action {
          *  (a moins qu'il soit null)
          */
         Action action = new Action();
+        action.fournisseur = this.fournisseur;
+        action.listenerFournisseur = this.listenerFournisseur;
 
         if(this.args != null) {
             action.args = this.args.clone();
