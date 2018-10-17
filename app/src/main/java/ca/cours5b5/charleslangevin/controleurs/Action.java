@@ -11,7 +11,9 @@ public class Action {
     Object[] args;
 
     public void setArguments(Object... args){
-
+        if(args != null){
+            this.args = args;
+        }
     }
 
     public void executerDesQuePossible(){

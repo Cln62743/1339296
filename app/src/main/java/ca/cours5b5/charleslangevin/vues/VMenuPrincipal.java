@@ -1,11 +1,10 @@
 package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 
-public class VMenuPrincipal extends ConstraintLayout implements Vue {
+public class VMenuPrincipal extends Vue {
     static String classDebug;
 
     static {

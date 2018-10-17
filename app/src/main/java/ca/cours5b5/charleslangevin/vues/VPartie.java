@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import ca.cours5b5.charleslangevin.R;
@@ -14,7 +13,7 @@ import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
 import ca.cours5b5.charleslangevin.modeles.Modele;
 
-public class VPartie extends ConstraintLayout implements Vue {
+public class VPartie extends Vue {
     /**
      * TODO modifier le .xml du layout pour que la classe VPartie soit utilisee
      */

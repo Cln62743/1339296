@@ -19,7 +19,7 @@ import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 
-public class VParametres extends ConstraintLayout implements Vue {
+public class VParametres extends Vue {
     static String classDebug;
 
     static {

@@ -7,4 +7,6 @@ public enum GCommande {
 
     OUVRIR_MENU_PARAMETRES,
     OUVRIR_MENU_PARTIE,
+
+    JOUER_COUP_ICI,
 }

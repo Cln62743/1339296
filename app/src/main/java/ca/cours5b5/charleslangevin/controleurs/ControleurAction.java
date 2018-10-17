@@ -33,8 +33,7 @@ public class ControleurAction {
         /**
          * Retourner l'action au demandeur
         */
-        Action action = actions.get(commande);
-        return action;
+        return actions.get(commande);
     }
 
     public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
@@ -44,7 +43,7 @@ public class ControleurAction {
          * action de la file d'attente (bonus: pourquoi?)
          *
          * En enregistrant un fournisseur on rent l'action executable
-         * donc en executant la methode l'action executable va etre executer.
+         * donc en executant la methode, l'action executable va etre executer.
         */
         enregistrerFournisseur(fournisseur, commande, listenerFournisseur);
         executerActionsExecutables();
@@ -112,20 +111,20 @@ public class ControleurAction {
          * du fournisseur (seulement si le fournisseur est un modele)
          */
         // TODO vérifier si la condition est bonne
-        /*if(action.listenerFournisseur.getClass() == Modele.class){
+        if(action.listenerFournisseur.getClass() == Modele.class){
             lancerObservationSiApplicable(action);
-        }*/
+        }
     }
 
     private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
         /**
          * Enregistrer le fournisseur et le listenerFournisseur dans l'action
          */
-        Action actionTemp = actions.get(commande);
-        actionTemp.fournisseur = fournisseur;
-        actionTemp.listenerFournisseur = listenerFournisseur;
+        Action action = actions.get(commande);
+        action.fournisseur = fournisseur;
+        action.listenerFournisseur = listenerFournisseur;
 
-        actions.put(commande, actionTemp);
+        actions.put(commande, action);
     }
 
     private static void ajouterActionEnFileDAttente(Action action){

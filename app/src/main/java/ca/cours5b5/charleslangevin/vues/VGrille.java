@@ -82,13 +82,13 @@ public class VGrille extends GridLayout {
                 Log.i("Atelier06","Nouvelle case colonne:: " + colonne + "& ligne:: " + ligne);
                 objColonne.add(vCase);
             }
-            colonnesDeCases.add(objColonne);
+            colonnesDeCases.add(colonne, objColonne);
         }
     }
 
     private LayoutParams getMiseEnPageEntete(int colonne){
 
-        Spec specRangee = GridLayout.spec(0, 1.0f);
+        Spec specRangee = GridLayout.spec(0, 2.0f);
         Spec specColonne = GridLayout.spec(colonne, 1.0f);
         LayoutParams layout = new LayoutParams(specRangee, specColonne);
 
