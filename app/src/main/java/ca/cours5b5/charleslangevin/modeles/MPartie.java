@@ -40,7 +40,13 @@ public class MPartie extends Modele{
          */
     }
 
-    private void prochaineCouleurCourante(){}
+    private void prochaineCouleurCourante(){
+        if(couleurCourante.equals(GCouleur.ROUGE)){
+            couleurCourante = GCouleur.JAUNE;
+        }else{
+            couleurCourante = GCouleur.ROUGE;
+        }
+    }
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{

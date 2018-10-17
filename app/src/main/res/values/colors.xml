@@ -6,5 +6,8 @@
 
     <!-- Couleur custom -->
     <color name="bleuEntete">#5ebeff</color>
-    <color name="bleuClickEntete">#2a83bf</color>
+
+    <!-- Couleur des jetons-->
+    <color name="rouge">#cc001e</color>
+    <color name="jaune">#e5dd00</color>
 </resources>

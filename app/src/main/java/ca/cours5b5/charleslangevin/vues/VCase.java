@@ -3,6 +3,8 @@ package ca.cours5b5.charleslangevin.vues;
 import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
+
+import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.global.GCouleur;
 
 public class VCase extends AppCompatButton {
@@ -31,9 +33,14 @@ public class VCase extends AppCompatButton {
 
     public void afficherJeton(GCouleur jeton){
         /**
-         * TODO
          * Changer la couleur de fond selon
          * le jeton à afficher
          */
+        if(jeton.equals(GCouleur.JAUNE)){
+            this.setBackgroundColor(getResources().getColor(R.color.jaune, null));
+        }else if(jeton.equals(GCouleur.ROUGE)){
+            this.setBackgroundColor(getResources().getColor(R.color.rouge, null));
+        }
+
     }
 }

@@ -4,11 +4,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.widget.ActionMenuView;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.cours5b5.charleslangevin.controleurs.Action;
+import ca.cours5b5.charleslangevin.global.GCommande;
+import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.global.GCouleur;
 import ca.cours5b5.charleslangevin.modeles.MGrille;
 
@@ -54,6 +58,7 @@ public class VGrille extends GridLayout {
         Log.i("Atelier06","Hauteur:: " + hauteur);
         Log.i("Atelier06","Largeur:: " + largeur);
 
+        initialiserTableauDeCase(hauteur, largeur);
         initialiserColonnes(largeur);
         ajouterEnTetes(largeur);
         ajouterCases(hauteur, largeur);
@@ -66,34 +71,43 @@ public class VGrille extends GridLayout {
         }
     }
 
-    private void initialiserTableauDeCase(int hauteur, int largeur){ /*TODO*/}
+    private void initialiserTableauDeCase(int hauteur, int largeur){
+        lesCases = new VCase[hauteur][largeur];
+    }
 
     private void demanderActionEntete(){
         /**
          * TODO
+         * TO VERIFY
          * On demande l'action JOUER_COUP_ICI
          *
          * l'action est à exécuter quand l'usager
          * clique sur une en-tête
          */
+        Action action = new Action();
+        action.setArguments(GCommande.JOUER_COUP_ICI);
+        action.executerDesQuePossible();
     }
 
     private void ajouterEnTetes(int largeur){
         /**
-         * TODO
-         * Pour chaque en-tête, on vuet
+         * Pour chaque en-tête, on veut
          * installer le listener
          */
         for(int colonne = 0; colonne < largeur; colonne++) {
-            VEntete vEntete = new VEntete(getContext(), colonne);
+            VEntete entete = new VEntete(getContext(), colonne);
 
-            this.addView(vEntete, getMiseEnPageEntete(colonne));
+            this.addView(entete, getMiseEnPageEntete(colonne));
+            installerListenerEntete(entete, colonne);
+
             Log.i("Atelier06","Nouvelle entete num:: " + colonne);
-            entetes.add(vEntete);
+            entetes.add(entete);
         }
     }
 
-    private void installerListenerEntete(VEntete entete, final int colonne){ /*TODO*/ }
+    private void installerListenerEntete(VEntete entete, final int colonne){
+        /*TODO*/
+    }
 
     private void ajouterCases(int hauteur, int largeur){
         for(int colonne = 0; colonne < largeur; colonne++) {
@@ -144,5 +158,7 @@ public class VGrille extends GridLayout {
 
     private void afficherJetons(MGrille grille){ /*TODO*/ }
 
-    private void afficherJeton(int colonne, int rangee, GCouleur jeton){ /*TODO*/ }
+    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
+        this.lesCases[colonne][rangee].afficherJeton(jeton);
+    }
 }
