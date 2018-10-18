@@ -68,11 +68,11 @@ public class MParametresPartie extends Modele {
             Object valeur = entry.getValue();
 
             if (cle.equals(this.__hauteur)){
-                this.setHauteur((Integer) valeur);
+                this.setHauteur(((Double)valeur).intValue());
             } else if (cle.equals(this.__largeur)){
-                this.setLargeur((Integer) valeur);
+                this.setLargeur(((Double)valeur).intValue());
             }else if (cle.equals(this.__pourGagner)){
-                this.setPourGagner((Integer) valeur);
+                this.setPourGagner(((Double)valeur).intValue());
             }
         }
     }

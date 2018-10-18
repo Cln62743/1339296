@@ -2,6 +2,8 @@ package ca.cours5b5.charleslangevin.modeles;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,7 @@ public class MPartie extends Modele implements Fournisseur{
 
     public MPartie(MParametresPartie parametres){
         //Log.i("Atelier07", classDebug + "::Constructeur");
+        this.coups = new ArrayList<>();
         this.parametres = parametres;
         grille = new MGrille(parametres.getLargeur(), parametres.getHauteur());
         initialiserCouleurCourante();
@@ -68,6 +71,7 @@ public class MPartie extends Modele implements Fournisseur{
     protected void jouerCoup(int colonne){
 
         //Log.i("Atelier07", classDebug + "::jouerCoup$" + colonne);
+        this.coups.add(colonne);
         grille.placerJeton(colonne, couleurCourante);
         prochaineCouleurCourante();
     }
@@ -93,7 +97,22 @@ public class MPartie extends Modele implements Fournisseur{
      */
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
+        List<Integer> coupsARejouer = new ArrayList<>();
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()) {
+            String cle = entry.getKey();
+            Object valeur = entry.getValue();
 
+            if (cle.equals(this.__parametres)){
+                this.parametres.aPartirObjetJson((Map<String, Object>) valeur);
+            } else if (cle.equals(this.__coups)){
+                coupsARejouer = listeCoupsAPartirJson((List<String>)valeur);
+            }
+        }
+
+        grille = new MGrille(parametres.getLargeur(), parametres.getHauteur());
+        initialiserCouleurCourante();
+
+        rejouerLesCoups(coupsARejouer);
     }
 
     /**
@@ -102,13 +121,44 @@ public class MPartie extends Modele implements Fournisseur{
      */
     @Override
     public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
-        return null;
+        Map<String, Object> objetJson = new HashMap<>();
+        List<String> listeCoups = listeCoupsEnObjetJson(this.coups);
+
+        //Map<String, Object> objetJson = new HashMap<>();
+
+        //objetJson.put(this.__parametresPartie, this.parametresPartie);
+
+        objetJson.put(this.__parametres, this.parametres.enObjetJson());
+        objetJson.put(this.__coups, listeCoups);
+
+        return objetJson;
     }
 
-    private void rejouerLesCoups(List<Integer> coupsARejouer){}
+    private void rejouerLesCoups(List<Integer> coupsARejouer){
+        coups.clear();
+        for(Integer coup: coupsARejouer){
+            jouerCoup(coup);
+        }
+    }
 
-    private List<Integer> listeCoupsAPartierJson(List<String> listeCoupsObjetJson){ return null; }
+    private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson){
+        List<Integer> listResult = new ArrayList<>();
 
-    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups){ return null; }
+        for(String num : listeCoupsObjetJson){
+            listResult.add(Integer.parseInt(num));
+        }
+
+        return listResult;
+    }
+
+    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups){
+        List<String> listResult = new ArrayList<>();
+
+        for(Integer num : listeCoups){
+            listResult.add(Integer.toString(num));
+        }
+
+        return listResult;
+    }
 
 }
