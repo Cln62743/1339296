@@ -2,6 +2,7 @@ package ca.cours5b5.charleslangevin.modeles;
 
 import android.util.Log;
 
+import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
@@ -14,6 +15,10 @@ import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
 import ca.cours5b5.charleslangevin.vues.VPartie;
 
 public class MPartie extends Modele implements Fournisseur{
+
+    @AttributSerialisable
+    public List<Integer> coups;
+    private final String __coups = "coups";
 
     @AttributSerialisable
     public MParametresPartie parametres;
@@ -76,8 +81,15 @@ public class MPartie extends Modele implements Fournisseur{
     }
 
     /**
-     * Inutilisee pour l'instant
+     * ATTENTION: Lire les parametresPartie d'abord
      *
+     * - initialiser la grille
+     *
+     * - initialiser la couleur courante
+     *
+     * - lire la liste de coup
+     *
+     * - rejouer les coups
      */
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation{
@@ -92,5 +104,11 @@ public class MPartie extends Modele implements Fournisseur{
     public Map<String, Object> enObjetJson() throws ErreurDeSerialisation{
         return null;
     }
+
+    private void rejouerLesCoups(List<Integer> coupsARejouer){}
+
+    private List<Integer> listeCoupsAPartierJson(List<String> listeCoupsObjetJson){ return null; }
+
+    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups){ return null; }
 
 }

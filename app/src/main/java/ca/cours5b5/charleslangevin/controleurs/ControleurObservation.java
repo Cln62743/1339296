@@ -16,7 +16,7 @@ public class ControleurObservation {
     private static Map<Modele, ListenerObservateur> observations;
 
     // L'attribut est private: la vue doit obtenir le modèle par l'observation
-    private static MPartie partie;
+    public static MPartie partie;
     static String classDebug;
 
     static {
