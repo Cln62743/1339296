@@ -6,7 +6,8 @@ import android.util.AttributeSet;
 
 import ca.cours5b5.charleslangevin.R;
 
-public class VEntete extends AppCompatButton{
+public class VEntete extends AppCompatButton {
+
     public VEntete(Context context) {
         super(context);
     }
@@ -21,15 +22,15 @@ public class VEntete extends AppCompatButton{
 
     private int colonne;
 
-    /**
-     * Afficher le numero de colonne!
-     */
-    public VEntete(Context context, int colonne){
-
+    public VEntete(Context context, int colonne) {
         super(context);
+
+        setText(colonne + "\n" + getResources().getString(R.string.entete));
+
         this.colonne = colonne;
-        this.setText(colonne + "");
-        this.setBackgroundColor(getResources().getColor(R.color.bleuEntete, null));
-        //this.setHighlightColor(getResources().getColor(R.color.bleuClickEntete, null));
+    }
+
+    public int getColonne() {
+        return colonne;
     }
 }

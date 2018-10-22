@@ -1,14 +1,16 @@
 package ca.cours5b5.charleslangevin.exceptions;
 
-import android.util.Log;
 
-public class ErreurObservation extends RuntimeException{
+import java.util.Map;
 
-    public ErreurObservation(String message){
-        Log.i("Erreur observation",  "Erreur observation:" + message);
-    }
+public class ErreurObservation extends RuntimeException {
 
     public ErreurObservation(Exception e){
-        e.getMessage();
+        super(e);
     }
+
+    public ErreurObservation(String message){
+        super(message);
+    }
+
 }

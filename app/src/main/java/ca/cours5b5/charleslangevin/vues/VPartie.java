@@ -1,27 +1,19 @@
 package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.TextView;
 
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.controleurs.ControleurObservation;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerObservateur;
-import ca.cours5b5.charleslangevin.modeles.MGrille;
+import ca.cours5b5.charleslangevin.exceptions.ErreurObservation;
 import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
 import ca.cours5b5.charleslangevin.modeles.Modele;
 
+
 public class VPartie extends Vue {
-    static String classDebug;
-
-    static {
-
-        classDebug = VPartie.class.getSimpleName();
-        Log.i("Atelier06", classDebug + "::static");
-    }
 
     private VGrille grille;
 
@@ -38,56 +30,73 @@ public class VPartie extends Vue {
     }
 
     @Override
-    protected void onFinishInflate(){
-        Log.i("Atelier06", classDebug + "::onFinishInflate");
+    protected void onFinishInflate() {
         super.onFinishInflate();
 
-        /*TextView txtP1 = this.findViewById(R.id.txtPlayer1);
-        TextView txtP2 = this.findViewById(R.id.txtPlayer2);
+        initialiser();
 
-        txtP1.setText("Nom du joueur 1");
-        txtP2.setText("Nom du joueur 2");*/
-
-        grille = this.findViewById(R.id.idGrid);
         observerPartie();
+
     }
 
-    /**
-     * Appeler observer pour obtenir le modele
-     *
-     * Une fois le modele obtenu, creer la grille d'affichage
-     */
-    private void observerPartie(){
+    private void initialiser() {
 
-        Log.i("Atelier06", classDebug + "::observerPartie");
+        grille = findViewById(R.id.grille);
+
+    }
+
+    private void observerPartie() {
+
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
                     @Override
-                    public void reagirNouveauModele(Modele modele){
-                        MPartie mPartie = getPartie(modele);
-                        initialiserGrille(mPartie);
+                    public void reagirNouveauModele(Modele modele) {
+
+                        MPartie partie = getPartie(modele);
+
+                        preparerAffichage(partie);
+
+                        miseAJourGrille(partie);
+
                     }
+
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        //Log.i("Atelier07", classDebug + "::reagirChangementAuModele");
-                        MPartie mPartie = getPartie(modele);
-                        miseAJourGrille(mPartie);
+
+                        MPartie partie = getPartie(modele);
+
+                        miseAJourGrille(partie);
+
                     }
                 });
     }
 
-    private MPartie getPartie(Modele modele){ return (MPartie)modele; }
+    private void preparerAffichage(MPartie partie) {
 
-    private void initialiserGrille(MPartie partie){
-        Log.i("Atelier06", classDebug + "::initialiserGrille");
-        MParametresPartie parametres = partie.getParametres();
-        grille.creerGrille(parametres.getHauteur(), parametres.getLargeur());
+        MParametresPartie parametresPartie = partie.getParametres();
+
+        grille.creerGrille(parametresPartie.getHauteur(), parametresPartie.getLargeur());
+
+    }
+
+    private MPartie getPartie(Modele modele){
+
+        try{
+
+            return (MPartie) modele;
+
+        }catch(ClassCastException e){
+
+            throw new ErreurObservation(e);
+
+        }
+
     }
 
     private void miseAJourGrille(MPartie partie){
-        MGrille mGrille = partie.getGrille();
-        grille.afficherJetons(mGrille);
-    }
 
+        grille.afficherJetons(partie.getGrille());
+
+    }
 
 }

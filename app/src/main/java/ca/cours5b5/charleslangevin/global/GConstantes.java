@@ -1,15 +1,20 @@
 package ca.cours5b5.charleslangevin.global;
 
-public class GConstantes {
-    public static final int minHeight = 4;
-    public static final int maxHeight = 10;
-    public static final int defaultHeight = 6;
-    public static final int minWidth = 4;
-    public static final int maxWidth = 10;
-    public static final int defaultWidth = 7;
-    public static final int minToWin = 3;
-    public static final int maxToWin = 4;
-    public static final int defaultToWin = 4;
+public final class GConstantes {
+
+    private GConstantes(){}
+
+    public static final int LARGEUR_MIN = 4;
+    public static final int LARGEUR_MAX = 10;
+    public static final int LARGEUR_PAR_DEFAUT = 7;
+
+    public static final int HAUTEUR_MIN = 4;
+    public static final int HAUTEUR_MAX = 10;
+    public static final int HAUTEUR_PAR_DEFAUT = 6;
+
+    public static final int POUR_GAGNER_MIN = 3;
+    public static final int POUR_GAGNER_PAR_DEFAUT = 4;
+
+    public static final String EXTENSION_PAR_DEFAUT=".json";
+
 }
-
-

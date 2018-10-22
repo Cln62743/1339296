@@ -2,21 +2,26 @@ package ca.cours5b5.charleslangevin.serialisation;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 
-import java.lang.reflect.Type;
 import java.util.Map;
 
-import ca.cours5b5.charleslangevin.exceptions.ErreurDeSerialisation;
+import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 
-public class Jsonification {
+public final class Jsonification {
+
+    private Jsonification(){}
+
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public static Map<String, Object> enObjetJson(String json) throws ErreurDeSerialisation{
+    public static Map<String, Object> aPartirChaineJson(String json) throws ErreurSerialisation {
+
         return gson.fromJson(json, Map.class);
+
     }
 
-    public static String enChaine(Map<String, Object> objetJson) throws ErreurDeSerialisation{
+    public static String enChaineJson(Map<String, Object> objetJson) throws ErreurSerialisation {
+
         return gson.toJson(objetJson);
+
     }
 }

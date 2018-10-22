@@ -3,6 +3,7 @@
     <words>
       <w>activite</w>
       <w>adap</w>
+      <w>affichage</w>
       <w>afficher</w>
       <w>ajouter</w>
       <w>appelant</w>
@@ -13,12 +14,16 @@
       <w>avant</w>
       <w>avec</w>
       <w>avoir</w>
+      <w>besoin</w>
       <w>bleu</w>
       <w>bonne</w>
+      <w>bouton</w>
+      <w>calculer</w>
       <w>cette</w>
       <w>chaine</w>
       <w>changement</w>
       <w>chaque</w>
+      <w>chargement</w>
       <w>chemin</w>
       <w>choisir</w>
       <w>choix</w>
@@ -32,18 +37,23 @@
       <w>constantes</w>
       <w>constructeur</w>
       <w>constructible</w>
+      <w>controles</w>
       <w>controleur</w>
       <w>couleur</w>
       <w>courant</w>
       <w>courante</w>
       <w>creer</w>
+      <w>defaut</w>
       <w>demande</w>
       <w>demander</w>
       <w>demandeur</w>
+      <w>demarrer</w>
       <w>deserialisation</w>
       <w>dessous</w>
+      <w>disque</w>
       <w>doit</w>
       <w>donc</w>
+      <w>donnees</w>
       <w>données</w>
       <w>défaut</w>
       <w>détruire</w>
@@ -60,6 +70,7 @@
       <w>executiable</w>
       <w>existe</w>
       <w>exécuter</w>
+      <w>fichier</w>
       <w>finir</w>
       <w>fois</w>
       <w>fournir</w>
@@ -68,8 +79,10 @@
       <w>generer</w>
       <w>gerer</w>
       <w>gestionnaire</w>
+      <w>identifiant</w>
       <w>identifie</w>
       <w>implanter</w>
+      <w>inconnu</w>
       <w>initialiser</w>
       <w>inserer</w>
       <w>instrospection</w>
@@ -92,6 +105,7 @@
       <w>mettre</w>
       <w>mise</w>
       <w>modele</w>
+      <w>modeles</w>
       <w>modèle</w>
       <w>moins</w>
       <w>nouveau</w>
@@ -106,6 +120,7 @@
       <w>parametres</w>
       <w>partie</w>
       <w>partir</w>
+      <w>paysage</w>
       <w>pourquoi</w>
       <w>prochaine</w>
       <w>quand</w>
@@ -114,6 +129,7 @@
       <w>rangee</w>
       <w>reagir</w>
       <w>recoit</w>
+      <w>recuperer</w>
       <w>rejouer</w>
       <w>restaurer</w>
       <w>retourne</w>
@@ -122,6 +138,7 @@
       <w>sauvegardable</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
+      <w>sauvegardes</w>
       <w>selon</w>
       <w>separateur</w>
       <w>serialisable</w>

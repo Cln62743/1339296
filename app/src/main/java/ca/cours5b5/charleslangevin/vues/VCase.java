@@ -7,42 +7,60 @@ import android.util.AttributeSet;
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.global.GCouleur;
 
+
 public class VCase extends AppCompatButton {
+
     public VCase(Context context) {
         super(context);
+        initialiser();
     }
 
     public VCase(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initialiser();
     }
 
     public VCase(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initialiser();
     }
 
-    /**
-     * Afficher la rangee et la colonne
-     *
-     * Change la couleur de fond si desire
-     *
-     */
-    public VCase(Context context, int rangee, int colonne){
 
+    public VCase(Context context, int rangee, int colonne) {
         super(context);
-        setText(rangee + "," + colonne);
+
+        setText(""+rangee+","+colonne);
+
+        initialiser();
+
     }
 
-    /**
-     * Changer la couleur de fond selon
-     * le jeton à afficher
-     */
-    public void afficherJeton(GCouleur jeton){
+    private void initialiser() {
 
-        if(jeton.equals(GCouleur.JAUNE)){
-            this.setBackgroundColor(getResources().getColor(R.color.jaune, null));
-        }else if(jeton.equals(GCouleur.ROUGE)){
-            this.setBackgroundColor(getResources().getColor(R.color.rouge, null));
+        changerCouleurDeFond(R.color.VIDE);
+
+    }
+
+    private void changerCouleurDeFond(int idCouleur) {
+
+        setBackgroundColor(getResources().getColor(idCouleur, null));
+
+    }
+
+    public void afficherJeton(GCouleur jeton) {
+
+        switch (jeton){
+
+            case ROUGE:
+
+                changerCouleurDeFond(R.color.ROUGE);
+                break;
+
+            case JAUNE:
+
+                changerCouleurDeFond(R.color.JAUNE);
+                break;
         }
-
     }
+
 }

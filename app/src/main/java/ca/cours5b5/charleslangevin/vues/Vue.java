@@ -4,7 +4,8 @@ import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 
-public abstract class Vue extends ConstraintLayout{
+
+public abstract class Vue extends ConstraintLayout {
 
     public Vue(Context context) {
         super(context);
@@ -17,5 +18,5 @@ public abstract class Vue extends ConstraintLayout{
     public Vue(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-}
 
+}

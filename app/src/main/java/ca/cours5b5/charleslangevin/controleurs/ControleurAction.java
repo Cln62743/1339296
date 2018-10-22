@@ -1,7 +1,5 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,148 +8,119 @@ import java.util.Map;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.global.GCommande;
-import ca.cours5b5.charleslangevin.modeles.MPartie;
 import ca.cours5b5.charleslangevin.modeles.Modele;
 
-public class ControleurAction {
+public final class ControleurAction {
+
+    private ControleurAction(){}
 
     private static Map<GCommande, Action> actions;
-    private static List<Action> fileAttenteExec;
+    private static List<Action> fileAttenteExecution;
 
-    static final String classDebug;
-
-    /**
-     * TRUC : initialiser le Map actions comme suit:
-     *      - pour chaque GCommande
-     *          - inserer une action vide
-     *
-     * (L'avantage est qu'ensuite on a plus a tester si
-     * une GCommande est dans le Map... elles y sont toutes!)
-     */
     static {
 
-
-        classDebug = ControleurAction.class.getSimpleName();
-
         actions = new HashMap<>();
-        fileAttenteExec = new ArrayList<>();
 
-        for (GCommande commande : GCommande.values()) {
-            Action action = new Action();
-            actions.put(commande, action);
-        }
+        initialiserActions();
+
+        fileAttenteExecution = new ArrayList<>();
     }
 
-    /**
-     * Retourner l'action au demandeur
-     */
-    public static Action demanderAction(GCommande commande){
+    private static void initialiserActions() {
 
+        for(GCommande commande : GCommande.values()){
+
+            actions.put(commande, new Action());
+
+        }
+
+    }
+
+    public static Action demanderAction(GCommande commande) {
         return actions.get(commande);
     }
 
-    /**
-     * Enregistrer le fournisseur
-     * Appeler la methode qui execute chaque
-     * action de la file d'attente (bonus: pourquoi?)
-     *
-     * En enregistrant un fournisseur on rent l'action executable
-     * donc en executant la methode, l'action executable va etre executer.
-     */
-    public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
+    public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur) {
 
         enregistrerFournisseur(fournisseur, commande, listenerFournisseur);
         executerActionsExecutables();
+
     }
 
-    /**
-     * Mettre l'action en file d'attente
-     * Appeler la methode qui execute chaque
-     * action de la file d'attente
-     */
-    static void executerDesQuePossible(Action action){
+    static void executerDesQuePossible(Action action) {
 
-        //Log.i("Atelier07", classDebug + "::executerDesQuePossible");
         ajouterActionEnFileDAttente(action);
         executerActionsExecutables();
+
     }
 
-    /**
-     * Iterer la file d'attente
-     *      si l'action est executable:
-     *
-     *          Avant d'executer l'action:
-     *              - l'enlever de la file d'attente
-     *
-     *          Appeler la methode pour executer l'action maintenant
-     *
-     *          Apres avoir executer l'action:
-     *              - Lancer l'observation du fournisseur de cette action(si possible)
-     */
-    private static void executerActionsExecutables(){
-        for (Action action : fileAttenteExec) {
-            if(siActionExecutable(action)){
-                //Log.i("Atelier07", classDebug + "::executerActionsExecutables");
-                fileAttenteExec.remove(action);
+    private static void executerActionsExecutables() {
+
+        for (Action action : fileAttenteExecution) {
+
+            if (siActionExecutable(action)) {
+
+                fileAttenteExecution.remove(action);
+
                 executerMaintenant(action);
 
                 lancerObservationSiApplicable(action);
+
             }
         }
 
     }
 
-    /**
-     * Une action est executable si:
-     *      - le listenerFournisseur n'est pas null
-     */
-    static boolean siActionExecutable(Action action){
+    static boolean siActionExecutable(Action action) {
 
-        boolean result = false;
-        if(action.listenerFournisseur != null){
-            result = true;
-        }
-        return result;
+        return (action.listenerFournisseur == null) ? false : true;
+
     }
 
-    /**
-     * Appeler le listenerFournisseur de l'action
-     *
-     * BONUS: a quoi sert le synchronized
-     */
+    private static void lancerObservationSiApplicable(Action action){
+
+        if (action.fournisseur instanceof Modele) {
+
+            ControleurObservation.lancerObservation((Modele) action.fournisseur);
+
+        }
+    }
+
     private static synchronized void executerMaintenant(Action action){
 
-        //Log.i("Atelier07", classDebug + "::executerMaintenant");
         action.listenerFournisseur.executer(action.args);
+
     }
 
-    /**
-     * Appeler le controleur pour lancer l'observation
-     * du fournisseur (seulement si le fournisseur est un modele)
-     */
-    private static void lancerObservationSiApplicable(Action action){
-        if( action.fournisseur instanceof Modele ){
-            //Log.i("Atelier07", classDebug + "::lancerObservationSiApplicable");
-            ControleurObservation.reagirObservation((Modele)action.fournisseur);
+    private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur) {
+
+        Action action = actions.get(commande);
+
+        action.fournisseur = fournisseur;
+
+        action.listenerFournisseur = listenerFournisseur;
+
+    }
+
+    private static void ajouterActionEnFileDAttente(Action action) {
+
+        Action clone = action.cloner();
+
+        fileAttenteExecution.add(clone);
+
+    }
+
+    public static void oublierFournisseur(Fournisseur fournisseur) {
+
+        for(Action action : actions.values()){
+
+            if(action.fournisseur == fournisseur){
+
+                action.fournisseur = null;
+                action.listenerFournisseur = null;
+
+            }
         }
     }
 
-    /**
-     * Enregistrer le fournisseur et le listenerFournisseur dans l'action
-     */
-    private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
-
-        Action action = actions.get(commande);
-        action.fournisseur = fournisseur;
-        action.listenerFournisseur = listenerFournisseur;
-    }
-
-    /**
-     * Creer un clone de l'action et
-     * ajouter le clone a la file d'attente
-     */
-    private static void ajouterActionEnFileDAttente(Action action){
-        Action tempAction = action.cloner();
-        fileAttenteExec.add(tempAction);
-    }
 }

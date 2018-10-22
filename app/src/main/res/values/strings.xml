@@ -1,8 +1,23 @@
 <resources>
+
     <string name="app_name" translatable="false">CharlesLangevin</string>
-    <string name="IDENTIFIANT" translatable="false">VALEUR</string>
-    <string name="pHeight">Height</string>
-    <string name="pWidth">Width</string>
-    <string name="pWin">Win condition</string>
-    <string name="pSettings">Settings</string>
+
+    <string name="bonjour">Bonjour!</string>
+
+    <string name="paysage">paysage</string>
+    <string name="portrait" translatable="false">portrait</string>
+
+    <string name="hauteur">Hauteur: </string>
+    <string name="largeur">Largeur: </string>
+    <string name="pour_gagner">Pour gagner: </string>
+
+    <string name="parametres">Parametres</string>
+
+    <string name="jouer">Jouer</string>
+
+    <string name="entete">↓\n↓</string>
+
+    <string name="joueur1">joueur1</string>
+    <string name="joueur2">joueur2</string>
+
 </resources>
