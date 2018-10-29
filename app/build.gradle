@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('C:/Users/charl/Desktop/Session 5/ApplicationAndroid/debug.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "ca.cours5b5.charleslangevin"
@@ -11,15 +19,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 
-
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            signingConfig signingConfigs.debug
+        }
     }
-
 }
 
 dependencies {
