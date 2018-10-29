@@ -1,0 +1,12 @@
+Enter keystore password:  123456
+Keystore type: jks
+Keystore provider: SUN
+
+Your keystore contains 1 entry
+
+key0, Oct 29, 2018, PrivateKeyEntry,
+Certificate fingerprint (SHA1): 5C:6C:85:22:66:88:EB:C9:4E:58:31:FC:44:09:10:1A:A8:F7:BF:22
+
+Warning:
+The JKS keystore uses a proprietary format. It is recommended to migrate to PKCS12 which is an industry standard format using 
+"keytool -importkeystore -srckeystore debug.jks -destkeystore debug.jks -deststoretype pkcs12".

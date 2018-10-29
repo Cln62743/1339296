@@ -5,6 +5,7 @@
       <w>adap</w>
       <w>affichage</w>
       <w>afficher</w>
+      <w>ajout</w>
       <w>ajouter</w>
       <w>ajuster</w>
       <w>appelant</w>
@@ -35,6 +36,7 @@
       <w>commande</w>
       <w>comme</w>
       <w>connais</w>
+      <w>constante</w>
       <w>constantes</w>
       <w>constructeur</w>
       <w>constructible</w>
@@ -44,6 +46,8 @@
       <w>courant</w>
       <w>courante</w>
       <w>creer</w>
+      <w>création</w>
+      <w>deconnexion</w>
       <w>defaut</w>
       <w>demande</w>
       <w>demander</w>
@@ -59,6 +63,7 @@
       <w>données</w>
       <w>défaut</w>
       <w>détruire</w>
+      <w>echouee</w>
       <w>elles</w>
       <w>enregistrant</w>
       <w>enregistrer</w>
@@ -74,9 +79,11 @@
       <w>exécuter</w>
       <w>fichier</w>
       <w>finir</w>
+      <w>firebase</w>
       <w>fois</w>
       <w>fournir</w>
       <w>fournisseur</w>
+      <w>fournisseurs</w>
       <w>gagner</w>
       <w>generer</w>
       <w>gerer</w>
@@ -133,10 +140,13 @@
       <w>recoit</w>
       <w>recuperer</w>
       <w>rejouer</w>
+      <w>remplissage</w>
+      <w>reqest</w>
       <w>restaurer</w>
       <w>retourne</w>
       <w>retourner</w>
       <w>retrouver</w>
+      <w>reussie</w>
       <w>sauvegardable</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
@@ -149,6 +159,7 @@
       <w>soit</w>
       <w>sont</w>
       <w>temporaire</w>
+      <w>terminée</w>
       <w>tetes</w>
       <w>toutes</w>
       <w>truc</w>
@@ -161,6 +172,7 @@
       <w>vuet</w>
       <w>vérifier</w>
       <w>écrire</w>
+      <w>étape</w>
     </words>
   </dictionary>
 </component>
