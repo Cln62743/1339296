@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +39,7 @@ public final class ControleurAction {
     }
 
     public static Action demanderAction(GCommande commande) {
+        //Log.d("Atelier - action","" + commande.toString());
         return actions.get(commande);
     }
 
@@ -48,7 +51,7 @@ public final class ControleurAction {
     }
 
     static void executerDesQuePossible(Action action) {
-
+        Log.d("Atelier - action",action.args + " -- executerDesQuePossible");
         ajouterActionEnFileDAttente(action);
         executerActionsExecutables();
 
@@ -87,7 +90,7 @@ public final class ControleurAction {
     }
 
     private static synchronized void executerMaintenant(Action action){
-
+        Log.d("Atelier - action",action.args + " -- executerMaintenant");
         action.listenerFournisseur.executer(action.args);
 
     }

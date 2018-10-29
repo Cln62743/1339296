@@ -31,6 +31,7 @@ public class VPartie extends Vue {
 
     @Override
     protected void onFinishInflate() {
+        Log.d("Atelier","VPartie::onFinishInflate");
         super.onFinishInflate();
 
         initialiser();
@@ -51,22 +52,19 @@ public class VPartie extends Vue {
                 new ListenerObservateur() {
                     @Override
                     public void reagirNouveauModele(Modele modele) {
+                        Log.d("VueObservation","VPartie | reagirNouveauModele | " + modele.getClass().getSimpleName());
 
                         MPartie partie = getPartie(modele);
-
                         preparerAffichage(partie);
-
                         miseAJourGrille(partie);
-
                     }
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
+                        Log.d("VueObservation","VPartie | reagirChangementAuModele | " + modele.getClass().getSimpleName());
 
                         MPartie partie = getPartie(modele);
-
                         miseAJourGrille(partie);
-
                     }
                 });
     }

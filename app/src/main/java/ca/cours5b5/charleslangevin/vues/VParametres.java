@@ -46,6 +46,7 @@ public class VParametres extends Vue {
 
     @Override
     protected void onFinishInflate() {
+        Log.d("Atelier","VParametres::onFinishInflate");
         super.onFinishInflate();
 
         initialiser();
@@ -157,6 +158,7 @@ public class VParametres extends Vue {
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
+                        Log.d("VueObservation","VParametres | reagirChangementAuModele | " + modele.getClass().getSimpleName());
                         observerParametres(modele);
                     }
                 });

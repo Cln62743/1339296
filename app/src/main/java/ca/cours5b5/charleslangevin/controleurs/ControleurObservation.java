@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,17 +17,15 @@ public final class ControleurObservation {
     static {
 
         observations = new HashMap<>();
-
     }
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
-
+        Log.d("Observation","ControleurObservation.observerModele | " + nomModele + " | " + listenerObservateur);
         Modele modele = ControleurModeles.getModele(nomModele);
 
         observations.put(modele, listenerObservateur);
 
         listenerObservateur.reagirNouveauModele(modele);
-
     }
 
     public static void lancerObservation(Modele modele) {
@@ -35,14 +35,12 @@ public final class ControleurObservation {
         if (listenerObservateur != null) {
 
             listenerObservateur.reagirChangementAuModele(modele);
-
         }
     }
 
     public static void detruireObservation(Modele modele) {
 
         observations.remove(modele);
-
     }
 
 }

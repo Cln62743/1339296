@@ -1,6 +1,8 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
 
+import android.util.Log;
+
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 
@@ -13,6 +15,7 @@ public class Action {
     Object[] args;
 
     public void setArguments(Object... args) {
+        Log.d("Atelier - action",args + " -- setArguments");
         this.args = args;
     }
 

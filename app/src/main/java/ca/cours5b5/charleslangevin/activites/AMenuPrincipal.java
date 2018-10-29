@@ -2,6 +2,7 @@ package ca.cours5b5.charleslangevin.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
@@ -13,17 +14,16 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Atelier","AMenuPrincipal::onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
         fournirActions();
-
     }
 
     private void fournirActions() {
 
         fournirActionOuvrirMenuParametres();
-
         fournirActionDemarrerPartie();
     }
 
@@ -68,5 +68,4 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         startActivity(intentionParametres);
 
     }
-
 }
