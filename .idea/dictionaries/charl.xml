@@ -36,6 +36,7 @@
       <w>commande</w>
       <w>comme</w>
       <w>connais</w>
+      <w>connecte</w>
       <w>constante</w>
       <w>constantes</w>
       <w>constructeur</w>
@@ -47,6 +48,7 @@
       <w>courante</w>
       <w>creer</w>
       <w>création</w>
+      <w>crée</w>
       <w>deconnexion</w>
       <w>defaut</w>
       <w>demande</w>
@@ -59,11 +61,13 @@
       <w>disque</w>
       <w>doit</w>
       <w>donc</w>
+      <w>donnee</w>
       <w>donnees</w>
       <w>données</w>
       <w>défaut</w>
       <w>détruire</w>
       <w>echouee</w>
+      <w>ecrire</w>
       <w>elles</w>
       <w>enregistrant</w>
       <w>enregistrer</w>
@@ -75,12 +79,15 @@
       <w>executant</w>
       <w>executer</w>
       <w>executiable</w>
+      <w>exemple</w>
       <w>existe</w>
       <w>exécuter</w>
       <w>fichier</w>
       <w>finir</w>
       <w>firebase</w>
       <w>fois</w>
+      <w>fonctionne</w>
+      <w>forme</w>
       <w>fournir</w>
       <w>fournisseur</w>
       <w>fournisseurs</w>
@@ -94,6 +101,7 @@
       <w>inconnu</w>
       <w>initialiser</w>
       <w>inserer</w>
+      <w>installe</w>
       <w>instrospection</w>
       <w>inutilisee</w>
       <w>iterer</w>
@@ -110,6 +118,8 @@
       <w>liste</w>
       <w>listes</w>
       <w>maintenant</w>
+      <w>mais</w>
+      <w>memoire</w>
       <w>methode</w>
       <w>mettre</w>
       <w>mise</w>
@@ -117,6 +127,7 @@
       <w>modeles</w>
       <w>modèle</w>
       <w>moins</w>
+      <w>noeud</w>
       <w>nouveau</w>
       <w>nouvelle</w>
       <w>numero</w>
@@ -135,11 +146,14 @@
       <w>quand</w>
       <w>quel</w>
       <w>quoi</w>
+      <w>ramene</w>
       <w>rangee</w>
       <w>reagir</w>
       <w>recoit</w>
+      <w>recupere</w>
       <w>recuperer</w>
       <w>rejouer</w>
+      <w>remplie</w>
       <w>remplissage</w>
       <w>reqest</w>
       <w>restaurer</w>
@@ -153,25 +167,34 @@
       <w>sauvegardes</w>
       <w>selon</w>
       <w>separateur</w>
+      <w>separe</w>
       <w>serialisable</w>
       <w>sert</w>
+      <w>serveur</w>
       <w>seulement</w>
       <w>soit</w>
       <w>sont</w>
+      <w>supprimer</w>
       <w>temporaire</w>
       <w>terminée</w>
       <w>tetes</w>
       <w>toutes</w>
       <w>truc</w>
       <w>tête</w>
+      <w>usager</w>
+      <w>usagers</w>
       <w>utilisee</w>
       <w>utiliser</w>
+      <w>utilisée</w>
       <w>valeur</w>
+      <w>vers</w>
       <w>veut</w>
       <w>vide</w>
+      <w>vrai</w>
       <w>vuet</w>
       <w>vérifier</w>
       <w>écrire</w>
+      <w>écrite</w>
       <w>étape</w>
     </words>
   </dictionary>

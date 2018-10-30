@@ -9,4 +9,17 @@ public abstract class SourceDeDonnees {
 
     public abstract void sauvegarderModele(final String cheminSauvegarde, final Map<String, Object> objetJson);
 
+    //public abstract void detruireSauvegarde(String cheminSauvegarde);
+
+    protected String getNomModele(String cheminSauvegarde){
+        /*
+        * Pour un chemin de sauvegarde de la forme nomModele/ID
+        * retourner le nomModele
+        */
+        String nomModele = null;
+        if(cheminSauvegarde != null){
+            nomModele = cheminSauvegarde.split("/")[0];
+        }
+        return nomModele;
+    }
 }
