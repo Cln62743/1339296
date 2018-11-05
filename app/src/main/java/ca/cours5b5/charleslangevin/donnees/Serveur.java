@@ -5,8 +5,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Map;
 
-import ca.cours5b5.charleslangevin.serialisation.Jsonification;
-
 public final class Serveur extends SourceDeDonnees {
     /*
      * Serveur est un singleton
@@ -23,14 +21,6 @@ public final class Serveur extends SourceDeDonnees {
         /*
         * BONUS: est-ce possible d'implanter cette methode avec cette signature?
         */
-        String cle = getNomModele(cheminSauvegarde);
-        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cle);
-        if(noeud != null){
-            String json = noeud.getKey();
-            Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
-
-            return objetJson;
-        }
         return null;
     }
 
@@ -40,11 +30,9 @@ public final class Serveur extends SourceDeDonnees {
          * Sauvegarde sur le serveur
          * Utiliser FirebaseDatabase et DatabaseReference
          */
-        String cle = getNomModele(cheminSauvegarde);
-        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cle);
+        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
-        String json = Jsonification.enChaineJson(objetJson);
-        noeud.setValue(json);
+        noeud.setValue(objetJson);
     }
 
     /*@Override
@@ -53,21 +41,4 @@ public final class Serveur extends SourceDeDonnees {
         BONUS
 
     }*/
-
-    /*
-    * Obtenir le chemin vers le noeud dans la base de donnee
-    * String chemin = //
-    * DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(chemin);
-    *
-    * Ecrire dans la base de donnee
-    * Map<String, Object> objetJson = //
-    * noeud.setValue(objetJson);
-    *
-    * Obtenir le chemin vers le noeud dans la base de donnee
-    * String chemin = //
-    * DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(chemin);
-    *
-    * Pour detruire le noeud
-    * noeud.removeValue();
-    */
 }

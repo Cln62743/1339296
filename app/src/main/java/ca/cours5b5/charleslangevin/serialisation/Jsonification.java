@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
+import ca.cours5b5.charleslangevin.donnees.GLog;
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 
 public final class Jsonification {

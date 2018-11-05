@@ -1,11 +1,15 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.charleslangevin.donnees.GLog;
+import ca.cours5b5.charleslangevin.donnees.SauvegardeTemporaire;
+import ca.cours5b5.charleslangevin.donnees.Serveur;
 import ca.cours5b5.charleslangevin.donnees.SourceDeDonnees;
 import ca.cours5b5.charleslangevin.exceptions.ErreurModele;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
@@ -27,6 +31,7 @@ public final class ControleurModeles {
     static {
         modelesEnMemoire = new HashMap<>();
         listeDeSauvegardes = new ArrayList<>();
+        listeDeSauvegardes.add(Serveur.getInstance());
         listeDeSauvegardes.add(Disque.getInstance());
     }
 

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import ca.cours5b5.charleslangevin.controleurs.ControleurModeles;
 import ca.cours5b5.charleslangevin.donnees.Disque;
 import ca.cours5b5.charleslangevin.donnees.SauvegardeTemporaire;
+import ca.cours5b5.charleslangevin.donnees.Serveur;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 
 
@@ -24,14 +25,13 @@ public abstract class Activite extends AppCompatActivity {
 
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
+                Serveur.getInstance(),
                 Disque.getInstance());
-        
     }
 
     protected void initialiserApplication(){
 
         Disque.getInstance().setRepertoireRacine(getFilesDir());
-
     }
 
     @Override
