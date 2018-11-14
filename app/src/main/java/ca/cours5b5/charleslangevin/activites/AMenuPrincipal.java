@@ -95,8 +95,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     @Override
-    protected void onActivityResult(int reqestCode, int resultCode, Intent data){
-        if(reqestCode == GConstantes.MA_CONSTANTE_CODE_CONNEXION){
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == GConstantes.MA_CONSTANTE_CODE_CONNEXION){
             if(resultCode == RESULT_OK){
                 Log.d("Atelier11","AMenuPrincipal::Connexion reussie");
                 // Connexion reussie
