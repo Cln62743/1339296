@@ -28,18 +28,18 @@ public final class Disque extends SourceDeDonnees {
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde) {
+    public void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement) {
         File fichier = getFichier(cheminSauvegarde);
 
         try {
             String json = new String(Files.readAllBytes(fichier.toPath()));
             Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
-            return objetJson;
+            listenerChargement.reagirSuccess(objetJson);
 
         } catch (FileNotFoundException e) {
-            return null;
+            listenerChargement.reagirErreur(e);
         } catch (IOException e) {
-            return null;
+            listenerChargement.reagirErreur(e);
         }
     }
 
@@ -61,10 +61,6 @@ public final class Disque extends SourceDeDonnees {
 
 
     private File getFichier(String cheminSauvegarde) {
-        /*
-        * Obtenir le nomModele et l'utiliser pour le nom de fichier
-        * p.ex. MParametres/T1m8GxiBAlhLUcF6Ne0FV06nnEg1 => MParametres.json
-        */
 
         String nomModele = cheminSauvegarde.split("/")[0];
         String nomFichier = getNomFichier(nomModele);
