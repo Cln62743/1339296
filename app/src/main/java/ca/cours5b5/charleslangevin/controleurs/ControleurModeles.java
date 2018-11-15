@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +48,7 @@ public final class ControleurModeles {
             Map<String, Object> objetJson = modele.enObjetJson();
 
             String cheminSauvegarde = getCheminSauvegarde(nomModele);
+            Log.d("Debug Atelier 12","Methode: sauvegarderModeleDansCetteSource | CheminSauvegarde: " + cheminSauvegarde);
             sourceDeDonnees.sauvegarderModele(cheminSauvegarde, objetJson);
         }
     }
@@ -87,8 +90,18 @@ public final class ControleurModeles {
             listenerGetModele.reagirAuModele(new MParametres());
 
         }else if(nomModele.equals(MPartie.class.getSimpleName())){
-            listenerGetModele.reagirAuModele(new MParametresPartie());
 
+            getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+                @Override
+                public void reagirAuModele(Modele modele) {
+
+                    MParametres mParametres = (MParametres) modele;
+
+                    MPartie mPartie = new MPartie(mParametres.getParametresPartie().cloner());
+
+                    listenerGetModele.reagirAuModele(mPartie);
+                }
+            });
         }else {
             throw new ErreurModele("Modèle inconnu: " + nomModele);
         }
@@ -97,11 +110,13 @@ public final class ControleurModeles {
     // DONE
     private static void chargerDonnees(Modele modele, String nomModele, ListenerGetModele listenerGetModele){
         String cheminSauvegarde = getCheminSauvegarde(nomModele);
+        Log.d("Debug Atelier 12","Methode: chargerDonnees | CheminSauvegarde: " + cheminSauvegarde);
         chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, 0);
     }
 
     // DONE
     private static void chargementViaSequence(Modele modele, String cheminSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
+        Log.d("Debug Atelier 12","Methode: chargementViaSequence | CheminSauvegarde: " + cheminSauvegarde);
         if(indiceSourceCourante < sequenceDeChargement.length - 1){
             chargementViaSourceCouranteOuSuivante(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
         }
@@ -111,6 +126,7 @@ public final class ControleurModeles {
 
     // DONE
     private static void chargementViaSourceCouranteOuSuivante(final Modele modele, final String cheminSauvegarde, final ListenerGetModele listenerGetModele, final int indiceSourceCourante){
+        Log.d("Debug Atelier 12","Methode: chargementViaSourceCouranteOuSuivante | CheminSauvegarde: " + cheminSauvegarde);
         sequenceDeChargement[indiceSourceCourante].chargerModele(cheminSauvegarde, new ListenerChargement(){
 
             @Override
@@ -141,6 +157,7 @@ public final class ControleurModeles {
 
     // DONE
     private static void chargementViaSourceSuivante(Modele modele, String cheminSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
+        Log.d("Debug Atelier 12","Methode: chargementViaSourceSuivante | CheminSauvegarde: " + cheminSauvegarde);
         indiceSourceCourante++;
         chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
     }
