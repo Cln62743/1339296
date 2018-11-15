@@ -34,6 +34,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
         fournirActionOuvrirMenuParametres();
         fournirActionDemarrerPartie();
         fournirActionConnexion();
+        fournirActionJoindreOuCreerPartieReseau();
     }
 
     private void fournirActionOuvrirMenuParametres() {
@@ -69,14 +70,25 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 });
     }
 
+    private void fournirActionJoindreOuCreerPartieReseau() {
+        ControleurAction.fournirAction(this,
+                GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        transitionPartieReseau();
+                    }
+                });
+    }
+
     private void transitionParametres(){
         Intent intentionParametres = new Intent(this, AParametres.class);
         startActivity(intentionParametres);
     }
 
     private void transitionPartie(){
-        Intent intentionParametres = new Intent(this, APartie.class);
-        startActivity(intentionParametres);
+        Intent intentionPartie = new Intent(this, APartie.class);
+        startActivity(intentionPartie);
     }
 
     private void connexion(){
@@ -92,6 +104,11 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 .build();
 
         this.startActivityForResult(intentionConnexion, GConstantes.MA_CONSTANTE_CODE_CONNEXION);
+    }
+
+    private void transitionPartieReseau(){
+        Intent intentionPartieReseau = new Intent(this, APartieReseau.class);
+        intentionPartieReseau.putExtra("FIXME_JSON_PARTIE_RESEAU", GConstantes.FIXME_JSON_PARTIE_RESEAU);
     }
 
     @Override

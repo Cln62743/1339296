@@ -2,12 +2,16 @@
   <dictionary name="charl">
     <words>
       <w>activite</w>
+      <w>activites</w>
       <w>adap</w>
       <w>affichage</w>
       <w>afficher</w>
       <w>ajout</w>
       <w>ajouter</w>
+      <w>ajouté</w>
+      <w>ajoutés</w>
       <w>ajuster</w>
+      <w>alors</w>
       <w>appelant</w>
       <w>appeler</w>
       <w>apres</w>
@@ -20,14 +24,18 @@
       <w>besoin</w>
       <w>bleu</w>
       <w>bonne</w>
+      <w>bons</w>
       <w>bouton</w>
       <w>calculer</w>
       <w>cette</w>
+      <w>ceux</w>
       <w>chaine</w>
       <w>changement</w>
       <w>chaque</w>
       <w>chargement</w>
+      <w>charleslangevin</w>
       <w>chemin</w>
+      <w>chemins</w>
       <w>choisir</w>
       <w>choix</w>
       <w>classe</w>
@@ -38,20 +46,24 @@
       <w>comme</w>
       <w>connais</w>
       <w>connecte</w>
+      <w>connecter</w>
       <w>constante</w>
       <w>constantes</w>
       <w>constructeur</w>
       <w>constructible</w>
+      <w>contient</w>
       <w>controles</w>
       <w>controleur</w>
       <w>controlleur</w>
       <w>couleur</w>
       <w>courant</w>
       <w>courante</w>
+      <w>cours</w>
       <w>creer</w>
       <w>créait</w>
       <w>création</w>
       <w>crée</w>
+      <w>créer</w>
       <w>deconnexion</w>
       <w>defaut</w>
       <w>demande</w>
@@ -61,6 +73,7 @@
       <w>deserialisation</w>
       <w>dessous</w>
       <w>detruire</w>
+      <w>deux</w>
       <w>disque</w>
       <w>doit</w>
       <w>donc</w>
@@ -68,11 +81,13 @@
       <w>donnees</w>
       <w>données</w>
       <w>début</w>
+      <w>déconnecter</w>
       <w>défaut</w>
       <w>détruire</w>
       <w>echouee</w>
       <w>ecrire</w>
       <w>elles</w>
+      <w>emettre</w>
       <w>enregistrant</w>
       <w>enregistrer</w>
       <w>entete</w>
@@ -97,10 +112,13 @@
       <w>fournir</w>
       <w>fournisseur</w>
       <w>fournisseurs</w>
+      <w>fournit</w>
       <w>gagner</w>
       <w>generer</w>
       <w>gerer</w>
       <w>gestionnaire</w>
+      <w>hote</w>
+      <w>hôte</w>
       <w>identifiant</w>
       <w>identifie</w>
       <w>implanter</w>
@@ -116,6 +134,7 @@
       <w>jaune</w>
       <w>jeton</w>
       <w>jetons</w>
+      <w>joindre</w>
       <w>jouer</w>
       <w>joueur</w>
       <w>jour</w>
@@ -138,8 +157,12 @@
       <w>modeles</w>
       <w>modèle</w>
       <w>moins</w>
+      <w>mémoriser</w>
       <w>méthode</w>
+      <w>méthodes</w>
       <w>noeud</w>
+      <w>noeuds</w>
+      <w>nombre</w>
       <w>nouveau</w>
       <w>nouvelle</w>
       <w>numero</w>
@@ -162,14 +185,19 @@
       <w>ramene</w>
       <w>rangee</w>
       <w>reagir</w>
+      <w>recevoir</w>
       <w>recoit</w>
       <w>recupere</w>
       <w>recuperer</w>
       <w>rejouer</w>
+      <w>remplacer</w>
       <w>remplie</w>
       <w>remplissage</w>
       <w>reqest</w>
+      <w>requête</w>
+      <w>reseau</w>
       <w>restaurer</w>
+      <w>retirer</w>
       <w>retourne</w>
       <w>retourner</w>
       <w>retrouver</w>
@@ -185,15 +213,20 @@
       <w>sert</w>
       <w>serveur</w>
       <w>seulement</w>
+      <w>sinon</w>
       <w>soit</w>
       <w>sont</w>
       <w>suivante</w>
       <w>supprimer</w>
+      <w>séquence</w>
+      <w>tant</w>
       <w>temporaire</w>
       <w>terminer</w>
       <w>terminée</w>
       <w>tetes</w>
+      <w>texte</w>
       <w>toutes</w>
+      <w>transmettre</w>
       <w>trois</w>
       <w>trouver</w>
       <w>truc</w>
@@ -204,6 +237,7 @@
       <w>utiliser</w>
       <w>utilisée</w>
       <w>valeur</w>
+      <w>valeurs</w>
       <w>vers</w>
       <w>veut</w>
       <w>vide</w>

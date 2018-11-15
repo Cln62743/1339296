@@ -48,7 +48,6 @@ public final class ControleurModeles {
             Map<String, Object> objetJson = modele.enObjetJson();
 
             String cheminSauvegarde = getCheminSauvegarde(nomModele);
-            Log.d("Debug Atelier 12","Methode: sauvegarderModeleDansCetteSource | CheminSauvegarde: " + cheminSauvegarde);
             sourceDeDonnees.sauvegarderModele(cheminSauvegarde, objetJson);
         }
     }
@@ -59,8 +58,6 @@ public final class ControleurModeles {
         }
     }
 
-    // Premiere partie
-    // DONE
     static void getModele(final String nomModele, final ListenerGetModele listenerGetModele){
         Modele modele = modelesEnMemoire.get(nomModele);
 
@@ -71,7 +68,6 @@ public final class ControleurModeles {
         }
     }
 
-    // DONE
     private static void creerModeleEtChargerDonnees(final String nomModele, final ListenerGetModele listenerGetModele) {
         creerModeleSelonNom(nomModele, new ListenerGetModele() {
             @Override
@@ -83,8 +79,6 @@ public final class ControleurModeles {
         });
     }
 
-
-    // DONE
     private static void creerModeleSelonNom(String nomModele, final ListenerGetModele listenerGetModele) throws ErreurModele {
         if(nomModele.equals(MParametres.class.getSimpleName())){
             listenerGetModele.reagirAuModele(new MParametres());
@@ -107,16 +101,12 @@ public final class ControleurModeles {
         }
     }
 
-    // DONE
     private static void chargerDonnees(Modele modele, String nomModele, ListenerGetModele listenerGetModele){
         String cheminSauvegarde = getCheminSauvegarde(nomModele);
-        Log.d("Debug Atelier 12","Methode: chargerDonnees | CheminSauvegarde: " + cheminSauvegarde);
         chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, 0);
     }
 
-    // DONE
     private static void chargementViaSequence(Modele modele, String cheminSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
-        Log.d("Debug Atelier 12","Methode: chargementViaSequence | CheminSauvegarde: " + cheminSauvegarde);
         if(indiceSourceCourante < sequenceDeChargement.length - 1){
             chargementViaSourceCouranteOuSuivante(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
         }
@@ -124,9 +114,7 @@ public final class ControleurModeles {
         terminerChargement(modele, listenerGetModele);
     }
 
-    // DONE
     private static void chargementViaSourceCouranteOuSuivante(final Modele modele, final String cheminSauvegarde, final ListenerGetModele listenerGetModele, final int indiceSourceCourante){
-        Log.d("Debug Atelier 12","Methode: chargementViaSourceCouranteOuSuivante | CheminSauvegarde: " + cheminSauvegarde);
         sequenceDeChargement[indiceSourceCourante].chargerModele(cheminSauvegarde, new ListenerChargement(){
 
             @Override
@@ -141,7 +129,6 @@ public final class ControleurModeles {
         });
     }
 
-    // DONE
     private static void terminerChargementAvecDonnees(Map<String, Object> objetJson, Modele modele, ListenerGetModele listenerGetModele){
         if(objetJson!= null){
             modele.aPartirObjetJson(objetJson);
@@ -150,39 +137,21 @@ public final class ControleurModeles {
         terminerChargement(modele, listenerGetModele);
     }
 
-    // DONE
     private static void terminerChargement(Modele modele, ListenerGetModele listenerGetModele){
         listenerGetModele.reagirAuModele(modele);
     }
 
-    // DONE
     private static void chargementViaSourceSuivante(Modele modele, String cheminSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
-        Log.d("Debug Atelier 12","Methode: chargementViaSourceSuivante | CheminSauvegarde: " + cheminSauvegarde);
         indiceSourceCourante++;
         chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
     }
 
-    /* static void detruireModele(String nomModele) {
-        Modele modele = modelesEnMemoire.get(nomModele);
-
-        if(modele != null){
-            modelesEnMemoire.remove(nomModele);
-            ControleurObservation.detruireObservation(modele);
-
-            if(modele instanceof Fournisseur){
-                ControleurAction.oublierFournisseur((Fournisseur) modele);
-            }
-        }
-    }*/
-
     private static String getCheminSauvegarde(String nomModele){
         /*
-        * Le chemin est de la forme:
-        * nomModele/idUsager
-        *
-        * Par exemple:
-        * MPartie/T1m8GxiBAlhLUcF6Ne0GV06nnE1
-        */
+         * TODO
+         * si le modèle est Identifiable, alors le chemin est nomModele/idModele
+         * sinon, le chemin est nomModele/idUsager
+         */
         String idUsager = UsagerCourant.getId();
         String cheminSauvegarde = "";
 

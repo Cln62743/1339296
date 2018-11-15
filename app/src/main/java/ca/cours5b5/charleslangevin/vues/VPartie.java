@@ -35,18 +35,15 @@ public class VPartie extends Vue {
         super.onFinishInflate();
 
         initialiser();
-
         observerPartie();
-
     }
 
     private void initialiser() {
-
         grille = findViewById(R.id.grille);
-
     }
 
     private void observerPartie() {
+        String nomModele = getNomModele();
 
         ControleurObservation.observerModele(MPartie.class.getSimpleName(),
                 new ListenerObservateur() {
@@ -69,32 +66,27 @@ public class VPartie extends Vue {
                 });
     }
 
+    protected String getNomModele(){
+        // TODO
+        return null;
+    }
+
     private void preparerAffichage(MPartie partie) {
-
         MParametresPartie parametresPartie = partie.getParametres();
-
         grille.creerGrille(parametresPartie.getHauteur(), parametresPartie.getLargeur());
-
     }
 
     private MPartie getPartie(Modele modele){
-
         try{
-
             return (MPartie) modele;
 
         }catch(ClassCastException e){
-
             throw new ErreurObservation(e);
-
         }
-
     }
 
     private void miseAJourGrille(MPartie partie){
-
         grille.afficherJetons(partie.getGrille());
-
     }
 
 }

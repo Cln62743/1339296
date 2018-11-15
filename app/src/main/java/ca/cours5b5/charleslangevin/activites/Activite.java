@@ -22,7 +22,12 @@ public abstract class Activite extends AppCompatActivity {
     }
 
     protected void initialiserControleurModeles(Bundle savedInstanceState) {
-
+        /*
+        * TODO
+        * ajouter Transition dans la séquence de chargement
+        *     utiliser les extras de l'intention pour initialiser Transition
+        *
+        */
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
                 Serveur.getInstance(),
@@ -30,7 +35,6 @@ public abstract class Activite extends AppCompatActivity {
     }
 
     protected void initialiserApplication(){
-
         Disque.getInstance().setRepertoireRacine(getFilesDir());
     }
 
@@ -41,5 +45,4 @@ public abstract class Activite extends AppCompatActivity {
         ControleurModeles.sauvegarderModeleDansCetteSource(MParametres.class.getSimpleName(),
                 new SauvegardeTemporaire(outState));
     }
-
 }
