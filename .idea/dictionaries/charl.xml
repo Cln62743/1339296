@@ -1,6 +1,7 @@
 <component name="ProjectDictionaryState">
   <dictionary name="charl">
     <words>
+      <w>abstraite</w>
       <w>activite</w>
       <w>activites</w>
       <w>adap</w>
@@ -64,6 +65,7 @@
       <w>création</w>
       <w>crée</w>
       <w>créer</w>
+      <w>deconnecter</w>
       <w>deconnexion</w>
       <w>defaut</w>
       <w>demande</w>
@@ -164,6 +166,7 @@
       <w>noeuds</w>
       <w>nombre</w>
       <w>nouveau</w>
+      <w>nouvel</w>
       <w>nouvelle</w>
       <w>numero</w>
       <w>objet</w>
@@ -194,6 +197,7 @@
       <w>remplie</w>
       <w>remplissage</w>
       <w>reqest</w>
+      <w>requete</w>
       <w>requête</w>
       <w>reseau</w>
       <w>restaurer</w>
@@ -233,6 +237,7 @@
       <w>tête</w>
       <w>usager</w>
       <w>usagers</w>
+      <w>utilisateur</w>
       <w>utilisee</w>
       <w>utiliser</w>
       <w>utilisée</w>
@@ -241,6 +246,7 @@
       <w>vers</w>
       <w>veut</w>
       <w>vide</w>
+      <w>vides</w>
       <w>voir</w>
       <w>vrai</w>
       <w>vuet</w>

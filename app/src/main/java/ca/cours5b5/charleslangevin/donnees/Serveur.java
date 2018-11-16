@@ -25,8 +25,12 @@ public final class Serveur extends SourceDeDonnees {
         noeud.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Map<String, Object> objetJson = (Map<String, Object>) dataSnapshot.getValue();
-                listenerChargement.reagirSuccess(objetJson);
+                if(dataSnapshot.exists()) {
+                    Map<String, Object> objetJson = (Map<String, Object>) dataSnapshot.getValue();
+                    listenerChargement.reagirSuccess(objetJson);
+                }else{
+                    listenerChargement.reagirErreur(new Exception());
+                }
             }
 
             @Override
@@ -41,5 +45,11 @@ public final class Serveur extends SourceDeDonnees {
         DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
         noeud.setValue(objetJson);
+    }
+
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde){
+        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeud.removeValue();
     }
 }

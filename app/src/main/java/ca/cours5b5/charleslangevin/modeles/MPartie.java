@@ -28,7 +28,6 @@ public class MPartie extends Modele implements Fournisseur {
     private GCouleur couleurCourante;
 
     public MPartie(MParametresPartie parametres){
-
         this.parametres = parametres;
 
         initialiser();
@@ -45,14 +44,19 @@ public class MPartie extends Modele implements Fournisseur {
         couleurCourante = GCouleur.ROUGE;
     }
 
-
     private void initialiserGrille() {
         grille = new MGrille(parametres.getLargeur());
     }
 
+    public MGrille getGrille() {
+        return grille;
+    }
+
+    public MParametresPartie getParametres() {
+        return parametres;
+    }
 
     protected void fournirActionPlacerJeton() {
-
         ControleurAction.fournirAction(this,
                 GCommande.JOUER_COUP_ICI,
                 new ListenerFournisseur() {
@@ -70,7 +74,6 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     protected void jouerCoup(int colonne) {
-
         if(siCoupLegal(colonne)){
             listeCoups.add(colonne);
             grille.placerJeton(colonne, couleurCourante);
@@ -80,14 +83,11 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     private boolean siCoupLegal(int colonne){
-
         MColonne mColonne = grille.getColonnes().get(colonne);
-
         return mColonne.nombreDeJetons() < parametres.getHauteur();
     }
 
     private void prochaineCouleurCourante(){
-
         switch(couleurCourante){
             case ROUGE:
                 couleurCourante = GCouleur.JAUNE;
@@ -98,19 +98,8 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
-
-    public MGrille getGrille() {
-        return grille;
-    }
-
-    public MParametresPartie getParametres() {
-        return parametres;
-    }
-
-
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation  {
-
         parametres.aPartirObjetJson((Map<String, Object>)objetJson.get(__parametres));
 
         initialiserCouleurCourante();
@@ -123,9 +112,7 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
-
     private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
-
         List<Integer> listeCoups = new ArrayList<>();
         for(String coupChaine : listeCoupsObjetJson){
             listeCoups.add(Integer.valueOf(coupChaine));
@@ -134,9 +121,7 @@ public class MPartie extends Modele implements Fournisseur {
         return listeCoups;
     }
 
-
     private void rejouerLesCoups(List<Integer> coupsARejouer) {
-
         listeCoups.clear();
         for(Integer coup : coupsARejouer){
             jouerCoup(coup);
@@ -154,7 +139,6 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     private  List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
-
         List<String> listeCoupsObjetJson = new ArrayList<>();
         for(Integer coup : listeCoups){
             listeCoupsObjetJson.add(coup.toString());

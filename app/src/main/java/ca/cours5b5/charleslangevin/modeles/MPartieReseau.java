@@ -25,7 +25,7 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
         /*
          * utiliser l'id du joueur hôte
          */
-        return null;
+        return idJoueurHote;
     }
 
     private void fournirActionRecevoirCoup() {
@@ -44,7 +44,9 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
          */
     }
 
-    private void recevoirCoupReseau(int colonne){}
+    private void recevoirCoupReseau(int colonne){
+
+    }
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
@@ -52,6 +54,7 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
          * charger les champs
          * appeler aussi super
          */
+        super.aPartirObjetJson(objetJson);
     }
 
     @Override
@@ -60,6 +63,7 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
          * sauvegarder les champs
          * appeler aussi super
          */
+        super.enObjetJson();
         return null;
     }
 }

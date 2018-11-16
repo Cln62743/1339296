@@ -13,6 +13,7 @@ import ca.cours5b5.charleslangevin.donnees.ListenerChargement;
 import ca.cours5b5.charleslangevin.donnees.Serveur;
 import ca.cours5b5.charleslangevin.donnees.SourceDeDonnees;
 import ca.cours5b5.charleslangevin.exceptions.ErreurModele;
+import ca.cours5b5.charleslangevin.modeles.Identifiable;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
@@ -107,11 +108,11 @@ public final class ControleurModeles {
     }
 
     private static void chargementViaSequence(Modele modele, String cheminSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
-        if(indiceSourceCourante < sequenceDeChargement.length - 1){
+        if(indiceSourceCourante < sequenceDeChargement.length){
             chargementViaSourceCouranteOuSuivante(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
+        }else{
+            terminerChargement(modele, listenerGetModele);
         }
-
-        terminerChargement(modele, listenerGetModele);
     }
 
     private static void chargementViaSourceCouranteOuSuivante(final Modele modele, final String cheminSauvegarde, final ListenerGetModele listenerGetModele, final int indiceSourceCourante){
@@ -146,18 +147,18 @@ public final class ControleurModeles {
         chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
     }
 
-    private static String getCheminSauvegarde(String nomModele){
-        /*
-         * TODO
-         * si le modèle est Identifiable, alors le chemin est nomModele/idModele
-         * sinon, le chemin est nomModele/idUsager
-         */
-        String idUsager = UsagerCourant.getId();
-        String cheminSauvegarde = "";
+    private static String getCheminSauvegarde(final String nomModele){
+        Modele modele = modelesEnMemoire.get(nomModele);
+        String cheminSauvegarde = nomModele;
 
-        if(idUsager != null && nomModele != null){
-            cheminSauvegarde = nomModele + "/" + idUsager;
+        if(modele instanceof Identifiable){
+            cheminSauvegarde += "/" + ((Identifiable) modele).getId();
+
+        }else{
+            String idUsager = UsagerCourant.getId();
+            cheminSauvegarde += "/" + idUsager;
         }
+
         return cheminSauvegarde;
     }
 

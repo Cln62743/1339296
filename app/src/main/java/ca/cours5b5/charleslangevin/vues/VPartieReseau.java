@@ -2,6 +2,7 @@ package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import ca.cours5b5.charleslangevin.modeles.MPartieReseau;
 
 public class VPartieReseau extends VPartie{
 
@@ -19,7 +20,6 @@ public class VPartieReseau extends VPartie{
 
     @Override
     protected String getNomModele(){
-        // TODO
-        return null;
+        return MPartieReseau.class.getSimpleName();
     }
 }
