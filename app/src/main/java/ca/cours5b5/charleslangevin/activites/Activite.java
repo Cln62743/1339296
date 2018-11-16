@@ -7,6 +7,7 @@ import ca.cours5b5.charleslangevin.controleurs.ControleurModeles;
 import ca.cours5b5.charleslangevin.donnees.Disque;
 import ca.cours5b5.charleslangevin.donnees.SauvegardeTemporaire;
 import ca.cours5b5.charleslangevin.donnees.Serveur;
+import ca.cours5b5.charleslangevin.donnees.Transition;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 
 
@@ -23,7 +24,6 @@ public abstract class Activite extends AppCompatActivity {
 
     protected void initialiserControleurModeles(Bundle savedInstanceState) {
         /*
-        * TODO
         * ajouter Transition dans la séquence de chargement
         *     utiliser les extras de l'intention pour initialiser Transition
         *
@@ -31,7 +31,8 @@ public abstract class Activite extends AppCompatActivity {
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
                 Serveur.getInstance(),
-                Disque.getInstance());
+                Disque.getInstance(),
+                new Transition(getIntent().getExtras()));
     }
 
     protected void initialiserApplication(){

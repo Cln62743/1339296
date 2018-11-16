@@ -17,6 +17,7 @@ import ca.cours5b5.charleslangevin.modeles.Identifiable;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 import ca.cours5b5.charleslangevin.modeles.MParametresPartie;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
+import ca.cours5b5.charleslangevin.modeles.MPartieReseau;
 import ca.cours5b5.charleslangevin.modeles.Modele;
 import ca.cours5b5.charleslangevin.donnees.Disque;
 import ca.cours5b5.charleslangevin.usagers.UsagerCourant;
@@ -84,8 +85,7 @@ public final class ControleurModeles {
         if(nomModele.equals(MParametres.class.getSimpleName())){
             listenerGetModele.reagirAuModele(new MParametres());
 
-        }else if(nomModele.equals(MPartie.class.getSimpleName())){
-
+        }else if(nomModele.equals(MPartie.class.getSimpleName())) {
             getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
                 @Override
                 public void reagirAuModele(Modele modele) {
@@ -95,6 +95,18 @@ public final class ControleurModeles {
                     MPartie mPartie = new MPartie(mParametres.getParametresPartie().cloner());
 
                     listenerGetModele.reagirAuModele(mPartie);
+                }
+            });
+        }else if(nomModele.equals(MPartieReseau.class.getSimpleName())){
+            getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+                @Override
+                public void reagirAuModele(Modele modele) {
+
+                    MParametres mParametres = (MParametres) modele;
+
+                    MPartieReseau mPartieReseau = new MPartieReseau(mParametres.getParametresPartie().cloner());
+
+                    listenerGetModele.reagirAuModele(mPartieReseau);
                 }
             });
         }else {

@@ -18,6 +18,7 @@ import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GConstantes;
+import ca.cours5b5.charleslangevin.modeles.MPartieReseau;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
@@ -108,7 +109,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void transitionPartieReseau(){
         Intent intentionPartieReseau = new Intent(this, APartieReseau.class);
-        intentionPartieReseau.putExtra("FIXME_JSON_PARTIE_RESEAU", GConstantes.FIXME_JSON_PARTIE_RESEAU);
+        intentionPartieReseau.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.FIXME_JSON_PARTIE_RESEAU);
+        startActivity(intentionPartieReseau);
     }
 
     @Override

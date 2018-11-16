@@ -116,7 +116,6 @@ public class ControleurPartieReseau {
 
     public void detruireSauvegardeServeur() {
         /*
-         * TODO
          * Appeler p.ex. le detruireSauvegarde de Serveur (avec le bon chemin)
          */
         String cheminPartie = null;

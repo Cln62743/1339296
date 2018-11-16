@@ -13,6 +13,7 @@
 
     <string name="parametres">Parametres</string>
     <string name="jouer">Jouer</string>
+    <string name="jouerReseau">Jouer en Ligne</string>
     <string name="connexion">Connexion</string>
 
     <string name="entete">↓\n↓</string>

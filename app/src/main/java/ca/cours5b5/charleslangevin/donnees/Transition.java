@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 public class Transition extends SauvegardeTemporaire {
     public Transition(Bundle bundle) {
-        // TODO
         super(bundle);
     }
 }

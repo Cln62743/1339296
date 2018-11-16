@@ -38,6 +38,11 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
         }
     }
 
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde) {
+
+    }
+
     private String getCle(String cheminSauvegarde){
         String nomModele = null;
         if(cheminSauvegarde != null){

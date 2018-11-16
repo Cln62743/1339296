@@ -28,11 +28,9 @@ public class MParametresPartie extends Modele {
         hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
         largeur = GConstantes.LARGEUR_PAR_DEFAUT;
         pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
-
     }
 
     public MParametresPartie cloner(){
-
         MParametresPartie mParametresPartie = new MParametresPartie();
 
         mParametresPartie.setHauteur(hauteur);
@@ -40,7 +38,6 @@ public class MParametresPartie extends Modele {
         mParametresPartie.setPourGagner(pourGagner);
 
         return mParametresPartie;
-
     }
 
     public Integer getHauteur() { return hauteur; }
@@ -70,27 +67,20 @@ public class MParametresPartie extends Modele {
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
             String chaineValeur = (String) entry.getValue();
-
             switch (entry.getKey()){
-
                 case __hauteur:
-
                     hauteur = Integer.valueOf(chaineValeur);
                     break;
 
                 case __largeur:
-
                     largeur = Integer.valueOf(chaineValeur);
                     break;
 
-
                 case __pourGagner:
-
                     pourGagner = Integer.valueOf(chaineValeur);
                     break;
 
                 default:
-
                     throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
             }
         }
@@ -105,7 +95,6 @@ public class MParametresPartie extends Modele {
         objetJson.put(__pourGagner, pourGagner.toString());
 
         return objetJson;
-
     }
 
 }
