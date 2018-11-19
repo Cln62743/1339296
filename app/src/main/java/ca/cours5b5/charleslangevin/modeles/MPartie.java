@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +15,7 @@ import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GCouleur;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
+import ca.cours5b5.charleslangevin.serialisation.Jsonification;
 
 public class MPartie extends Modele implements Fournisseur {
 
@@ -134,6 +137,8 @@ public class MPartie extends Modele implements Fournisseur {
 
         objetJson.put(__parametres, parametres.enObjetJson());
         objetJson.put(__listeCoups, listeCoupsEnObjetJson(listeCoups));
+
+        Log.d("Atelier13" ,"JSON Partie: " + Jsonification.aPartirChaineJson(objetJson.toString()));
 
         return objetJson;
     }

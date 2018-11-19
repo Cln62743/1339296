@@ -14,6 +14,7 @@ import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
+import ca.cours5b5.charleslangevin.serialisation.Jsonification;
 
 public class MPartieReseau extends MPartie implements Fournisseur, Identifiable {
 
@@ -47,7 +48,7 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
                     public void executer(Object... args) {
                         //verifier
                         try{
-                            int colonne = (Integer) args[0];
+                            int colonne = ((Long) args[0]).intValue();
                             recevoirCoupReseau(colonne);
                         }catch(ClassCastException e){
                             throw new ErreurAction(e);
@@ -93,11 +94,16 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
          * charger les champs
          * appeler aussi super
          */
-        Log.d("" ,"" + objetJson);
-        super.aPartirObjetJson(objetJson);
 
-        idJoueurInvite = (String) objetJson.get(__idJoueurInvite);
+        Log.d("Atelier13" ,"JSON Reseau: " + Jsonification.aPartirChaineJson(objetJson.toString()));
+
         idJoueurHote = (String) objetJson.get(__idJoueurHote);
+        idJoueurInvite = (String) objetJson.get(__idJoueurInvite);
+
+        Log.d("Atelier13" ,"" + idJoueurHote);
+        Log.d("Atelier13" ,"" + idJoueurInvite);
+
+        super.aPartirObjetJson(objetJson);
     }
 
     @Override
@@ -108,8 +114,13 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
          */
         Map<String, Object> objetJson = new HashMap<>();
 
+
+
         objetJson.put(__idJoueurInvite, idJoueurInvite);
         objetJson.put(__idJoueurHote, idJoueurHote);
+
+        Log.d("Atelier13" ,"" + __idJoueurHote + idJoueurHote);
+        Log.d("Atelier13" ,"" + __idJoueurInvite + idJoueurInvite);
 
         objetJson = super.enObjetJson();
         return objetJson;

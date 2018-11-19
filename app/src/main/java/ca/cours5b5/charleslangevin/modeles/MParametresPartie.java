@@ -1,11 +1,14 @@
 package ca.cours5b5.charleslangevin.modeles;
 
+import android.util.Log;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
+import ca.cours5b5.charleslangevin.serialisation.Jsonification;
 
 public class MParametresPartie extends Modele {
 
@@ -64,6 +67,8 @@ public class MParametresPartie extends Modele {
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation  {
+
+        Log.d("Atelier13" ,"JSON ParamPartie: " + Jsonification.aPartirChaineJson(objetJson.toString()));
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
             String chaineValeur = (String) entry.getValue();

@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
+import android.util.Log;
+
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.charleslangevin.donnees.Serveur;
 import ca.cours5b5.charleslangevin.global.GCommande;
@@ -26,6 +28,9 @@ public class ControleurPartieReseau {
         ControleurModeles.getModele(MPartieReseau.class.getSimpleName(), new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {
+                Log.d("Atelier13","Classe: " + ((Identifiable)modele).getClass().getSimpleName());
+                Log.d("Atelier13","idJoueurHote: " + ((Identifiable)modele).getId());
+
                 String idJoueurHote = ((Identifiable)modele).getId();
                 connecterAuServeur(idJoueurHote);
             }
@@ -43,6 +48,8 @@ public class ControleurPartieReseau {
         String cheminHote = getCheminCoupsJoueurHote(idJoueurHote);
         String cheminInv = getCheminCoupsJoueurInvite(idJoueurHote);
 
+        //Log.d("Atelier13","idUtilisateur: " + idUtilisateur);
+        //Log.d("Atelier13","idJoueurHote: " + idJoueurHote);
         if(idUtilisateur.equals(idJoueurHote)){
             connecterEnTantQueJoueurHote(cheminHote, cheminInv);
         }else{
@@ -118,10 +125,6 @@ public class ControleurPartieReseau {
         /*
          * Appeler p.ex. le detruireSauvegarde de Serveur (avec le bon chemin)
          */
-        String cheminPartie = null;
-
-
-        Serveur.getInstance().detruireSauvegarde(cheminPartie);
         ControleurModeles.getModele(MPartieReseau.class.getSimpleName(), new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {

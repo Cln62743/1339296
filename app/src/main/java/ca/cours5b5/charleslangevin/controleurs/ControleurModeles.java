@@ -144,6 +144,7 @@ public final class ControleurModeles {
 
     private static void terminerChargementAvecDonnees(Map<String, Object> objetJson, Modele modele, ListenerGetModele listenerGetModele){
         if(objetJson!= null){
+            Log.d("Atelier13", "ControleurModele :: terminerChargementAvecDonnees :: " + modele.getClass().getSimpleName());
             modele.aPartirObjetJson(objetJson);
         }
 
