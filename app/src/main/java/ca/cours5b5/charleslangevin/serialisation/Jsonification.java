@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 
 import java.util.Map;
 
-import ca.cours5b5.charleslangevin.donnees.GLog;
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 
 public final class Jsonification {
@@ -15,7 +14,7 @@ public final class Jsonification {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static Map<String, Object> aPartirChaineJson(String json) throws ErreurSerialisation {
-        return gson.fromJson(json, Map.class);
+        return (Map<String, Object>) gson.fromJson(json, Map.class);
     }
 
     public static String enChaineJson(Map<String, Object> objetJson) throws ErreurSerialisation {

@@ -1,4 +1,4 @@
-package ca.cours5b5.charleslangevin.donnees;
+package ca.cours5b5.charleslangevin.global;
 
 import android.util.Log;
 

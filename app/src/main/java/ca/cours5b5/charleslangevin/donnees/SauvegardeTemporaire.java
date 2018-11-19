@@ -44,10 +44,6 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
     }
 
     private String getCle(String cheminSauvegarde){
-        String nomModele = null;
-        if(cheminSauvegarde != null){
-            nomModele = cheminSauvegarde.split("/")[0];
-        }
-        return nomModele;
+        return getNomModele(cheminSauvegarde);
     }
 }

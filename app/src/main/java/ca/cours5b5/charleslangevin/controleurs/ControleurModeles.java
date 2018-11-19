@@ -137,14 +137,13 @@ public final class ControleurModeles {
 
             @Override
             public void reagirErreur(Exception e) {
-                chargementViaSourceSuivante(modele, cheminSauvegarde, listenerGetModele,indiceSourceCourante);
+                chargementViaSourceSuivante(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
             }
         });
     }
 
     private static void terminerChargementAvecDonnees(Map<String, Object> objetJson, Modele modele, ListenerGetModele listenerGetModele){
         if(objetJson!= null){
-            Log.d("Atelier13", "ControleurModele :: terminerChargementAvecDonnees :: " + modele.getClass().getSimpleName());
             modele.aPartirObjetJson(objetJson);
         }
 
@@ -156,15 +155,14 @@ public final class ControleurModeles {
     }
 
     private static void chargementViaSourceSuivante(Modele modele, String cheminSauvegarde, ListenerGetModele listenerGetModele, int indiceSourceCourante){
-        indiceSourceCourante++;
-        chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante);
+        chargementViaSequence(modele, cheminSauvegarde, listenerGetModele, indiceSourceCourante + 1);
     }
 
     private static String getCheminSauvegarde(final String nomModele){
         Modele modele = modelesEnMemoire.get(nomModele);
         String cheminSauvegarde = nomModele;
 
-        if(modele instanceof Identifiable){
+        if(modele != null && modele instanceof Identifiable){
             cheminSauvegarde += "/" + ((Identifiable) modele).getId();
 
         }else{

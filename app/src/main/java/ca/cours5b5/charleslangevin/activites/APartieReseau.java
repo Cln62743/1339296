@@ -19,11 +19,6 @@ public class APartieReseau extends Activite implements Fournisseur {
     @Override
     protected void onPause() {
         super.onPause();
-        /*
-         * TODO
-         * Avec ControleurPartieReseau, détruire la partie sur le serveur
-         * Déconnecter ControleurPartieReseau du serveur
-         */
 
         ControleurPartieReseau.getInstance().detruireSauvegardeServeur();
         ControleurPartieReseau.getInstance().deconnecterDuServeur();
@@ -32,19 +27,11 @@ public class APartieReseau extends Activite implements Fournisseur {
     @Override
     protected void onResume() {
         super.onResume();
-        /*
-         * TODO
-         * Connecter le ControleurPartieReseau au serveur
-         */
         ControleurPartieReseau.getInstance().connecterAuServeur();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        /*
-         * TODO
-         * BONUS: avec ControleurModeles, détruire le modèle MPartieReseau
-         */
     }
 }

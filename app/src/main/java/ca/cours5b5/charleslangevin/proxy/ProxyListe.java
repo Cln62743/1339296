@@ -18,14 +18,12 @@ import ca.cours5b5.charleslangevin.global.GConstantes;
 public class ProxyListe extends Proxy implements Fournisseur {
     private ChildEventListener childEventListener;
     private Query requete;
-    private Action actionNouvelItem = new Action();
+    private Action actionNouvelItem;
     private List<DatabaseReference> noeudsAjoutes;
 
     public ProxyListe(String cheminServeur) {
         super(cheminServeur);
         noeudsAjoutes = new ArrayList<>();
-        getRequete();
-
     }
 
     public void setActionNouvelItem(GCommande commande){
@@ -38,9 +36,9 @@ public class ProxyListe extends Proxy implements Fournisseur {
         * Mémoriser le noeud ajouté
         * Ajouter la valeur avec setValue()
         */
-        DatabaseReference nouveauNoeud = this.noeudServeur.push();
-        noeudsAjoutes.add(nouveauNoeud);
+        DatabaseReference nouveauNoeud = noeudServeur.push();
         nouveauNoeud.setValue(valeur);
+        noeudsAjoutes.add(nouveauNoeud);
     }
 
     @Override
@@ -53,18 +51,20 @@ public class ProxyListe extends Proxy implements Fournisseur {
         super.connecterAuServeur();
         creerListener();
 
-        requete = noeudServeur;
+        requete = getRequete();
         requete.addChildEventListener(childEventListener);
     }
 
     private void creerListener(){
-        // TODO remplir les methode du listener
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Object valeurAjoutee = dataSnapshot.getValue();
-                actionNouvelItem.setArguments(valeurAjoutee);
-                actionNouvelItem.executerDesQuePossible();
+
+                if(valeurAjoutee != null){
+                    actionNouvelItem.setArguments(valeurAjoutee);
+                    actionNouvelItem.executerDesQuePossible();
+                }
             }
 
             @Override
@@ -93,8 +93,7 @@ public class ProxyListe extends Proxy implements Fournisseur {
         /*
          * On veut trier par clé et limiter à un nombre max (utiliser une constante)
          */
-        requete.orderByKey().limitToLast(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
-        return requete;
+        return noeudServeur.orderByKey().limitToLast(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
     }
 
     @Override
@@ -105,13 +104,13 @@ public class ProxyListe extends Proxy implements Fournisseur {
          * déconnecter via super
          */
         requete.removeEventListener(childEventListener);
-        noeudsAjoutes.clear();
+        noeudsAjoutes = null;
+
         super.deconnecterDuServeur();
     }
 
     @Override
     public void detruireValeurs() {
-        noeudServeur.removeValue();
         noeudsAjoutes.clear();
     }
 }

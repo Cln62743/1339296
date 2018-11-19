@@ -117,6 +117,7 @@ public class MPartie extends Modele implements Fournisseur {
 
     private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
         List<Integer> listeCoups = new ArrayList<>();
+
         for(String coupChaine : listeCoupsObjetJson){
             listeCoups.add(Integer.valueOf(coupChaine));
         }
@@ -126,6 +127,7 @@ public class MPartie extends Modele implements Fournisseur {
 
     private void rejouerLesCoups(List<Integer> coupsARejouer) {
         listeCoups.clear();
+
         for(Integer coup : coupsARejouer){
             jouerCoup(coup);
         }
@@ -145,6 +147,7 @@ public class MPartie extends Modele implements Fournisseur {
 
     private  List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
         List<String> listeCoupsObjetJson = new ArrayList<>();
+
         for(Integer coup : listeCoups){
             listeCoupsObjetJson.add(coup.toString());
         }

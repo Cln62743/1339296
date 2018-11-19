@@ -13,11 +13,14 @@ import ca.cours5b5.charleslangevin.proxy.ProxyListe;
 import ca.cours5b5.charleslangevin.usagers.UsagerCourant;
 
 public class ControleurPartieReseau {
+
     private static final ControleurPartieReseau instance = new ControleurPartieReseau();
-    public static ControleurPartieReseau getInstance() {return instance;}
+    public static ControleurPartieReseau getInstance() { return instance; }
 
     private ProxyListe proxyEmettreCoups;
     private ProxyListe proxyRecevoirCoups;
+
+    private ControleurPartieReseau(){}
 
     public void connecterAuServeur(){
         /*
@@ -31,7 +34,7 @@ public class ControleurPartieReseau {
                 Log.d("Atelier13","Classe: " + ((Identifiable)modele).getClass().getSimpleName());
                 Log.d("Atelier13","idJoueurHote: " + ((Identifiable)modele).getId());
 
-                String idJoueurHote = ((Identifiable)modele).getId();
+                String idJoueurHote = ((MPartieReseau)modele).getId();
                 connecterAuServeur(idJoueurHote);
             }
         });
@@ -56,9 +59,10 @@ public class ControleurPartieReseau {
             connecterEnTantQueJoueurInvite(cheminHote, cheminInv);
         }
 
-        proxyEmettreCoups.connecterAuServeur();
-        proxyRecevoirCoups.connecterAuServeur();
         proxyRecevoirCoups.setActionNouvelItem(GCommande.RECEVOIR_COUP_RESEAU);
+        proxyRecevoirCoups.connecterAuServeur();
+
+        proxyEmettreCoups.connecterAuServeur();
     }
 
     private void connecterEnTantQueJoueurHote(String cheminCoupsJoueurHote, String cheminCoupsJoueurInvite) {
@@ -125,14 +129,6 @@ public class ControleurPartieReseau {
         /*
          * Appeler p.ex. le detruireSauvegarde de Serveur (avec le bon chemin)
          */
-        ControleurModeles.getModele(MPartieReseau.class.getSimpleName(), new ListenerGetModele() {
-            @Override
-            public void reagirAuModele(Modele modele) {
-                String idJoueurHote = ((Identifiable)modele).getId();
-
-                String cheminPartie = getCheminPartie(idJoueurHote);
-                Serveur.getInstance().detruireSauvegarde(cheminPartie);
-            }
-        });
+        Serveur.getInstance().detruireSauvegarde(getCheminPartie(UsagerCourant.getId()));
     }
 }

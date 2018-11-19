@@ -29,7 +29,6 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
     public MPartieReseau(MParametresPartie parametres) {
         super(parametres);
 
-        fournirActionPlacerJeton();
         fournirActionRecevoirCoup();
     }
 
@@ -112,9 +111,7 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
          * sauvegarder les champs
          * appeler aussi super
          */
-        Map<String, Object> objetJson = new HashMap<>();
-
-
+        Map<String, Object> objetJson = super.enObjetJson();
 
         objetJson.put(__idJoueurInvite, idJoueurInvite);
         objetJson.put(__idJoueurHote, idJoueurHote);
@@ -122,7 +119,6 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
         Log.d("Atelier13" ,"" + __idJoueurHote + idJoueurHote);
         Log.d("Atelier13" ,"" + __idJoueurInvite + idJoueurInvite);
 
-        objetJson = super.enObjetJson();
         return objetJson;
     }
 }
