@@ -34,6 +34,9 @@ public class VMenuPrincipal extends Vue {
     private Button boutonPartie;
     private Action actionPartie;
 
+    private Button boutonPartieIA;
+    private Action actionPartieIA;
+
     private Button boutonPartieReseau;
     private Action actionPartieReseau;
 
@@ -47,41 +50,32 @@ public class VMenuPrincipal extends Vue {
         super.onFinishInflate();
 
         recupererControles();
-
         demanderActions();
-
         installerListeners();
 
         ajusterTexteConnexionDeconnexion();
-
     }
 
 
     private void recupererControles() {
-
         boutonParametres = findViewById(R.id.bouton_parametres);
 
         boutonPartie = findViewById(R.id.bouton_partie);
-
+        boutonPartieIA = findViewById(R.id.bouton_partie_ia);
         boutonPartieReseau = findViewById(R.id.bouton_partie_reseau);
 
         boutonConnexion = findViewById(R.id.bouton_connexion);
-
     }
 
     private void demanderActions() {
-
         actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
 
         actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
-
+        actionPartieIA = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE_IA);
         actionPartieReseau = ControleurAction.demanderAction(GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU);
 
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
-
         actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
-
-
     }
 
 
@@ -101,6 +95,13 @@ public class VMenuPrincipal extends Vue {
             }
         });
 
+        boutonPartieIA.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionPartieIA.executerDesQuePossible();
+            }
+        });
+
         boutonPartieReseau.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,19 +112,14 @@ public class VMenuPrincipal extends Vue {
         boutonConnexion.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if(!UsagerCourant.siUsagerConnecte()){
-
                     actionConnexion.executerDesQuePossible();
                     boutonConnexion.setText(R.string.deconnexion);
 
                 }else{
-
                     actionDeconnexion.executerDesQuePossible();
                     boutonConnexion.setText(R.string.connexion);
-
                 }
-
             }
         });
     }
@@ -131,13 +127,10 @@ public class VMenuPrincipal extends Vue {
 
     private void ajusterTexteConnexionDeconnexion() {
         if(UsagerCourant.siUsagerConnecte()){
-
             boutonConnexion.setText(R.string.deconnexion);
 
         }else{
-
             boutonConnexion.setText(R.string.connexion);
-
         }
     }
 

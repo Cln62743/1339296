@@ -23,51 +23,36 @@ public final class Serveur extends SourceDeDonnees {
 
     @Override
     public void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement) {
-
         DatabaseReference noeudModele = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
 
         noeudModele.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 if(dataSnapshot.exists()){
-
                     Map<String, Object> objetJson = (Map<String, Object>) dataSnapshot.getValue();
-
                     listenerChargement.reagirSucces(objetJson);
 
                 }else{
-
                     listenerChargement.reagirErreur(new ErreurModele("noeudInexistant: " + cheminSauvegarde));
-
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
                 listenerChargement.reagirErreur(databaseError.toException());
-
             }
         });
     }
 
-
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson) {
-
         DatabaseReference noeudModele = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
         noeudModele.setValue(objetJson);
-
     }
 
     @Override
     public void detruireSauvegarde(String cheminSauvegarde) {
-
         DatabaseReference noeudModele = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
         noeudModele.removeValue();
-
     }
-
-
 }

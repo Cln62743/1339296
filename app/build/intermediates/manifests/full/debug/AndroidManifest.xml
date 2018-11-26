@@ -31,6 +31,7 @@
         android:theme="@style/AppTheme" >
         <activity android:name="ca.cours5b5.charleslangevin.activites.AParametres" />
         <activity android:name="ca.cours5b5.charleslangevin.activites.APartie" />
+        <activity android:name="ca.cours5b5.charleslangevin.activites.APartieIA" />
         <activity android:name="ca.cours5b5.charleslangevin.activites.APartieReseau" />
         <activity android:name="ca.cours5b5.charleslangevin.activites.AMenuPrincipal" >
             <intent-filter>

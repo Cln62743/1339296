@@ -19,36 +19,27 @@ public abstract class Activite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         initialiserControleurModeles(savedInstanceState);
-
         initialiserApplication();
-
         prechargerLesModeles();
-
     }
 
 
     private void prechargerLesModeles() {
-
         ControleurModeles.prechargerModele(MParametres.class.getSimpleName());
-
     }
 
 
     protected void initialiserControleurModeles(Bundle savedInstanceState) {
-
         ControleurModeles.setSequenceDeChargement(
                 new SauvegardeTemporaire(savedInstanceState),
                 new Transition(getIntent().getExtras()),
                 Serveur.getInstance(),
                 Disque.getInstance());
-
     }
 
 
     protected void initialiserApplication(){
-
         Disque.getInstance().setRepertoireRacine(getFilesDir());
-
     }
 
 
@@ -58,7 +49,6 @@ public abstract class Activite extends AppCompatActivity {
 
         ControleurModeles.sauvegarderModeleDansCetteSource(MParametres.class.getSimpleName(),
                 new SauvegardeTemporaire(outState));
-
     }
 
 

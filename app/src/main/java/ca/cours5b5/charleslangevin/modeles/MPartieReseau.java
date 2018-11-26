@@ -108,5 +108,4 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
     public String getId() {
         return idJoueurHote;
     }
-
 }

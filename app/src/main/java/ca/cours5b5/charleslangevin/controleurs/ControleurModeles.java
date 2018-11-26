@@ -1,6 +1,7 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,9 +29,7 @@ public final class ControleurModeles {
     private ControleurModeles(){}
 
     private static Map<String, Modele> modelesEnMemoire;
-
     private static SourceDeDonnees[] sequenceDeChargement;
-
     private static List<SourceDeDonnees> listeDeSauvegardes;
 
     static {
@@ -71,15 +70,12 @@ public final class ControleurModeles {
 
 
     static void getModele(String nomModele, ListenerGetModele listenerGetModele){
-
         Modele modele = modelesEnMemoire.get(nomModele);
 
         if(modele != null){
-
             listenerGetModele.reagirAuModele(modele);
 
         }else {
-
             creerModeleEtChargerDonnees(nomModele, listenerGetModele);
         }
     }
@@ -91,13 +87,11 @@ public final class ControleurModeles {
         creerModeleSelonNom(nomModele, new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {
-
                 modelesEnMemoire.put(nomModele, modele);
 
                 chargerDonnees(modele, nomModele, listenerGetModele);
             }
         });
-
     }
 
     private static void chargerDonnees(Modele modele,
@@ -105,7 +99,6 @@ public final class ControleurModeles {
                                        ListenerGetModele listenerGetModele) {
 
         String cheminSauvegarde = getCheminSauvegarde(nomModele);
-
         int indicePremiereSource = 0;
 
         chargementViaSequence(
@@ -122,16 +115,13 @@ public final class ControleurModeles {
                                               int indiceSourceCourante){
 
         if(indiceSourceCourante < sequenceDeChargement.length){
-
             chargementViaSourceCouranteOuSuivante(modele,
                     cheminDeSauvegarde,
                     listenerGetModele,
                     indiceSourceCourante);
 
         }else{
-
             terminerChargement(modele, listenerGetModele);
-
         }
     }
 
@@ -148,19 +138,16 @@ public final class ControleurModeles {
 
                     @Override
                     public void reagirSucces(final Map<String, Object> objetJson) {
-
                         terminerChargementAvecDonnees(objetJson, modele, listenerGetModele);
                     }
 
                     @Override
                     public void reagirErreur(Exception e) {
-
                         chargementViaSourceSuivante(modele,
                                 cheminDeSauvegarde,
                                 listenerGetModele,
                                 indiceSourceCourante);
                     }
-
                 });
     }
 
@@ -172,14 +159,12 @@ public final class ControleurModeles {
         modele.aPartirObjetJson(objetJson);
 
         terminerChargement(modele, listenerGetModele);
-
     }
 
     private static void terminerChargement(Modele modele,
                                            ListenerGetModele listenerGetModele) {
 
         listenerGetModele.reagirAuModele(modele);
-
     }
 
 
@@ -194,42 +179,32 @@ public final class ControleurModeles {
                 cheminDeSauvegarde,
                 listenerGetModele,
                 indiceSourceSuivante);
-
     }
 
 
     public static void sauvegarderModele(String nomModele) throws ErreurModele {
         for(SourceDeDonnees source : listeDeSauvegardes){
-
             sauvegarderModeleDansCetteSource(nomModele, source);
-
         }
     }
 
 
-    private static void creerModeleSelonNom(String nomModele,
-                                            final ListenerGetModele listenerGetModele) throws ErreurModele {
-
+    private static void creerModeleSelonNom(String nomModele, final ListenerGetModele listenerGetModele) throws ErreurModele {
         if(nomModele.equals(MParametres.class.getSimpleName())){
-
             listenerGetModele.reagirAuModele(new MParametres());
 
         }else if(nomModele.equals(MPartie.class.getSimpleName())){
-
             creerPartie(listenerGetModele);
 
         }else if(nomModele.equals(MPartieIA.class.getSimpleName())){
-
+            Log.d("ProjetFinal", "Salut");
             creerPartieIA(listenerGetModele);
 
         }else if(nomModele.equals(MPartieReseau.class.getSimpleName())){
-
             creerPartieReseau(listenerGetModele);
 
         }else{
-
             throw new ErreurModele("nomModèle inconnu: " + nomModele);
-
         }
     }
 

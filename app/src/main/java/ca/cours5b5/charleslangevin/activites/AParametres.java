@@ -2,7 +2,6 @@ package ca.cours5b5.charleslangevin.activites;
 
 
 import android.os.Bundle;
-import android.os.Debug;
 import android.util.Log;
 
 import ca.cours5b5.charleslangevin.R;
@@ -20,36 +19,28 @@ public class AParametres extends Activite implements Fournisseur{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Atelier11-15","AParametres::onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
 
         fournirActions();
-
     }
 
 
     private void fournirActions() {
-
         ControleurAction.fournirAction(this,
                 GCommande.EFFACER_PARTIE_COURANTE,
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
-
                         ControleurModeles.detruireModele(MPartie.class.getSimpleName());
-
                     }
                 });
     }
 
     @Override
     protected void onPause() {
-        Log.d("Atelier11-15","AParametres::onPause");
         super.onPause();
-
         ControleurModeles.sauvegarderModele(MParametres.class.getSimpleName());
-
     }
 
 

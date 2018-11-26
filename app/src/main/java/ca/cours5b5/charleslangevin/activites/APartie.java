@@ -44,6 +44,4 @@ public class APartie extends Activite implements Fournisseur {
     protected void sauvegarderPartie(){
         ControleurModeles.sauvegarderModele(MPartie.class.getSimpleName());
     }
-
-
 }

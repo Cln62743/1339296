@@ -9,18 +9,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
-import ca.cours5b5.charleslangevin.modeles.MPartieReseau;
-import ca.cours5b5.charleslangevin.usagers.JoueursEnAttente;
-import ca.cours5b5.charleslangevin.controleurs.ControleurModeles;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.global.GCommande;
-import ca.cours5b5.charleslangevin.modeles.MParametres;
 
 import static ca.cours5b5.charleslangevin.global.GConstantes.CODE_CONNEXION_FIREBASE;
 
@@ -158,7 +153,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     private void transitionPartieIA() {
         // TODO est ce que je dois ajouter une classe activite pour l'IA
-        Intent intentionPartieIA = new Intent(this, APartie.class);
+        Intent intentionPartieIA = new Intent(this, APartieIA.class);
         startActivity(intentionPartieIA);
     }
 

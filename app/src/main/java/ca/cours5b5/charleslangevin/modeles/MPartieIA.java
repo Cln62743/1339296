@@ -1,5 +1,7 @@
 package ca.cours5b5.charleslangevin.modeles;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
@@ -21,6 +23,7 @@ public class MPartieIA extends MPartie implements Fournisseur {
 
     public MPartieIA(MParametresPartie parametres) {
         super(parametres);
+        Log.d("ProjetFinal", "Salut");
         this.parametresPartie = parametres;
     }
 
@@ -47,9 +50,7 @@ public class MPartieIA extends MPartie implements Fournisseur {
     public void AiJouerCoupAlea(){
         int colonneCoup = (int)(Math.random() * parametresPartie.getLargeur()) - 1;
 
-        if(super.siCoupLegal(colonneCoup)){
-            super.jouerCoupLegal(colonneCoup);
-        }
+        super.jouerCoup(colonneCoup);
     }
 
     @Override
@@ -67,6 +68,8 @@ public class MPartieIA extends MPartie implements Fournisseur {
         objetJson.put(__idJoueur, idJoueur);
         //objetJson.put(__idJoueurInvite, idJoueurInvite);
 
+        Log.d("ProjetFinal", "Salut");
+        Log.d("ProjetFinal", objetJson.toString());
         return objetJson;
     }
 }
