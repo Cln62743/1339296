@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\Users\\charl\\Desktop\\Session 5\\ProjetPourTestAndroid\\1339296-master\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en\\values-en.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\charl\\Desktop\\Session 5\\ProjetPourTestAndroid\\1339296-master\\app\\src\\main\\res\\values-en\\strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,14,-1,-1,-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,4,-1,-1,-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,376,-1,-1,-1,-1,-1,-1,-1",
+                        "endColumns": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,53,-1,-1,-1,-1,-1,-1,-1",
+                        "endOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,425,-1,-1,-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,96,134,177,221,268,340,415,460,499,554,608,652,696,740,795,845,891",
+                        "endColumns": "40,37,42,43,46,71,74,44,38,54,53,43,43,43,54,49,45,48",
+                        "endOffsets": "91,129,172,216,263,335,410,455,494,549,603,647,691,735,790,840,886,935"
+                    }
+                }
+            ]
+        }
+    ]
+}

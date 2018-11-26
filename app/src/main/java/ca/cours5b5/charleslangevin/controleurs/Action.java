@@ -1,8 +1,6 @@
 package ca.cours5b5.charleslangevin.controleurs;
 
 
-import android.util.Log;
-
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 
@@ -15,13 +13,13 @@ public class Action {
     Object[] args;
 
     public void setArguments(Object... args) {
-        Log.d("Atelier - action",args + " -- setArguments");
         this.args = args;
     }
 
     public void executerDesQuePossible(){
         ControleurAction.executerDesQuePossible(this);
     }
+
 
     Action cloner(){
 
@@ -30,8 +28,12 @@ public class Action {
         clone.fournisseur = fournisseur;
         clone.listenerFournisseur = listenerFournisseur;
 
-        clone.args = (args == null) ? null : args.clone();
+        if(args != null){
+            clone.args = args.clone();
+        }
 
         return clone;
     }
+
+
 }

@@ -1,5 +1,8 @@
 package ca.cours5b5.charleslangevin.proxy;
 
+
+import android.util.Log;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,55 +19,79 @@ import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 
 public class ProxyListe extends Proxy implements Fournisseur {
+
     private ChildEventListener childEventListener;
+
     private Query requete;
+
     private Action actionNouvelItem;
+    private Action actionItemDetruit;
+
     private List<DatabaseReference> noeudsAjoutes;
 
     public ProxyListe(String cheminServeur) {
         super(cheminServeur);
+
         noeudsAjoutes = new ArrayList<>();
+
     }
+
 
     public void setActionNouvelItem(GCommande commande){
-        actionNouvelItem = ControleurAction.demanderAction(commande);
+
+        this.actionNouvelItem = ControleurAction.demanderAction(commande);
+
     }
+
+
+    public void setActionItemDetruit(GCommande commande){
+
+        this.actionItemDetruit = ControleurAction.demanderAction(commande);
+
+    }
+
 
     public void ajouterValeur(Object valeur) {
-        /*
-        * Créer un sous-noeud avec push()
-        * Mémoriser le noeud ajouté
-        * Ajouter la valeur avec setValue()
-        */
-        DatabaseReference nouveauNoeud = noeudServeur.push();
-        nouveauNoeud.setValue(valeur);
-        noeudsAjoutes.add(nouveauNoeud);
+
+        DatabaseReference noeudAjoute = noeudServeur.push();
+
+        noeudAjoute.setValue(valeur);
+
+        noeudsAjoutes.add(noeudAjoute);
+
     }
 
+
     @Override
-    public void connecterAuServeur() {
-        /*
-         * Créer le listener
-         * sauvegarder la requête
-         * ajouter le listener
-         */
+    public void connecterAuServeur(){
         super.connecterAuServeur();
+
         creerListener();
 
         requete = getRequete();
+
         requete.addChildEventListener(childEventListener);
+
     }
 
+
     private void creerListener(){
+
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Object valeurAjoutee = dataSnapshot.getValue();
 
-                if(valeurAjoutee != null){
-                    actionNouvelItem.setArguments(valeurAjoutee);
+                Object valeur = dataSnapshot.getValue();
+
+                if(actionNouvelItem != null){
+
+                    actionNouvelItem.setArguments(valeur);
+
                     actionNouvelItem.executerDesQuePossible();
+
                 }
+
+
             }
 
             @Override
@@ -74,6 +101,16 @@ public class ProxyListe extends Proxy implements Fournisseur {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                Object valeur = dataSnapshot.getValue();
+
+                if(actionItemDetruit != null){
+
+                    actionItemDetruit.setArguments(valeur);
+
+                    actionItemDetruit.executerDesQuePossible();
+
+                }
 
             }
 
@@ -89,28 +126,33 @@ public class ProxyListe extends Proxy implements Fournisseur {
         };
     }
 
+
     protected Query getRequete(){
-        /*
-         * On veut trier par clé et limiter à un nombre max (utiliser une constante)
-         */
-        return noeudServeur.orderByKey().limitToLast(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
+
+        return noeudServeur.orderByKey().limitToFirst(GConstantes.NOMBRE_DE_VALEURS_A_CHARGER_DU_SERVEUR_PAR_DEFAUT);
+
     }
+
 
     @Override
     public void deconnecterDuServeur() {
-        /*
-         * retirer le listener
-         * oublier les noeuds ajoutés
-         * déconnecter via super
-         */
-        requete.removeEventListener(childEventListener);
-        noeudsAjoutes = null;
+
+        noeudServeur.removeEventListener(childEventListener);
+
+        noeudsAjoutes.clear();
 
         super.deconnecterDuServeur();
+
     }
+
 
     @Override
     public void detruireValeurs() {
-        noeudsAjoutes.clear();
+
+        for(DatabaseReference noeud : noeudsAjoutes){
+            noeud.removeValue();
+        }
     }
+
+
 }

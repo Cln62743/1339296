@@ -24,13 +24,14 @@ import ca.cours5b5.charleslangevin.modeles.Modele;
 
 public class VParametres extends Vue {
 
+
+
     private Spinner spinnerHauteur;
     private Spinner spinnerLargeur;
     private Spinner spinnerPourGagner;
 
-    private Action actionHauteur;
-    private Action actionLargeur;
-    private Action actionPourGagner;
+    private Button boutonEffacerPartieCourante;
+
 
     public VParametres(Context context) {
         super(context);
@@ -46,12 +47,10 @@ public class VParametres extends Vue {
 
     @Override
     protected void onFinishInflate() {
-        Log.d("Atelier","VParametres::onFinishInflate");
+        Log.d("Atelier11-15","VParametres::onFinishInflate");
         super.onFinishInflate();
 
         initialiser();
-
-        demanderActions();
 
         installerListeners();
 
@@ -60,10 +59,11 @@ public class VParametres extends Vue {
     }
 
     private void initialiser(){
-
         spinnerHauteur = findViewById(R.id.spinner_hauteur);
         spinnerLargeur = findViewById(R.id.spinner_largeur);
         spinnerPourGagner = findViewById(R.id.spinner_pour_gagner);
+
+        boutonEffacerPartieCourante = findViewById(R.id.bouton_effacer_partie);
 
         initialiserSpinner(spinnerHauteur);
         initialiserSpinner(spinnerLargeur);
@@ -71,31 +71,22 @@ public class VParametres extends Vue {
 
     }
 
-    private void demanderActions() {
-
-        actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
-        actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
-        actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
-
-    }
-
-
     private void initialiserSpinner(Spinner spinner){
-
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
     }
 
     private void installerListeners() {
-
         installerListenerHauteur();
         installerListenerLargeur();
         installerListenerPourGagner();
-
+        installerListenerEffacerPartieCourante();
     }
 
+
     private void installerListenerHauteur(){
+
+        final Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
 
         spinnerHauteur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -104,6 +95,7 @@ public class VParametres extends Vue {
 
                 actionHauteur.setArguments(leChoix);
                 actionHauteur.executerDesQuePossible();
+
             }
 
             @Override
@@ -114,6 +106,8 @@ public class VParametres extends Vue {
     }
 
     private void installerListenerLargeur(){
+
+        final Action actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
 
         spinnerLargeur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -134,6 +128,9 @@ public class VParametres extends Vue {
 
     private void installerListenerPourGagner(){
 
+        final Action actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
+
+
         spinnerPourGagner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -151,6 +148,22 @@ public class VParametres extends Vue {
         });
     }
 
+    private void installerListenerEffacerPartieCourante() {
+
+        final Action actionEffacerPartieCourante = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE);
+
+
+        boutonEffacerPartieCourante.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                actionEffacerPartieCourante.executerDesQuePossible();
+
+            }
+        });
+
+    }
+
     private void installerObservateur() {
 
         ControleurObservation.observerModele(MParametres.class.getSimpleName(),
@@ -158,7 +171,7 @@ public class VParametres extends Vue {
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        Log.d("VueObservation","VParametres | reagirChangementAuModele | " + modele.getClass().getSimpleName());
+                        Log.d("Atelier11-15-Observation","VParametres::reagirChangementAuModele (" + modele + ")");
                         observerParametres(modele);
                     }
                 });
@@ -172,6 +185,7 @@ public class VParametres extends Vue {
 
             afficherLesChoix(mParametres);
 
+
         }catch (ClassCastException e){
 
             throw new ErreurObservation(e);
@@ -180,64 +194,40 @@ public class VParametres extends Vue {
     }
 
     private void afficherLesChoix(MParametres mParametres){
-
         afficherChoixHauteur(mParametres);
         afficherChoixLargeur(mParametres);
         afficherChoixPourGagner(mParametres);
-
     }
 
     private void afficherChoixHauteur(MParametres mParametres){
-
         mettreAJourSpinner(spinnerHauteur,
                 mParametres.getChoixHauteur(),
                 mParametres.getParametresPartie().getHauteur());
-
     }
 
     private void afficherChoixLargeur(MParametres mParametres){
-
         mettreAJourSpinner(spinnerLargeur,
                 mParametres.getChoixLargeur(),
                 mParametres.getParametresPartie().getLargeur());
-
     }
 
     private void afficherChoixPourGagner(MParametres mParametres){
-
         mettreAJourSpinner(spinnerPourGagner,
                 mParametres.getChoixPourGagner(),
                 mParametres.getParametresPartie().getPourGagner());
-
     }
 
     private void mettreAJourSpinner(Spinner spinner, List<Integer> choix, int selectionCourante){
-
         ArrayAdapter<Integer> adapter = (ArrayAdapter<Integer>) spinner.getAdapter();
-
         adapter.clear();
 
-        mettreAJourAdapter(spinner, choix, selectionCourante, adapter);
-
-    }
-
-    private void mettreAJourAdapter(
-            Spinner spinner,
-            List<Integer> choix,
-            int selectionCourante,
-            ArrayAdapter<Integer> adapter) {
-
         for(int i=0; i < choix.size(); i++){
-
             int leChoix = choix.get(i);
             adapter.add(leChoix);
 
             if(leChoix == selectionCourante){
-
                 spinner.setSelection(i);
-
             }
         }
     }
-
 }

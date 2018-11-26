@@ -2,7 +2,6 @@ package ca.cours5b5.charleslangevin.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -10,21 +9,12 @@ import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.controleurs.Action;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.global.GCommande;
+import ca.cours5b5.charleslangevin.usagers.UsagerCourant;
 
 
 public class VMenuPrincipal extends Vue {
 
-    private Button boutonPartie;
-    private Action actionPartie;
 
-    private Button boutonPartieReseau;
-    private Action actionPartieReseau;
-
-    private Button boutonParametres;
-    private Action actionParametres;
-
-    private Button boutonConnexion;
-    private Action actionConnexion;
 
     public VMenuPrincipal(Context context) {
         super(context);
@@ -38,75 +28,117 @@ public class VMenuPrincipal extends Vue {
         super(context, attrs, defStyleAttr);
     }
 
+    private Button boutonParametres;
+    private Action actionParametres;
+
+    private Button boutonPartie;
+    private Action actionPartie;
+
+    private Button boutonPartieReseau;
+    private Action actionPartieReseau;
+
+    private Button boutonConnexion;
+    private Action actionConnexion;
+    private Action actionDeconnexion;
+
+
     @Override
     protected void onFinishInflate(){
-        Log.d("Atelier","VMenuPrincipal::onFinishInflate");
         super.onFinishInflate();
 
         recupererControles();
+
         demanderActions();
+
         installerListeners();
+
+        ajusterTexteConnexionDeconnexion();
+
     }
 
 
     private void recupererControles() {
-        boutonPartie = findViewById(R.id.bouton_partie);
-        boutonPartieReseau = findViewById(R.id.bouton_partie_reseau);
 
         boutonParametres = findViewById(R.id.bouton_parametres);
+
+        boutonPartie = findViewById(R.id.bouton_partie);
+
+        boutonPartieReseau = findViewById(R.id.bouton_partie_reseau);
+
         boutonConnexion = findViewById(R.id.bouton_connexion);
+
     }
 
     private void demanderActions() {
-        actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
-        actionPartieReseau = ControleurAction.demanderAction(GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU);
 
         actionParametres = ControleurAction.demanderAction(GCommande.OUVRIR_MENU_PARAMETRES);
+
+        actionPartie = ControleurAction.demanderAction(GCommande.DEMARRER_PARTIE);
+
+        actionPartieReseau = ControleurAction.demanderAction(GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU);
+
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
+
+        actionDeconnexion = ControleurAction.demanderAction(GCommande.DECONNEXION);
+
+
     }
 
 
     private void installerListeners() {
-        installerListenerPartie();
-        installerListenerPartieReseau();
 
-        installerListenerParametres();
-        installerListenerConnexion();
-    }
-
-    private void installerListenerPartie() {
-        boutonPartie.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                actionPartie.executerDesQuePossible();
-            }
-        });
-    }
-
-    private void installerListenerPartieReseau() {
-        boutonPartieReseau.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                actionPartieReseau.executerDesQuePossible();
-            }
-        });
-    }
-
-    private void installerListenerParametres() {
         boutonParametres.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 actionParametres.executerDesQuePossible();
             }
         });
-    }
 
-    private void installerListenerConnexion() {
+        boutonPartie.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionPartie.executerDesQuePossible();
+            }
+        });
+
+        boutonPartieReseau.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionPartieReseau.executerDesQuePossible();
+            }
+        });
+
         boutonConnexion.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                actionConnexion.executerDesQuePossible();
+
+                if(!UsagerCourant.siUsagerConnecte()){
+
+                    actionConnexion.executerDesQuePossible();
+                    boutonConnexion.setText(R.string.deconnexion);
+
+                }else{
+
+                    actionDeconnexion.executerDesQuePossible();
+                    boutonConnexion.setText(R.string.connexion);
+
+                }
+
             }
         });
     }
+
+
+    private void ajusterTexteConnexionDeconnexion() {
+        if(UsagerCourant.siUsagerConnecte()){
+
+            boutonConnexion.setText(R.string.deconnexion);
+
+        }else{
+
+            boutonConnexion.setText(R.string.connexion);
+
+        }
+    }
+
 }

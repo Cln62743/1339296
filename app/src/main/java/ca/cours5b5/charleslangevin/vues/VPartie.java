@@ -3,6 +3,7 @@ package ca.cours5b5.charleslangevin.vues;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.TextView;
 
 import ca.cours5b5.charleslangevin.R;
 import ca.cours5b5.charleslangevin.controleurs.ControleurObservation;
@@ -15,7 +16,12 @@ import ca.cours5b5.charleslangevin.modeles.Modele;
 
 public class VPartie extends Vue {
 
+
     private VGrille grille;
+
+    private TextView texteJoueurUn;
+    private TextView texteJoueurDeux;
+
 
     public VPartie(Context context) {
         super(context);
@@ -31,61 +37,140 @@ public class VPartie extends Vue {
 
     @Override
     protected void onFinishInflate() {
-        Log.d("Atelier","VPartie::onFinishInflate");
         super.onFinishInflate();
 
         initialiser();
+
+        adapterTexteNomJoueurSiPaysage();
+
         observerPartie();
+
     }
+
 
     private void initialiser() {
+
         grille = findViewById(R.id.grille);
+
+        texteJoueurUn = findViewById(R.id.texte_joueur_un);
+        texteJoueurDeux = findViewById(R.id.texte_joueur_deux);
+
+
+
     }
 
-    private void observerPartie() {
-        String nomModele = getNomModele();
 
-        ControleurObservation.observerModele(nomModele,
+    private void adapterTexteNomJoueurSiPaysage() {
+
+        if(!getResources().getBoolean(R.bool.si_portrait)){
+
+            adapterTexteNomJoueurSiPaysage(texteJoueurUn);
+            adapterTexteNomJoueurSiPaysage(texteJoueurDeux);
+        }
+
+    }
+
+    private void adapterTexteNomJoueurSiPaysage(TextView texteJoueur) {
+
+        CharSequence nomJoueur = texteJoueur.getText();
+
+        String nomJoueurPaysage = texteEnPaysage(nomJoueur);
+
+        texteJoueur.setText(nomJoueurPaysage);
+
+    }
+
+    private String texteEnPaysage(CharSequence texte){
+        String textePaysage = "";
+
+        for(int i=0; i<texte.length(); i++){
+            char c = texte.charAt(i);
+
+            textePaysage += c;
+
+            if(i < texte.length()){
+                textePaysage += "\n";
+            }
+
+        }
+
+        return textePaysage;
+    }
+
+
+
+
+    private void observerPartie() {
+
+        ControleurObservation.observerModele(getNomModele(),
                 new ListenerObservateur() {
                     @Override
                     public void reagirNouveauModele(Modele modele) {
-                        Log.d("VueObservation","VPartie | reagirNouveauModele | " + modele.getClass().getSimpleName());
-
+                        Log.d("Atelier11-15-Observation","VPartie::reagirNouveauModele (" + modele + ")");
                         MPartie partie = getPartie(modele);
-                        preparerAffichage(partie);
+                        MParametresPartie parametresPartie = partie.getParametres();
+
+                        grille.creerGrille(parametresPartie.getHauteur(), parametresPartie.getLargeur());
+
                         miseAJourGrille(partie);
+
+                        miseAJourNomJoueur(partie);
                     }
 
                     @Override
                     public void reagirChangementAuModele(Modele modele) {
-                        Log.d("VueObservation","VPartie | reagirChangementAuModele | " + modele.getClass().getSimpleName());
-
+                        Log.d("Atelier11-15-Observation","VPartie::reagirChangementAuModele (" + modele + ")");
                         MPartie partie = getPartie(modele);
+
+                        miseAJourNomJoueur(partie);
+
                         miseAJourGrille(partie);
+
+
                     }
                 });
+
     }
 
     protected String getNomModele(){
         return MPartie.class.getSimpleName();
     }
 
-    private void preparerAffichage(MPartie partie) {
-        MParametresPartie parametresPartie = partie.getParametres();
-        grille.creerGrille(parametresPartie.getHauteur(), parametresPartie.getLargeur());
+    private void miseAJourNomJoueur(MPartie partie) {
+
+        switch(partie.getCouleurCourante()){
+
+            case ROUGE:
+
+                texteJoueurDeux.setVisibility(INVISIBLE);
+                texteJoueurUn.setVisibility(VISIBLE);
+                break;
+
+            case JAUNE:
+
+                texteJoueurUn.setVisibility(INVISIBLE);
+                texteJoueurDeux.setVisibility(VISIBLE);
+                break;
+
+        }
     }
 
     private MPartie getPartie(Modele modele){
         try{
+
             return (MPartie) modele;
 
         }catch(ClassCastException e){
+
             throw new ErreurObservation(e);
+
         }
     }
 
     private void miseAJourGrille(MPartie partie){
+
         grille.afficherJetons(partie.getGrille());
+
     }
 
 }

@@ -1,33 +1,33 @@
 package ca.cours5b5.charleslangevin.usagers;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class UsagerCourant {
+import ca.cours5b5.charleslangevin.global.GConstantes;
+
+public final class UsagerCourant {
+
+    private UsagerCourant(){}
 
     public static boolean siUsagerConnecte(){
-        /*
-        * Retourne vrai si l'usager est connecte
-        * Utiliser FirebaseAuth
-        */
-        boolean result = false;
-        if(FirebaseAuth.getInstance().getCurrentUser() != null){
-            result = true;
-        }
-        return result;
+        return FirebaseAuth.getInstance().getUid() != null;
     }
 
     public static String getId(){
-        /*
-         * Retourne l'identifiant de l'usager connecte
-         * (ou un id par defaut)
-         *
-         * Utiliser FirebaseAuth
-         */
-        String uid = null;
+
         if(siUsagerConnecte()){
-            uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+            return FirebaseAuth.getInstance().getUid();
+
+        }else{
+
+            return GConstantes.ID_PAR_DEFAUT;
+
         }
-        return uid;
     }
+
+    public static boolean estCeUsagerCourant(String idJoueur) {
+        return getId().equals(idJoueur);
+    }
+
+
 }

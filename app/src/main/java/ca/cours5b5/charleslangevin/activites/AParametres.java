@@ -1,36 +1,56 @@
 package ca.cours5b5.charleslangevin.activites;
 
+
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 
 import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.controleurs.ControleurModeles;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
-import ca.cours5b5.charleslangevin.donnees.SauvegardeTemporaire;
+import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
 
+
 public class AParametres extends Activite implements Fournisseur{
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("Atelier","AParametres::onCreate");
+        Log.d("Atelier11-15","AParametres::onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
+
+        fournirActions();
+
+    }
+
+
+    private void fournirActions() {
+
+        ControleurAction.fournirAction(this,
+                GCommande.EFFACER_PARTIE_COURANTE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+
+                        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
+
+                    }
+                });
     }
 
     @Override
     protected void onPause() {
-        Log.d("Atelier","AParametres::onPause");
+        Log.d("Atelier11-15","AParametres::onPause");
         super.onPause();
 
         ControleurModeles.sauvegarderModele(MParametres.class.getSimpleName());
+
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.d("Atelier","AParametres::onSaveInstanceState");
-        super.onSaveInstanceState(outState);
-    }
 
 }

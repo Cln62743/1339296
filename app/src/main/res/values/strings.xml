@@ -12,13 +12,29 @@
     <string name="pour_gagner">Pour gagner: </string>
 
     <string name="parametres">Parametres</string>
-    <string name="jouer">Jouer</string>
-    <string name="jouerReseau">Jouer en Ligne</string>
-    <string name="connexion">Connexion</string>
 
-    <string name="entete">↓\n↓</string>
+    <string name="jouer">Jouer</string>
+    <string name="jouer_ia">Jouer avec le ia</string>
+    <string name="jouer_enligne">Jouer en-ligne</string>
+
+    <string name="entete">↓\n↓\n↓</string>
 
     <string name="joueur1">joueur1</string>
     <string name="joueur2">joueur2</string>
+
+
+    <string name="connexion">connexion</string>
+    <string name="deconnexion">déconnexion</string>
+
+    <string name="effacer_partie_courante">Effacer partie courante</string>
+
+    <string name="en_attente_adversaire">En attente d\'un.e adversaire…</string>
+
+
+    <string name="message_au_gagnant">Les @@s ont gagné!</string>
+
+    <string name="ROUGE">rouge</string>
+    <string name="JAUNE">jaune</string>
+
 
 </resources>

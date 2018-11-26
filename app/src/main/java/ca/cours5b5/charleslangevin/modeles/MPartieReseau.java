@@ -1,10 +1,7 @@
 package ca.cours5b5.charleslangevin.modeles;
 
-import android.util.Log;
 
-import java.util.HashMap;
 import java.util.Map;
-
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.controleurs.ControleurPartieReseau;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
@@ -13,8 +10,9 @@ import ca.cours5b5.charleslangevin.exceptions.ErreurAction;
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GConstantes;
+import ca.cours5b5.charleslangevin.global.GCouleur;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
-import ca.cours5b5.charleslangevin.serialisation.Jsonification;
+import ca.cours5b5.charleslangevin.usagers.UsagerCourant;
 
 public class MPartieReseau extends MPartie implements Fournisseur, Identifiable {
 
@@ -32,12 +30,6 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
         fournirActionRecevoirCoup();
     }
 
-    public String getId() {
-        /*
-         * utiliser l'id du joueur hôte
-         */
-        return idJoueurHote;
-    }
 
     private void fournirActionRecevoirCoup() {
         ControleurAction.fournirAction(this,
@@ -45,37 +37,29 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
-                        //verifier
-                        try{
-                            int colonne = ((Long) args[0]).intValue();
-                            recevoirCoupReseau(colonne);
-                        }catch(ClassCastException e){
-                            throw new ErreurAction(e);
-                        }
+
+                        String idColonne = (String) args[0];
+                        recevoirCoupReseau(Integer.valueOf(idColonne));
+
                     }
                 });
     }
 
+
     @Override
     protected void fournirActionPlacerJeton() {
-        /*
-         * En plus de jouer le coup, le transmettre via
-         *  le ControleurPartieReseau
-         *
-         *  ATTENTION au @Override. Le code qui fournit l'action
-         *  PLACER_JETON dans la classe parent MPartie
-         *  ne doit **pas** s'exécuter
-         */
-
         ControleurAction.fournirAction(this,
-                GCommande.JOUER_COUP_ICI,
+                GCommande.PLACER_JETON_ICI,
                 new ListenerFournisseur() {
+
                     @Override
                     public void executer(Object... args) {
                         try{
                             int colonne = (Integer) args[0];
                             jouerCoup(colonne);
+
                             ControleurPartieReseau.getInstance().transmettreCoup(colonne);
+
                         }catch(ClassCastException e){
                             throw new ErreurAction(e);
                         }
@@ -83,42 +67,46 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
                 });
     }
 
+
     private void recevoirCoupReseau(int colonne){
-        jouerCoup(colonne);
+        if(super.siCoupLegal(colonne)){
+            super.jouerCoupLegal(colonne);
+        }
     }
+
+    
+    @Override
+    protected boolean siCoupLegal(int colonne) { return super.siCoupLegal(colonne); }
+
+
+    public void setIdJoueurs(String idJoueurHote, String idJoueurInvite){
+        this.idJoueurHote = idJoueurHote;
+        this.idJoueurInvite = idJoueurInvite;
+    }
+
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
-        /*
-         * charger les champs
-         * appeler aussi super
-         */
-
-        Log.d("Atelier13" ,"JSON Reseau: " + Jsonification.aPartirChaineJson(objetJson.toString()));
+        super.aPartirObjetJson(objetJson);
 
         idJoueurHote = (String) objetJson.get(__idJoueurHote);
         idJoueurInvite = (String) objetJson.get(__idJoueurInvite);
-
-        Log.d("Atelier13" ,"" + idJoueurHote);
-        Log.d("Atelier13" ,"" + idJoueurInvite);
-
-        super.aPartirObjetJson(objetJson);
     }
+
 
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
-        /*
-         * sauvegarder les champs
-         * appeler aussi super
-         */
         Map<String, Object> objetJson = super.enObjetJson();
 
-        objetJson.put(__idJoueurInvite, idJoueurInvite);
         objetJson.put(__idJoueurHote, idJoueurHote);
-
-        Log.d("Atelier13" ,"" + __idJoueurHote + idJoueurHote);
-        Log.d("Atelier13" ,"" + __idJoueurInvite + idJoueurInvite);
+        objetJson.put(__idJoueurInvite, idJoueurInvite);
 
         return objetJson;
     }
+
+
+    public String getId() {
+        return idJoueurHote;
+    }
+
 }

@@ -1,14 +1,11 @@
 package ca.cours5b5.charleslangevin.modeles;
 
-import android.util.Log;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 import ca.cours5b5.charleslangevin.global.GConstantes;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
-import ca.cours5b5.charleslangevin.serialisation.Jsonification;
 
 public class MParametresPartie extends Modele {
 
@@ -24,16 +21,8 @@ public class MParametresPartie extends Modele {
     public Integer pourGagner;
     protected final String __pourGagner = "pourGagner";
 
+    public MParametresPartie cloner() {
 
-    public MParametresPartie(){
-        super();
-
-        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
-        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
-        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
-    }
-
-    public MParametresPartie cloner(){
         MParametresPartie mParametresPartie = new MParametresPartie();
 
         mParametresPartie.setHauteur(hauteur);
@@ -41,6 +30,17 @@ public class MParametresPartie extends Modele {
         mParametresPartie.setPourGagner(pourGagner);
 
         return mParametresPartie;
+
+    }
+
+
+    public MParametresPartie(){
+        super();
+
+        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
+        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
+        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
+
     }
 
     public Integer getHauteur() { return hauteur; }
@@ -65,34 +65,43 @@ public class MParametresPartie extends Modele {
         this.pourGagner = pourGagner;
     }
 
+
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation  {
 
-        Log.d("Atelier13" ,"JSON ParamPartie: " + Jsonification.aPartirChaineJson(objetJson.toString()));
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
             String chaineValeur = (String) entry.getValue();
+
             switch (entry.getKey()){
+
                 case __hauteur:
+
                     hauteur = Integer.valueOf(chaineValeur);
                     break;
 
                 case __largeur:
+
                     largeur = Integer.valueOf(chaineValeur);
                     break;
 
+
                 case __pourGagner:
+
                     pourGagner = Integer.valueOf(chaineValeur);
                     break;
 
                 default:
+
                     throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
             }
         }
     }
 
+
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation  {
+
         Map<String, Object> objetJson = new HashMap<>();
 
         objetJson.put(__hauteur, hauteur.toString());
@@ -100,6 +109,8 @@ public class MParametresPartie extends Modele {
         objetJson.put(__pourGagner, pourGagner.toString());
 
         return objetJson;
+
     }
+
 
 }
