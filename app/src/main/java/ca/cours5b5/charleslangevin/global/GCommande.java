@@ -31,5 +31,6 @@ public enum GCommande {
     // Out come possible
     AFFICHER_MESSAGE_GAGNANT,
     EFFACER_PARTIE_COURANTE,
+    EFFACER_PARTIE_COURANTE_IA,
     TERMINER_PARTIE,
 }

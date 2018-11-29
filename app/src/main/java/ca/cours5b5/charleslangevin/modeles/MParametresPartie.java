@@ -22,7 +22,6 @@ public class MParametresPartie extends Modele {
     protected final String __pourGagner = "pourGagner";
 
     public MParametresPartie cloner() {
-
         MParametresPartie mParametresPartie = new MParametresPartie();
 
         mParametresPartie.setHauteur(hauteur);
@@ -30,17 +29,14 @@ public class MParametresPartie extends Modele {
         mParametresPartie.setPourGagner(pourGagner);
 
         return mParametresPartie;
-
     }
 
 
     public MParametresPartie(){
         super();
-
         hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
         largeur = GConstantes.LARGEUR_PAR_DEFAUT;
         pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
-
     }
 
     public Integer getHauteur() { return hauteur; }
@@ -68,31 +64,20 @@ public class MParametresPartie extends Modele {
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation  {
-
         for(Map.Entry<String, Object> entry : objetJson.entrySet()){
-
             String chaineValeur = (String) entry.getValue();
 
             switch (entry.getKey()){
-
                 case __hauteur:
-
                     hauteur = Integer.valueOf(chaineValeur);
                     break;
-
                 case __largeur:
-
                     largeur = Integer.valueOf(chaineValeur);
                     break;
-
-
                 case __pourGagner:
-
                     pourGagner = Integer.valueOf(chaineValeur);
                     break;
-
                 default:
-
                     throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
             }
         }
@@ -101,7 +86,6 @@ public class MParametresPartie extends Modele {
 
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation  {
-
         Map<String, Object> objetJson = new HashMap<>();
 
         objetJson.put(__hauteur, hauteur.toString());
@@ -109,8 +93,5 @@ public class MParametresPartie extends Modele {
         objetJson.put(__pourGagner, pourGagner.toString());
 
         return objetJson;
-
     }
-
-
 }

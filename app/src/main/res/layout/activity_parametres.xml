@@ -7,6 +7,20 @@
     tools:context=".activites.AParametres"
     tools:layout_editor_absoluteY="81dp">
 
+    <Button
+        android:id="@+id/bouton_effacer_partie_ia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/effacer_partie_courante_ia"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bouton_effacer_partie" />
+
     <TextView
         android:id="@+id/texte_hauteur"
         android:layout_width="wrap_content"
@@ -94,14 +108,14 @@
         android:id="@+id/bouton_effacer_partie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/effacer_partie_courante"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bouton_effacer_partie_ia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_pour_gagner"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintVertical_bias="0.0" />
 </ca.cours5b5.charleslangevin.vues.VParametres>

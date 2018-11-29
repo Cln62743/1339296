@@ -23,6 +23,7 @@
     <string name="deconnexion">logout</string>
 
     <string name="effacer_partie_courante">Delete current game</string>
+    <string name="effacer_partie_courante_ia">Delete current ai game</string>
 
     <string name="en_attente_adversaire">Waiting for an opponent…</string>
 

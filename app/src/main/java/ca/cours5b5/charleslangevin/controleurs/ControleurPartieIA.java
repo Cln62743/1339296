@@ -9,7 +9,7 @@ public final class ControleurPartieIA {
     private static final ControleurPartieIA instance = new ControleurPartieIA();
     public static ControleurPartieIA getInstance(){return instance;}
 
-    /*public void gagnerPartieIA(GCouleur couleurGagnante){
+    public void gagnerPartieIA(GCouleur couleurGagnante){
         Action actionTerminerPartie = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE);
         Action actionAfficherMessage = ControleurAction.demanderAction(GCommande.AFFICHER_MESSAGE_GAGNANT);
 
@@ -17,5 +17,5 @@ public final class ControleurPartieIA {
         actionAfficherMessage.setArguments(couleurGagnante,
                 actionTerminerPartie);
         actionAfficherMessage.executerDesQuePossible();
-    }*/
+    }
 }

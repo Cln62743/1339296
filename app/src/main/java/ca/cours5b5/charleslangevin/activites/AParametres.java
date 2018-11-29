@@ -12,6 +12,7 @@ import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.modeles.MParametres;
 import ca.cours5b5.charleslangevin.modeles.MPartie;
+import ca.cours5b5.charleslangevin.modeles.MPartieIA;
 
 
 public class AParametres extends Activite implements Fournisseur{
@@ -33,6 +34,15 @@ public class AParametres extends Activite implements Fournisseur{
                     @Override
                     public void executer(Object... args) {
                         ControleurModeles.detruireModele(MPartie.class.getSimpleName());
+                    }
+                });
+
+        ControleurAction.fournirAction(this,
+                GCommande.EFFACER_PARTIE_COURANTE_IA,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        ControleurModeles.detruireModele(MPartieIA.class.getSimpleName());
                     }
                 });
     }

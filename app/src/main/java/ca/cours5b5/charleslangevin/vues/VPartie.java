@@ -157,20 +157,15 @@ public class VPartie extends Vue {
 
     private MPartie getPartie(Modele modele){
         try{
-
             return (MPartie) modele;
 
         }catch(ClassCastException e){
-
             throw new ErreurObservation(e);
-
         }
     }
 
     private void miseAJourGrille(MPartie partie){
-
         grille.afficherJetons(partie.getGrille());
-
     }
 
 }

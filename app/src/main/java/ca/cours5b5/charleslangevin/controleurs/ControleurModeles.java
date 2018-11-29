@@ -70,6 +70,7 @@ public final class ControleurModeles {
 
 
     static void getModele(String nomModele, ListenerGetModele listenerGetModele){
+        //Log.d("ProjetFinal","ControleurModeles :: getModele :: " + nomModele);
         Modele modele = modelesEnMemoire.get(nomModele);
 
         if(modele != null){
@@ -83,7 +84,7 @@ public final class ControleurModeles {
 
     private static void creerModeleEtChargerDonnees(final String nomModele,
                                                     final ListenerGetModele listenerGetModele) {
-
+        //Log.d("ProjetFinal","ControleurModeles :: creerModeleEtChargerDonnees :: " + nomModele);
         creerModeleSelonNom(nomModele, new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {
@@ -97,7 +98,7 @@ public final class ControleurModeles {
     private static void chargerDonnees(Modele modele,
                                        String nomModele,
                                        ListenerGetModele listenerGetModele) {
-
+        //Log.d("ProjetFinal","ControleurModeles :: chargerDonnees :: " + nomModele);
         String cheminSauvegarde = getCheminSauvegarde(nomModele);
         int indicePremiereSource = 0;
 
@@ -113,7 +114,7 @@ public final class ControleurModeles {
                                               String cheminDeSauvegarde,
                                               ListenerGetModele listenerGetModele,
                                               int indiceSourceCourante){
-
+        //Log.d("ProjetFinal","ControleurModeles :: chargementViaSequence");
         if(indiceSourceCourante < sequenceDeChargement.length){
             chargementViaSourceCouranteOuSuivante(modele,
                     cheminDeSauvegarde,
@@ -130,7 +131,7 @@ public final class ControleurModeles {
                                                               final String cheminDeSauvegarde,
                                                               final ListenerGetModele listenerGetModele,
                                                               final int indiceSourceCourante) {
-
+        //Log.d("ProjetFinal","ControleurModeles :: chargementViaSourceCouranteOuSuivante");
         SourceDeDonnees sourceCourante = sequenceDeChargement[indiceSourceCourante];
 
         sourceCourante.chargerModele(cheminDeSauvegarde,
@@ -155,7 +156,7 @@ public final class ControleurModeles {
     private static void terminerChargementAvecDonnees(Map<String, Object> objetJson,
                                                       Modele modele,
                                                       ListenerGetModele listenerGetModele) {
-
+        //Log.d("ProjetFinal","ControleurModeles :: terminerChargementAvecDonnees");
         modele.aPartirObjetJson(objetJson);
 
         terminerChargement(modele, listenerGetModele);
@@ -163,7 +164,7 @@ public final class ControleurModeles {
 
     private static void terminerChargement(Modele modele,
                                            ListenerGetModele listenerGetModele) {
-
+        //Log.d("ProjetFinal","ControleurModeles :: terminerChargement");
         listenerGetModele.reagirAuModele(modele);
     }
 
@@ -172,7 +173,7 @@ public final class ControleurModeles {
                                                     String cheminDeSauvegarde,
                                                     ListenerGetModele listenerGetModele,
                                                     int indiceSourceCourante) {
-
+        //Log.d("ProjetFinal","ControleurModeles :: chargementViaSourceSuivante");
         int indiceSourceSuivante = indiceSourceCourante + 1;
 
         chargementViaSequence(modele,
@@ -183,6 +184,7 @@ public final class ControleurModeles {
 
 
     public static void sauvegarderModele(String nomModele) throws ErreurModele {
+        //Log.d("ProjetFinal","ControleurModeles :: sauvegarderModele :: " + nomModele);
         for(SourceDeDonnees source : listeDeSauvegardes){
             sauvegarderModeleDansCetteSource(nomModele, source);
         }
@@ -190,6 +192,7 @@ public final class ControleurModeles {
 
 
     private static void creerModeleSelonNom(String nomModele, final ListenerGetModele listenerGetModele) throws ErreurModele {
+        //Log.d("ProjetFinal","ControleurModeles :: creerModeleSelonNom :: " + nomModele);
         if(nomModele.equals(MParametres.class.getSimpleName())){
             listenerGetModele.reagirAuModele(new MParametres());
 
@@ -197,7 +200,6 @@ public final class ControleurModeles {
             creerPartie(listenerGetModele);
 
         }else if(nomModele.equals(MPartieIA.class.getSimpleName())){
-            Log.d("ProjetFinal", "Salut");
             creerPartieIA(listenerGetModele);
 
         }else if(nomModele.equals(MPartieReseau.class.getSimpleName())){
@@ -210,6 +212,7 @@ public final class ControleurModeles {
 
 
     private static void creerPartie(final ListenerGetModele listenerGetModele) {
+        //Log.d("ProjetFinal","ControleurModeles :: creerPartie");
         getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {
@@ -222,6 +225,7 @@ public final class ControleurModeles {
     }
 
     private static void creerPartieIA(final ListenerGetModele listenerGetModele) {
+        //Log.d("ProjetFinal","ControleurModeles :: creerPartieIA");
         getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
             @Override
             public void reagirAuModele(Modele modele) {
@@ -271,6 +275,7 @@ public final class ControleurModeles {
 
 
     static String getCheminSauvegarde(String nomModele){
+        //Log.d("ProjetFinal","ControleurModeles :: getCheminSauvegarde :: " + nomModele);
         String cheminParDefaut = nomModele + GConstantes.SEPARATEUR_DE_CHEMIN + UsagerCourant.getId();
         String chemin = cheminParDefaut;
 
@@ -279,17 +284,15 @@ public final class ControleurModeles {
         if(modele != null && modele instanceof Identifiable){
             chemin = getCheminSpecifique(nomModele, (Identifiable) modele);
         }
-
         return chemin;
     }
 
 
     @NonNull
     private static String getCheminSpecifique(String nomModele, Identifiable modele) {
+        //Log.d("ProjetFinal","ControleurModeles :: getCheminSpecifique :: " + nomModele);
         String cheminSpecifique = nomModele + GConstantes.SEPARATEUR_DE_CHEMIN + modele.getId();
 
         return cheminSpecifique;
     }
-
-
 }

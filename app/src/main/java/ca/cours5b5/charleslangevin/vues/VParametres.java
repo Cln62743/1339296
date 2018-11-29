@@ -24,13 +24,12 @@ import ca.cours5b5.charleslangevin.modeles.Modele;
 
 public class VParametres extends Vue {
 
-
-
     private Spinner spinnerHauteur;
     private Spinner spinnerLargeur;
     private Spinner spinnerPourGagner;
 
     private Button boutonEffacerPartieCourante;
+    private Button boutonEffacerPartieCouranteIA;
 
 
     public VParametres(Context context) {
@@ -53,9 +52,7 @@ public class VParametres extends Vue {
         initialiser();
 
         installerListeners();
-
         installerObservateur();
-
     }
 
     private void initialiser(){
@@ -64,11 +61,11 @@ public class VParametres extends Vue {
         spinnerPourGagner = findViewById(R.id.spinner_pour_gagner);
 
         boutonEffacerPartieCourante = findViewById(R.id.bouton_effacer_partie);
+        boutonEffacerPartieCouranteIA = findViewById(R.id.bouton_effacer_partie_ia);
 
         initialiserSpinner(spinnerHauteur);
         initialiserSpinner(spinnerLargeur);
         initialiserSpinner(spinnerPourGagner);
-
     }
 
     private void initialiserSpinner(Spinner spinner){
@@ -81,11 +78,10 @@ public class VParametres extends Vue {
         installerListenerLargeur();
         installerListenerPourGagner();
         installerListenerEffacerPartieCourante();
+        installerListenerEffacerPartieCouranteIA();
     }
 
-
     private void installerListenerHauteur(){
-
         final Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
 
         spinnerHauteur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -149,23 +145,28 @@ public class VParametres extends Vue {
     }
 
     private void installerListenerEffacerPartieCourante() {
-
         final Action actionEffacerPartieCourante = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE);
-
 
         boutonEffacerPartieCourante.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 actionEffacerPartieCourante.executerDesQuePossible();
-
             }
         });
+    }
 
+    private void installerListenerEffacerPartieCouranteIA() {
+        final Action actionEffacerPartieCouranteIA = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE_IA);
+
+        boutonEffacerPartieCouranteIA.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionEffacerPartieCouranteIA.executerDesQuePossible();
+            }
+        });
     }
 
     private void installerObservateur() {
-
         ControleurObservation.observerModele(MParametres.class.getSimpleName(),
                 new ListenerObservateur() {
 
@@ -175,21 +176,15 @@ public class VParametres extends Vue {
                         observerParametres(modele);
                     }
                 });
-
     }
 
     private void observerParametres(Modele modele){
         try{
-
             MParametres mParametres = (MParametres) modele;
-
             afficherLesChoix(mParametres);
 
-
         }catch (ClassCastException e){
-
             throw new ErreurObservation(e);
-
         }
     }
 

@@ -21,13 +21,13 @@ public class MPartie extends Modele implements Fournisseur {
 
     @AttributSerialisable
     public MParametresPartie parametres;
-    private final String __parametres = "parametres";
+    protected final String __parametres = "parametres";
 
     @AttributSerialisable
     public List<Integer> listeCoups;
     private final String __listeCoups = "listeCoups";
 
-    private MGrille grille;
+    protected MGrille grille;
     private GCouleur couleurCourante;
 
     public MPartie(MParametresPartie parametres) {
@@ -40,15 +40,15 @@ public class MPartie extends Modele implements Fournisseur {
         fournirActionPlacerJeton();
     }
 
-    private void initialiser() {
+    protected void initialiser() {
         listeCoups = new ArrayList<>();
     }
 
-    private void initialiserCouleurCourante() {
+    protected void initialiserCouleurCourante() {
         couleurCourante = GCouleur.ROUGE;
     }
 
-    private void initialiserGrille() {
+    protected void initialiserGrille() {
         grille = new MGrille(parametres.getLargeur());
     }
 
@@ -73,12 +73,16 @@ public class MPartie extends Modele implements Fournisseur {
 
     protected void jouerCoup(int colonne) {
         if (siCoupLegal(colonne)) {
-            jouerCoupLegal(colonne);
+            ajouterCoupListe(colonne);
         }
     }
 
-    protected void jouerCoupLegal(int colonne) {
+    protected void ajouterCoupListe(int colonne){
         listeCoups.add(colonne);
+        jouerCoupLegal(colonne);
+    }
+
+    protected void jouerCoupLegal(int colonne) {
         grille.placerJeton(colonne, couleurCourante);
         
         if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
@@ -89,6 +93,7 @@ public class MPartie extends Modele implements Fournisseur {
     }
 
     protected boolean siCoupLegal(int colonne) {
+        //Log.d("ProjetFinal", "Size: " + grille.getColonnes().size() + "     Colonne: " + colonne);
         MColonne mColonne = grille.getColonnes().get(colonne);
 
         return mColonne.getJetons().size() < parametres.getHauteur();
@@ -127,7 +132,7 @@ public class MPartie extends Modele implements Fournisseur {
         }
     }
 
-    private List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
+    protected List<Integer> listeCoupsAPartirJson(List<String> listeCoupsObjetJson) {
         List<Integer> listeCoups = new ArrayList<>();
 
         for (String coupChaine : listeCoupsObjetJson) {
@@ -154,7 +159,7 @@ public class MPartie extends Modele implements Fournisseur {
         return objetJson;
     }
 
-    private List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
+    protected List<String> listeCoupsEnObjetJson(List<Integer> listeCoups) {
         List<String> listeCoupsObjetJson = new ArrayList<>();
 
         for (Integer coup : listeCoups) {

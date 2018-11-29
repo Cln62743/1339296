@@ -26,15 +26,10 @@ public class GDirection {
 
         // diagonale \
         directions.add(new GDirection(1,-1));
-
     }
 
     public GDirection(int incrementHorizontal, int incrementVertical){
-
         this.incrementHorizontal = incrementHorizontal;
         this.incrementVertical = incrementVertical;
-
     }
-
-
 }

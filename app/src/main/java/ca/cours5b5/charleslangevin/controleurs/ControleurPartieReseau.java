@@ -35,11 +35,9 @@ public final class ControleurPartieReseau {
             public void reagirAuModele(Modele modele) {
 
                 MPartieReseau partie = (MPartieReseau) modele;
-
                 partie.setIdJoueurs(idJoueurHote, idJoueurInvite);
 
                 ControleurModeles.sauvegarderModele(nomModele);
-
                 demarrerPartie(partie);
 
             }
