@@ -86,10 +86,14 @@ public class MPartie extends Modele implements Fournisseur {
         grille.placerJeton(colonne, couleurCourante);
         
         if (grille.siCouleurGagne(couleurCourante, parametres.getPourGagner())) {
-            ControleurPartie.getInstance().gagnerPartie(couleurCourante);
+            appelGagnerPartie(couleurCourante);
         } else {
             prochaineCouleurCourante();
         }
+    }
+
+    protected void appelGagnerPartie(GCouleur couleur) {
+        ControleurPartie.getInstance().gagnerPartie(couleur);
     }
 
     protected boolean siCoupLegal(int colonne) {

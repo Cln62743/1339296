@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.controleurs.Action;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.controleurs.ControleurModeles;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
@@ -29,6 +30,18 @@ public class APartie extends Activite implements Fournisseur {
                     @Override
                     public void executer(Object... args) {
                         quitterCetteActivite();
+
+                        Action actionEffacerPartie = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE);
+                        actionEffacerPartie.executerDesQuePossible();
+                    }
+                });
+
+        ControleurAction.fournirAction(this,
+                GCommande.EFFACER_PARTIE_COURANTE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        ControleurModeles.detruireModele(MPartie.class.getSimpleName());
                     }
                 });
     }

@@ -1,13 +1,15 @@
 package ca.cours5b5.charleslangevin.modeles;
 
 import android.util.Log;
-
+import java.util.ArrayList;
 import ca.cours5b5.charleslangevin.global.GCouleur;
 import ca.cours5b5.charleslangevin.global.GDirection;
 
 public class MGrilleIA extends MGrille {
-    private GCouleur couleurJoueur = GCouleur.ROUGE;;
-    private GCouleur couleurIA = GCouleur.JAUNE;;
+    private GCouleur couleurJoueur = GCouleur.ROUGE;
+    private GCouleur couleurIA = GCouleur.JAUNE;
+
+    private MGrilleIA temp = null;
 
     public MGrilleIA(int largeur){
         super(largeur);
@@ -29,8 +31,8 @@ public class MGrilleIA extends MGrille {
         // Joueur gagne
         if(maxLigneJoueur > maxLigneIA) result = true;
 
-        Log.d("ProjetFinal", "Max Ligne Joueur :: " + maxLigneJoueur);
-        Log.d("ProjetFinal", "Max Ligne IA :: " + maxLigneIA);
+        //Log.d("ProjetFinal", "Max Ligne Joueur :: " + maxLigneJoueur);
+        //Log.d("ProjetFinal", "Max Ligne IA :: " + maxLigneIA);
         // IA gagne if false
         return result;
     }
@@ -82,4 +84,73 @@ public class MGrilleIA extends MGrille {
         }
         return false;
     }
+
+    // MinMax
+    /*public int ChoisirCoup(GCouleur curCouleur, MGrilleIA grille){
+        int colonneToPlay = -1;
+        int value = -10000;
+        temp = grille;
+
+        int i = 0;
+        for(MJeton jeton : GetJetons()){
+            int minMax = MinMax(jeton, 2, curCouleur);
+            if(minMax > value) {
+                value = minMax;
+                colonneToPlay = i;
+            }
+
+            i++;
+        }
+
+        return colonneToPlay;
+    }
+
+    private int MinMax( MJeton curJeton, int depth, GCouleur couleur){
+        if(depth == 0){
+            return SetValue(curJeton);
+        }
+
+        int value;
+        if(couleur == couleurIA){
+            value = -10000;
+            for(MJeton jeton : GetJetons(curJeton)){
+                value = Math.max(value, MinMax(jeton, depth -1, couleurJoueur));
+            }
+
+        }else{
+            value = 10000;
+            for(MJeton jeton : GetJetons(curJeton)){
+                value = Math.min(value, MinMax(jeton, depth -1, couleurIA));
+            }
+        }
+        return value;
+    }
+
+    private ArrayList<MJeton> GetJetons(){
+        ArrayList<MJeton> jetons = new ArrayList<>();
+
+        for(MColonne colonne : temp.colonnes){
+            MJeton foundJeton = colonne.getJeton();
+            jetons.add(foundJeton);
+        }
+        return jetons;
+    }
+
+    private ArrayList<MJeton> GetJetons(MJeton curJeton){
+        ArrayList<MJeton> jetons = new ArrayList<>();
+
+        for(MColonne colonne : temp.colonnes){
+            MJeton foundJeton = colonne.getJeton();
+            if(foundJeton == curJeton) {
+                foundJeton = colonne.getNextJeton();
+            }
+
+            jetons.add(foundJeton);
+        }
+        return jetons;
+    }
+
+    private int SetValue(MJeton curJeton){
+        return 0;
+    }*/
 }

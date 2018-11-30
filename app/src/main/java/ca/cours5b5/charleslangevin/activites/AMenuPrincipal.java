@@ -152,7 +152,6 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void transitionPartieIA() {
-        // TODO est ce que je dois ajouter une classe activite pour l'IA
         Intent intentionPartieIA = new Intent(this, APartieIA.class);
         startActivity(intentionPartieIA);
     }

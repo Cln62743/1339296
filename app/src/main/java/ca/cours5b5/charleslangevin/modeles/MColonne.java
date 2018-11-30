@@ -14,9 +14,7 @@ public class MColonne extends Modele {
     private List<MJeton> jetons;
 
     public MColonne(){
-
         jetons = new ArrayList<>();
-
     }
 
 
@@ -24,27 +22,47 @@ public class MColonne extends Modele {
         return jetons;
     }
 
+    /*public MJeton getJeton(){
+        MJeton selectedJeton = null;
+        for (MJeton jeton: jetons) {
+            GCouleur couleur = jeton.getCouleur();
+            if(couleur == null){
+                return jeton;
+            }
+        }
+        return selectedJeton;
+    }*/
+
+    /*public MJeton getNextJeton(){
+        MJeton selectedJeton = null;
+        boolean found = false;
+        for (MJeton jeton: jetons) {
+            GCouleur couleur = jeton.getCouleur();
+            if(found){
+                return jeton;
+            }
+            if(couleur == null){
+                found = true;
+            }
+        }
+        return selectedJeton;
+    }*/
+
 
     public void placerJeton(GCouleur couleur) {
-
         jetons.add(new MJeton(couleur));
-
     }
 
 
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
-
         throw new UnsupportedOperationException();
-
     }
 
 
     @Override
     public Map<String, Object> enObjetJson() throws ErreurSerialisation {
-
         throw new UnsupportedOperationException();
-        
     }
 
 

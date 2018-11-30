@@ -40,49 +40,35 @@ public class VPartie extends Vue {
         super.onFinishInflate();
 
         initialiser();
-
         adapterTexteNomJoueurSiPaysage();
-
         observerPartie();
-
     }
 
 
     private void initialiser() {
-
         grille = findViewById(R.id.grille);
 
         texteJoueurUn = findViewById(R.id.texte_joueur_un);
         texteJoueurDeux = findViewById(R.id.texte_joueur_deux);
-
-
-
     }
 
 
     private void adapterTexteNomJoueurSiPaysage() {
-
         if(!getResources().getBoolean(R.bool.si_portrait)){
-
             adapterTexteNomJoueurSiPaysage(texteJoueurUn);
             adapterTexteNomJoueurSiPaysage(texteJoueurDeux);
         }
-
     }
 
     private void adapterTexteNomJoueurSiPaysage(TextView texteJoueur) {
-
         CharSequence nomJoueur = texteJoueur.getText();
-
         String nomJoueurPaysage = texteEnPaysage(nomJoueur);
 
         texteJoueur.setText(nomJoueurPaysage);
-
     }
 
     private String texteEnPaysage(CharSequence texte){
         String textePaysage = "";
-
         for(int i=0; i<texte.length(); i++){
             char c = texte.charAt(i);
 
@@ -91,17 +77,11 @@ public class VPartie extends Vue {
             if(i < texte.length()){
                 textePaysage += "\n";
             }
-
         }
-
         return textePaysage;
     }
 
-
-
-
     private void observerPartie() {
-
         ControleurObservation.observerModele(getNomModele(),
                 new ListenerObservateur() {
                     @Override
@@ -113,7 +93,6 @@ public class VPartie extends Vue {
                         grille.creerGrille(parametresPartie.getHauteur(), parametresPartie.getLargeur());
 
                         miseAJourGrille(partie);
-
                         miseAJourNomJoueur(partie);
                     }
 
@@ -123,13 +102,9 @@ public class VPartie extends Vue {
                         MPartie partie = getPartie(modele);
 
                         miseAJourNomJoueur(partie);
-
                         miseAJourGrille(partie);
-
-
                     }
                 });
-
     }
 
     protected String getNomModele(){
@@ -137,21 +112,16 @@ public class VPartie extends Vue {
     }
 
     private void miseAJourNomJoueur(MPartie partie) {
-
         switch(partie.getCouleurCourante()){
-
             case ROUGE:
-
                 texteJoueurDeux.setVisibility(INVISIBLE);
                 texteJoueurUn.setVisibility(VISIBLE);
                 break;
 
             case JAUNE:
-
                 texteJoueurUn.setVisibility(INVISIBLE);
                 texteJoueurDeux.setVisibility(VISIBLE);
                 break;
-
         }
     }
 

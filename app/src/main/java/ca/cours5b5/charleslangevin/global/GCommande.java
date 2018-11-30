@@ -9,6 +9,7 @@ public enum GCommande {
 
     // Action de partie
     PLACER_JETON_ICI,
+    IA_JOUE,
     RECEVOIR_COUP_RESEAU,
 
     // Intent parametres
@@ -29,8 +30,11 @@ public enum GCommande {
     RECEVOIR_JOUEUR_INVITE,
 
     // Out come possible
-    AFFICHER_MESSAGE_GAGNANT,
     EFFACER_PARTIE_COURANTE,
     EFFACER_PARTIE_COURANTE_IA,
+
     TERMINER_PARTIE,
+    TERMINER_PARTIE_IA,
+
+    AFFICHER_MESSAGE_GAGNANT,
 }

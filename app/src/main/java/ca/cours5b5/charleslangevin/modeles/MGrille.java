@@ -1,17 +1,11 @@
 package ca.cours5b5.charleslangevin.modeles;
 
-import com.google.gson.internal.bind.ObjectTypeAdapter;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
-import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GCouleur;
 import ca.cours5b5.charleslangevin.global.GDirection;
-import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
 
 public class MGrille extends Modele  {
 

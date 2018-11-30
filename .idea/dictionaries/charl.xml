@@ -4,6 +4,8 @@
       <w>activites</w>
       <w>adversaire</w>
       <w>alea</w>
+      <w>aléatoire</w>
+      <w>appel</w>
       <w>attendre</w>
       <w>autre</w>
       <w>charleslangevin</w>
@@ -19,21 +21,29 @@
       <w>effectuer</w>
       <w>emettre</w>
       <w>enligne</w>
+      <w>envoyer</w>
       <w>evaluer</w>
+      <w>facon</w>
+      <w>fait</w>
       <w>gagnant</w>
       <w>gagnante</w>
       <w>gagne</w>
       <w>hote</w>
       <w>inviter</w>
       <w>joindre</w>
+      <w>joue</w>
       <w>joueurs</w>
+      <w>logique</w>
+      <w>minimax</w>
       <w>nombre</w>
+      <w>perd</w>
       <w>precharger</w>
       <w>projet</w>
       <w>proxys</w>
       <w>recevoir</w>
       <w>reseau</w>
       <w>rien</w>
+      <w>sait</w>
       <w>salut</w>
       <w>serie</w>
       <w>specifique</w>
@@ -42,6 +52,8 @@
       <w>texte</w>
       <w>transmettre</w>
       <w>valeurs</w>
+      <w>voulu</w>
+      <w>écriture</w>
     </words>
   </dictionary>
 </component>

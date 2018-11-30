@@ -35,40 +35,27 @@ public class VCase extends AppCompatButton {
 
         // Atelier08: afficher les indices
         setText(""+rangee+","+colonne);
-
         initialiser();
     }
 
     private void initialiser() {
-        
         setEnabled(false);
-
         setBackgroundColor(getResources().getColor(R.color.VIDE, null));
-
     }
 
     public void afficherJeton(MJeton jeton) {
-
         afficherCouleurJeton(jeton);
-
     }
-
 
     private void afficherCouleurJeton(MJeton jeton) {
         switch (jeton.getCouleur()){
-
             case ROUGE:
-
                 setBackgroundColor(getResources().getColor(R.color.ROUGE, null));
-
                 break;
 
             case JAUNE:
-
                 setBackgroundColor(getResources().getColor(R.color.JAUNE, null));
-
                 break;
-
         }
     }
 

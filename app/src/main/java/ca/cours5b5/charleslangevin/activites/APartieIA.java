@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import ca.cours5b5.charleslangevin.R;
+import ca.cours5b5.charleslangevin.controleurs.Action;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
 import ca.cours5b5.charleslangevin.controleurs.ControleurModeles;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
@@ -23,11 +24,24 @@ public class APartieIA extends Activite implements Fournisseur {
 
     private void fournirActionTerminerPartie() {
         ControleurAction.fournirAction(this,
-                GCommande.TERMINER_PARTIE,
+                GCommande.TERMINER_PARTIE_IA,
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
+
                         quitterCetteActivite();
+
+                        Action actionEffacerPartieIA = ControleurAction.demanderAction(GCommande.EFFACER_PARTIE_COURANTE_IA);
+                        actionEffacerPartieIA.executerDesQuePossible();
+                    }
+                });
+
+        ControleurAction.fournirAction(this,
+                GCommande.EFFACER_PARTIE_COURANTE_IA,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        ControleurModeles.detruireModele(MPartieIA.class.getSimpleName());
                     }
                 });
     }

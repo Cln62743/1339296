@@ -9,13 +9,13 @@ public final class ControleurPartieIA {
     private static final ControleurPartieIA instance = new ControleurPartieIA();
     public static ControleurPartieIA getInstance(){return instance;}
 
-    public void gagnerPartieIA(GCouleur couleurGagnante){
-        Action actionTerminerPartie = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE);
+    public void gagnerPartie(GCouleur couleurGagnante){
+        Action actionTerminerPartieIA = ControleurAction.demanderAction(GCommande.TERMINER_PARTIE_IA);
         Action actionAfficherMessage = ControleurAction.demanderAction(GCommande.AFFICHER_MESSAGE_GAGNANT);
 
 
         actionAfficherMessage.setArguments(couleurGagnante,
-                actionTerminerPartie);
+                actionTerminerPartieIA);
         actionAfficherMessage.executerDesQuePossible();
     }
 }

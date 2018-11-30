@@ -7,13 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.cours5b5.charleslangevin.controleurs.Action;
 import ca.cours5b5.charleslangevin.controleurs.ControleurAction;
+import ca.cours5b5.charleslangevin.controleurs.ControleurPartieIA;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.charleslangevin.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.charleslangevin.exceptions.ErreurAction;
 import ca.cours5b5.charleslangevin.exceptions.ErreurSerialisation;
 import ca.cours5b5.charleslangevin.global.GCommande;
 import ca.cours5b5.charleslangevin.global.GConstantes;
+import ca.cours5b5.charleslangevin.global.GCouleur;
 import ca.cours5b5.charleslangevin.serialisation.AttributSerialisable;
 
 public class MPartieIA extends MPartie implements Fournisseur {
@@ -34,8 +37,10 @@ public class MPartieIA extends MPartie implements Fournisseur {
     private boolean playerIsWinning;
     private final String __playerIsWinning = "playerIsWinning";
 
-    private boolean playerIsPlaying = false;
+    private boolean playerIsPlaying = true;
     private MParametresPartie parametresPartie;
+
+    private boolean partieFini = false;
 
     public MPartieIA(MParametresPartie parametres) {
         super(parametres);
@@ -53,6 +58,7 @@ public class MPartieIA extends MPartie implements Fournisseur {
         grille = new MGrilleIA(parametres.getLargeur());
     }
 
+    @Override
     protected void fournirActionPlacerJeton() {
         ControleurAction.fournirAction(this,
                 GCommande.PLACER_JETON_ICI,
@@ -64,8 +70,24 @@ public class MPartieIA extends MPartie implements Fournisseur {
                             int colonne = (Integer) args[0];
                             jouerCoup(colonne);
 
+                            if(!partieFini) {
+                                Action actionIAJoue = ControleurAction.demanderAction(GCommande.IA_JOUE);
+                                actionIAJoue.executerDesQuePossible();
+                            }
+                        } catch (ClassCastException e) {
+                            throw new ErreurAction(e);
+                        }
+                    }
+                });
+
+        ControleurAction.fournirAction(this,
+                GCommande.IA_JOUE,
+                new ListenerFournisseur() {
+
+                    @Override
+                    public void executer(Object... args) {
+                        try {
                             AiJouerCoupAlea();
-                            playerIsWinning = ((MGrilleIA) grille).evaluerGagne();
                         } catch (ClassCastException e) {
                             throw new ErreurAction(e);
                         }
@@ -76,6 +98,7 @@ public class MPartieIA extends MPartie implements Fournisseur {
     @Override
     protected void ajouterCoupListe(int colonne) {
         if (playerIsPlaying) {
+            Log.d("ProjetFinal", "" + colonne);
             listeCoupsJoueur.add(colonne);
             playerIsPlaying = false;
         } else {
@@ -86,9 +109,17 @@ public class MPartieIA extends MPartie implements Fournisseur {
         jouerCoupLegal(colonne);
     }
 
+    @Override
+    protected void appelGagnerPartie(GCouleur couleur) {
+        partieFini = true;
+        ControleurPartieIA.getInstance().gagnerPartie(couleur);
+    }
+
     public void AiJouerCoupAlea(){
         int colonneCoup = (int)(Math.random() * parametresPartie.getLargeur()) - 1;
         jouerCoup(colonneCoup);
+
+        playerIsWinning = ((MGrilleIA) grille).evaluerGagne();
     }
 
     // A partir Objet Json
@@ -130,8 +161,8 @@ public class MPartieIA extends MPartie implements Fournisseur {
             //Log.d("ProjetFinal", "coupJoueur : " + coupJoueur);
             jouerCoup(coupJoueur);
 
-            Integer coupIA = coupsIA.remove(0);
             //Log.d("ProjetFinal", "coupIA : " + coupIA);
+            Integer coupIA = coupsIA.remove(0);
             jouerCoup(coupIA);
         }
     }

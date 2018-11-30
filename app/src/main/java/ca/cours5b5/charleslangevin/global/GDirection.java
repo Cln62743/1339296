@@ -12,7 +12,6 @@ public class GDirection {
     public static List<GDirection> directions;
 
     static{
-
         directions = new ArrayList<>();
 
         // horizontal
