@@ -116,7 +116,9 @@ public class MPartieIA extends MPartie implements Fournisseur {
     }
 
     public void AiJouerCoupAlea(){
-        int colonneCoup = (int)(Math.random() * parametresPartie.getLargeur()) - 1;
+        Log.d("ProjetFinal","parametresPartie.getLargeur(): " + parametresPartie.getLargeur());
+        int colonneCoup = (int)Math.nextUp(Math.random() * parametresPartie.getLargeur());
+        Log.d("ProjetFinal","colonneCoup: " + colonneCoup);
         jouerCoup(colonneCoup);
 
         playerIsWinning = ((MGrilleIA) grille).evaluerGagne();
